@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;FanOMat/compare_unit.vhd&apos; to &apos;interface.vhd&apos;" description="Rename resource &apos;compare_unit.vhd&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="compare_unit.vhd" name="interface.vhd" stamp="1348698096277" updateReferences="true"/>
+</session>

@@ -1,0 +1,597 @@
+!SESSION 2012-09-26 16:01:29.892 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data @noDefault
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:22.968
+!MESSAGE Building 21 resources, timing: {global index=3742, linking=108, validation=879, totalLinkingAndValidation=1051} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:27.854
+!MESSAGE Participant timing {DefaultStatisticianService=127, TaskTagsBuilderParticipant=95, ExternalCompilerBuilderParticipant=4569}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:30.449
+!MESSAGE Building 21 resources, timing: {global index=1452, linking=25, validation=17, totalLinkingAndValidation=57} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:30.484
+!MESSAGE Participant timing {DefaultStatisticianService=35, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=0}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:42.340
+!MESSAGE Building 1 resources, timing: {global index=12, linking=7, validation=3, totalLinkingAndValidation=14} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 16:02:44.018
+!MESSAGE Participant timing {DefaultStatisticianService=30, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=1647}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:00:09.314
+!MESSAGE Building 1 resources, timing: {global index=19, linking=5, validation=13, totalLinkingAndValidation=22} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:00:09.506
+!MESSAGE Participant timing {DefaultStatisticianService=14, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=177}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:00:40.120
+!MESSAGE Building 1 resources, timing: {global index=20, linking=8, validation=5, totalLinkingAndValidation=18} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:00:40.302
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=169}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:01:20.570
+!MESSAGE Building 1 resources, timing: {global index=10, linking=4, validation=3, totalLinkingAndValidation=8} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:01:20.681
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=97}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:01:36.978
+!MESSAGE Building 1 resources, timing: {global index=18, linking=6, validation=3, totalLinkingAndValidation=12} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:01:37.298
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=309}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:22:13.291
+!MESSAGE Building 1 resources, timing: {global index=48, linking=12, validation=28, totalLinkingAndValidation=43} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:22:13.440
+!MESSAGE Participant timing {DefaultStatisticianService=12, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=136}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:22:57.338
+!MESSAGE Building 1 resources, timing: {global index=13, linking=4, validation=2, totalLinkingAndValidation=9} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:22:57.522
+!MESSAGE Participant timing {DefaultStatisticianService=12, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=171}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:25:35.616
+!MESSAGE Building 1 resources, timing: {global index=34, linking=10, validation=26, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:25:35.776
+!MESSAGE Participant timing {DefaultStatisticianService=12, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=146}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:25:46.180
+!MESSAGE Building 1 resources, timing: {global index=41, linking=4, validation=22, totalLinkingAndValidation=29} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:25:46.340
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=146}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:26:09.421
+!MESSAGE Building 1 resources, timing: {global index=26, linking=6, validation=31, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:26:09.618
+!MESSAGE Participant timing {DefaultStatisticianService=21, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=174}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:27:37.980
+!MESSAGE Building 1 resources, timing: {global index=33, linking=7, validation=31, totalLinkingAndValidation=41} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:27:38.179
+!MESSAGE Participant timing {DefaultStatisticianService=25, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=173}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:27:41.781
+!MESSAGE Building 1 resources, timing: {global index=21, linking=5, validation=38, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:27:41.964
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=171}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:07.474
+!MESSAGE Building 1 resources, timing: {global index=17, linking=7, validation=35, totalLinkingAndValidation=45} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:07.595
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=108}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:13.792
+!MESSAGE Building 1 resources, timing: {global index=42, linking=11, validation=40, totalLinkingAndValidation=54} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:14.021
+!MESSAGE Participant timing {DefaultStatisticianService=23, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=204}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:26.449
+!MESSAGE Building 1 resources, timing: {global index=31, linking=6, validation=28, totalLinkingAndValidation=37} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:26.627
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=165}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:59.138
+!MESSAGE Building 1 resources, timing: {global index=30, linking=8, validation=26, totalLinkingAndValidation=36} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:28:59.349
+!MESSAGE Participant timing {DefaultStatisticianService=21, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=188}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:29:34.076
+!MESSAGE Building 1 resources, timing: {global index=44, linking=7, validation=28, totalLinkingAndValidation=37} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:29:34.462
+!MESSAGE Participant timing {DefaultStatisticianService=10, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=375}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:29:51.089
+!MESSAGE Building 1 resources, timing: {global index=40, linking=6, validation=39, totalLinkingAndValidation=47} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:29:51.412
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=311}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:45:23.264
+!MESSAGE Building 1 resources, timing: {global index=14, linking=7, validation=34, totalLinkingAndValidation=44} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:45:23.468
+!MESSAGE Participant timing {DefaultStatisticianService=11, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=193}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:48:22.130
+!MESSAGE Building 1 resources, timing: {global index=26, linking=7, validation=33, totalLinkingAndValidation=43} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:48:22.333
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=186}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:48:30.903
+!MESSAGE Building 1 resources, timing: {global index=31, linking=9, validation=37, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:48:31.100
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=182}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:49:34.707
+!MESSAGE Building 1 resources, timing: {global index=58, linking=11, validation=39, totalLinkingAndValidation=53} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:49:34.873
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=158}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:55:05.059
+!MESSAGE Building 1 resources, timing: {global index=31, linking=9, validation=33, totalLinkingAndValidation=45} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:55:05.260
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=181}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:55:53.183
+!MESSAGE Building 1 resources, timing: {global index=36, linking=7, validation=33, totalLinkingAndValidation=42} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:55:53.365
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=167}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:56:23.582
+!MESSAGE Building 1 resources, timing: {global index=35, linking=10, validation=29, totalLinkingAndValidation=43} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:56:23.777
+!MESSAGE Participant timing {DefaultStatisticianService=23, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=171}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:57:10.894
+!MESSAGE Building 1 resources, timing: {global index=45, linking=13, validation=39, totalLinkingAndValidation=56} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:57:11.089
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=179}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:59:20.961
+!MESSAGE Building 1 resources, timing: {global index=44, linking=8, validation=33, totalLinkingAndValidation=45} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 17:59:21.114
+!MESSAGE Participant timing {DefaultStatisticianService=12, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=139}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:13:13.367
+!MESSAGE Building 1 resources, timing: {global index=43, linking=6, validation=28, totalLinkingAndValidation=36} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:13:13.542
+!MESSAGE Participant timing {DefaultStatisticianService=18, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=156}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:13:15.675
+!MESSAGE Building 1 resources, timing: {global index=9, linking=6, validation=29, totalLinkingAndValidation=38} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:13:15.881
+!MESSAGE Participant timing {DefaultStatisticianService=19, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=187}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:15:50.976
+!MESSAGE Building 1 resources, timing: {global index=28, linking=6, validation=26, totalLinkingAndValidation=34} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:15:51.125
+!MESSAGE Participant timing {DefaultStatisticianService=18, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=130}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:25:21.942
+!MESSAGE Building 1 resources, timing: {global index=46, linking=14, validation=44, totalLinkingAndValidation=62} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:25:22.109
+!MESSAGE Participant timing {DefaultStatisticianService=9, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=157}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:25:47.202
+!MESSAGE Building 1 resources, timing: {global index=32, linking=6, validation=38, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:25:47.353
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=133}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:12.748
+!MESSAGE Building 1 resources, timing: {global index=28, linking=7, validation=37, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:12.872
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=115}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:17.152
+!MESSAGE Building 1 resources, timing: {global index=29, linking=12, validation=40, totalLinkingAndValidation=56} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:17.288
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=126}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:51.674
+!MESSAGE Building 1 resources, timing: {global index=60, linking=12, validation=42, totalLinkingAndValidation=57} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:26:51.801
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=119}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:27:40.415
+!MESSAGE Building 1 resources, timing: {global index=26, linking=8, validation=38, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:27:40.578
+!MESSAGE Participant timing {DefaultStatisticianService=14, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=147}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:46:53.847
+!MESSAGE Building 1 resources, timing: {global index=32, linking=7, validation=37, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:46:53.986
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=122}
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:53.995
+!MESSAGE Marker id 107 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.022
+!MESSAGE Marker id 108 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.023
+!MESSAGE Marker id 105 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.023
+!MESSAGE Marker id 106 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.024
+!MESSAGE Marker id 103 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.024
+!MESSAGE Marker id 104 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2012-09-26 18:46:54.024
+!MESSAGE Marker id 102 not found.
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:50:43.969
+!MESSAGE Building 1 resources, timing: {global index=29, linking=11, validation=36, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:50:44.113
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=126}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:11.634
+!MESSAGE Building 1 resources, timing: {global index=14, linking=6, validation=36, totalLinkingAndValidation=44} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:11.815
+!MESSAGE Participant timing {DefaultStatisticianService=14, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=166}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:28.162
+!MESSAGE Building 1 resources, timing: {global index=52, linking=14, validation=40, totalLinkingAndValidation=57} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:28.358
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=188}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:41.800
+!MESSAGE Building 1 resources, timing: {global index=50, linking=10, validation=36, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:51:42.015
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=202}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:54:29.649
+!MESSAGE Building 1 resources, timing: {global index=28, linking=8, validation=44, totalLinkingAndValidation=54} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:54:29.814
+!MESSAGE Participant timing {DefaultStatisticianService=9, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=154}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:55:13.464
+!MESSAGE Building 1 resources, timing: {global index=34, linking=11, validation=38, totalLinkingAndValidation=52} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:55:13.609
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=135}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:55:28.124
+!MESSAGE Building 1 resources, timing: {global index=31, linking=9, validation=32, totalLinkingAndValidation=44} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:55:28.300
+!MESSAGE Participant timing {DefaultStatisticianService=18, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=157}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:57:24.507
+!MESSAGE Building 1 resources, timing: {global index=43, linking=10, validation=40, totalLinkingAndValidation=54} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-26 18:57:24.649
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=134}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:21:24.088
+!MESSAGE Building 1 resources, timing: {global index=20, linking=13, validation=43, totalLinkingAndValidation=60} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:21:24.514
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=395}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:21:36.494
+!MESSAGE Building 1 resources, timing: {global index=9, linking=7, validation=32, totalLinkingAndValidation=42} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:21:36.644
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=142}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:34.469
+!MESSAGE Building 1 resources, timing: {global index=32, linking=7, validation=35, totalLinkingAndValidation=45} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:34.546
+!MESSAGE Participant timing {DefaultStatisticianService=10, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=66}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:37.512
+!MESSAGE Building 1 resources, timing: {global index=31, linking=9, validation=41, totalLinkingAndValidation=53} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:37.595
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=75}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:40.401
+!MESSAGE Building 1 resources, timing: {global index=21, linking=8, validation=37, totalLinkingAndValidation=48} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:40.604
+!MESSAGE Participant timing {DefaultStatisticianService=12, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=191}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:52.260
+!MESSAGE Building 1 resources, timing: {global index=36, linking=8, validation=37, totalLinkingAndValidation=48} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:22:52.394
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=125}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:26.785
+!MESSAGE Building 1 resources, timing: {global index=35, linking=11, validation=39, totalLinkingAndValidation=53} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:26.919
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=125}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:36.609
+!MESSAGE Building 1 resources, timing: {global index=33, linking=8, validation=43, totalLinkingAndValidation=54} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:36.727
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=110}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:53.541
+!MESSAGE Building 1 resources, timing: {global index=30, linking=8, validation=25, totalLinkingAndValidation=35} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:23:53.652
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=103}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:24:09.313
+!MESSAGE Building 1 resources, timing: {global index=31, linking=6, validation=24, totalLinkingAndValidation=32} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:24:09.462
+!MESSAGE Participant timing {DefaultStatisticianService=16, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=132}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:25:14.708
+!MESSAGE Building 1 resources, timing: {global index=32, linking=11, validation=25, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:25:14.819
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=103}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:06.267
+!MESSAGE Building 1 resources, timing: {global index=12, linking=0, validation=1, totalLinkingAndValidation=7} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:06.320
+!MESSAGE Participant timing {DefaultStatisticianService=9, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=43}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:11.528
+!MESSAGE Building 1 resources, timing: {global index=41, linking=14, validation=58, totalLinkingAndValidation=85} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:11.717
+!MESSAGE Participant timing {DefaultStatisticianService=13, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=175}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:24.196
+!MESSAGE Building 1 resources, timing: {global index=31, linking=16, validation=59, totalLinkingAndValidation=87} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:24.493
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=282}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:26.709
+!MESSAGE Building 1 resources, timing: {global index=13, linking=16, validation=66, totalLinkingAndValidation=95} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:27.001
+!MESSAGE Participant timing {DefaultStatisticianService=27, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=264}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:28.098
+!MESSAGE Building 1 resources, timing: {global index=8, linking=12, validation=54, totalLinkingAndValidation=78} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:26:28.337
+!MESSAGE Participant timing {DefaultStatisticianService=23, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=216}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:29:51.208
+!MESSAGE Building 1 resources, timing: {global index=44, linking=6, validation=39, totalLinkingAndValidation=48} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:29:51.339
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=122}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:29:58.138
+!MESSAGE Building 1 resources, timing: {global index=32, linking=9, validation=41, totalLinkingAndValidation=53} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:29:58.344
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=188}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:18.484
+!MESSAGE Building 1 resources, timing: {global index=29, linking=8, validation=38, totalLinkingAndValidation=48} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:18.608
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=115}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:35.066
+!MESSAGE Building 1 resources, timing: {global index=33, linking=7, validation=39, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:35.173
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=98}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:52.954
+!MESSAGE Building 1 resources, timing: {global index=30, linking=8, validation=38, totalLinkingAndValidation=48} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:30:53.073
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=111}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:32:04.341
+!MESSAGE Building 1 resources, timing: {global index=26, linking=9, validation=39, totalLinkingAndValidation=50} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:32:04.470
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=120}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:37:47.794
+!MESSAGE Building 1 resources, timing: {global index=30, linking=8, validation=39, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:37:47.916
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=114}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:37:58.610
+!MESSAGE Building 1 resources, timing: {global index=32, linking=11, validation=37, totalLinkingAndValidation=52} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:37:58.731
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=114}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:14.582
+!MESSAGE Building 1 resources, timing: {global index=31, linking=7, validation=39, totalLinkingAndValidation=49} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:14.700
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=109}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:21.355
+!MESSAGE Building 1 resources, timing: {global index=15, linking=5, validation=33, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:21.522
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=151}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:28.843
+!MESSAGE Building 1 resources, timing: {global index=31, linking=16, validation=31, totalLinkingAndValidation=50} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:28.961
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=110}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:47.737
+!MESSAGE Building 1 resources, timing: {global index=29, linking=8, validation=35, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:38:47.892
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=140}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:40:14.242
+!MESSAGE Building 1 resources, timing: {global index=34, linking=10, validation=38, totalLinkingAndValidation=51} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:40:14.351
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=101}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:40:20.753
+!MESSAGE Building 1 resources, timing: {global index=31, linking=5, validation=34, totalLinkingAndValidation=42} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:40:20.892
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=130}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:43:16.204
+!MESSAGE Building 1 resources, timing: {global index=29, linking=7, validation=37, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:43:16.387
+!MESSAGE Participant timing {DefaultStatisticianService=20, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=161}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:44:08.221
+!MESSAGE Building 1 resources, timing: {global index=30, linking=7, validation=35, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:44:08.395
+!MESSAGE Participant timing {DefaultStatisticianService=16, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=157}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:44:26.070
+!MESSAGE Building 1 resources, timing: {global index=26, linking=6, validation=35, totalLinkingAndValidation=43} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:44:26.235
+!MESSAGE Participant timing {DefaultStatisticianService=15, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=149}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:45:11.814
+!MESSAGE Building 1 resources, timing: {global index=32, linking=6, validation=32, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:45:11.986
+!MESSAGE Participant timing {DefaultStatisticianService=14, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=158}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:47:01.570
+!MESSAGE Building 1 resources, timing: {global index=30, linking=7, validation=36, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:47:01.733
+!MESSAGE Participant timing {DefaultStatisticianService=14, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=148}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:47:59.363
+!MESSAGE Building 1 resources, timing: {global index=37, linking=6, validation=39, totalLinkingAndValidation=47} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:47:59.514
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=142}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:48:27.538
+!MESSAGE Building 1 resources, timing: {global index=34, linking=5, validation=37, totalLinkingAndValidation=45} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:48:27.679
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=132}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:49:04.047
+!MESSAGE Building 1 resources, timing: {global index=36, linking=6, validation=38, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:49:04.236
+!MESSAGE Participant timing {DefaultStatisticianService=16, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=171}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:51:58.375
+!MESSAGE Building 1 resources, timing: {global index=37, linking=5, validation=38, totalLinkingAndValidation=46} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:51:58.490
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=107}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:53:46.284
+!MESSAGE Building 1 resources, timing: {global index=30, linking=4, validation=34, totalLinkingAndValidation=41} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:53:46.449
+!MESSAGE Participant timing {DefaultStatisticianService=7, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=157}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:53:57.173
+!MESSAGE Building 1 resources, timing: {global index=30, linking=4, validation=34, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:53:57.335
+!MESSAGE Participant timing {DefaultStatisticianService=17, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=144}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:55:33.198
+!MESSAGE Building 1 resources, timing: {global index=31, linking=4, validation=31, totalLinkingAndValidation=37} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:55:33.377
+!MESSAGE Participant timing {DefaultStatisticianService=16, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=162}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:56:15.411
+!MESSAGE Building 1 resources, timing: {global index=33, linking=4, validation=34, totalLinkingAndValidation=40} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 00:56:15.555
+!MESSAGE Participant timing {DefaultStatisticianService=8, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=135}
+!SESSION 2012-09-27 11:39:50.591 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data @noDefault
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:42:51.800
+!MESSAGE Building 17 resources, timing: {global index=4240, linking=0, validation=0, totalLinkingAndValidation=13} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:42:51.967
+!MESSAGE Participant timing {DefaultStatisticianService=84, TaskTagsBuilderParticipant=1, ExternalCompilerBuilderParticipant=25}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:42:55.575
+!MESSAGE Building 25 resources, timing: {global index=1722, linking=657, validation=578, totalLinkingAndValidation=1333} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:43:01.444
+!MESSAGE Participant timing {DefaultStatisticianService=56, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=5812}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:43:03.071
+!MESSAGE Building 22 resources, timing: {global index=514, linking=28, validation=32, totalLinkingAndValidation=75} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:43:03.591
+!MESSAGE Participant timing {DefaultStatisticianService=29, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=491}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:43:06.342
+!MESSAGE Building 25 resources, timing: {global index=858, linking=434, validation=143, totalLinkingAndValidation=640} resets: {GI resets=1, LV resets=1}
+
+!ENTRY com.sigasi.hdt.vhdl.ui 1 1 2012-09-27 11:43:11.253
+!MESSAGE Participant timing {DefaultStatisticianService=39, TaskTagsBuilderParticipant=0, ExternalCompilerBuilderParticipant=4871}

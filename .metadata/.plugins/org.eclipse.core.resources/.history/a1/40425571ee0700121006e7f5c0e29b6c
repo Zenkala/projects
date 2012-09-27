@@ -1,0 +1,38 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity counter is
+	generic ( 
+		counter_width : positive := 8 
+	);
+	port (
+		count_val : out unsigned (counter_width downto 0); 
+		clk : in std_logic;
+		rst : in std_logic
+	);
+end entity counter;
+
+architecture behaviour of counter is
+	
+	signal counter_value : unsigned (counter_width downto 0);
+	
+begin
+
+  process
+  
+  begin
+  
+    if rst = "1" then
+      counter_value = 0;
+    else
+    
+    
+    
+    end if;
+      
+    
+    
+  end process;
+
+end architecture behaviour;

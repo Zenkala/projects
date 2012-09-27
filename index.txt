@@ -1,0 +1,6 @@
+projects
+========
+
+FanOMat:
+
+CPLD/FPGA and ARM based fan controller for controller up to 12 fans simultaniously, regulating RPM, and configurable by USB.
