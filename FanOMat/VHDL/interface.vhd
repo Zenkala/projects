@@ -42,6 +42,7 @@ entity interface is
 		--inputs
 		data_in, data_clk : in std_logic;
 		reset : in std_logic;
+		clk : in std_logic;
     --write_en : in std_logic;
     --outputs   
 		data_rdy : out std_logic;
@@ -54,8 +55,21 @@ architecture behaviour of interface is
 	constant DATA_RDY_BUFF_LENGTH : positive := 2;
 	signal input_reg : unsigned (data_width downto 0) := (others => '0');
 	signal data_rdy_buff : std_logic_vector ((DATA_RDY_BUFF_LENGTH-1) downto 0) := (others => '0');
+	signal data_rdy_temp : std_logic := '0';
 	
 begin
+
+
+  combine_clk : process
+  begin
+  
+    wait until rising_edge(clk);
+    --shift ready signal through clock domain buffer
+    data_rdy_buff <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-2) downto 0) & data_rdy_temp; --shift  in an extra high bit  
+    data_rdy <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-1));
+      
+  end process combine_clk;
+
 
   gather_data: process 
   
@@ -63,14 +77,14 @@ begin
       
   begin
   
-    if reset = '1' then --if reset 
+    if reset = '1' then --reset
       
       bits_written := 0; --reset received data counter
       input_reg <= (others => '0'); --clear internal storage register
       data_rdy_buff <= (others => '0'); --clear data_rdy line buffer
       data_rdy <= '0'; --indicate ready to receive new data
     
-    else --if not reset
+    else --clock in data on rising edge data clock
   
       wait until rising_edge(data_clk); 
       
@@ -81,10 +95,8 @@ begin
               
       else ---if all data has been received
        
-        data_out <= input_reg;
-        --signal new register value
-        data_rdy <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-1));
-        data_rdy_buff <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-2) downto 0) & '1'; --shift  in an extra high bit  
+        data_out <= input_reg; --put data on output port
+        data_rdy_temp <= '1';  --signal data ready internally
                
       end if; 
       

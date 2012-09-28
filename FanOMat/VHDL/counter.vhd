@@ -8,8 +8,8 @@ entity counter is
 	);
 	port (
 		count_val : out unsigned (counter_width downto 0); 
-		clk : in std_logic;
-		rst : in std_logic
+		clk, reset : in std_logic;
+		ovf_out : out std_logic
 	);
 end entity counter;
 
@@ -23,7 +23,7 @@ begin
   
   begin
   
-    if rst = '1' then
+    if reset = '1' then
       --reset counter
       counter_value <= (others => '0');
     else
@@ -31,8 +31,10 @@ begin
       wait until rising_edge(clk);
       --describe counter behaviour
       if counter_value = (2**counter_width -1) then
+        ovf_out <= '1'; --signal overflow
         counter_value <= (others => '0');
       else 
+        ovf_out <= '0'; --keep ovf_out one clock pulse high only
         counter_value <= counter_value + 1;
       end if;
     
