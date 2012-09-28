@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity pwm_gen is
   generic ( pwm_counter_bits : positive := 8;
-            pwm_channels : positive := 12;
-            channel_sel_bits : positive := 4 --adjust so that pwm_channels can be respresented by this number of bits
+            pwm_channels : positive := 4;
+            channel_sel_bits : positive := 2 --adjust so that pwm_channels can be respresented by this number of bits
   );
 	port (
 		clk, reset : in std_logic;
@@ -111,7 +111,7 @@ begin
    end generate pwm_compare_blocks;
 
    --instantiate multiplexer for interface
-   update_value_int <= update_value_bus(to_integer(channel_sel));
+   
 
 
 end architecture behaviour;
