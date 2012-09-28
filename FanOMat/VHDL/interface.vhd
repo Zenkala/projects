@@ -53,22 +53,41 @@ end entity interface;
 architecture behaviour of interface is
 	
 	constant DATA_RDY_BUFF_LENGTH : positive := 2;
+	constant RESET_BUFF_LENGTH : positive := 2;
 	signal input_reg : unsigned (data_width downto 0) := (others => '0');
 	signal data_rdy_buff : std_logic_vector ((DATA_RDY_BUFF_LENGTH-1) downto 0) := (others => '0');
-	signal data_rdy_temp : std_logic := '0';
+	signal data_rdy_int : std_logic := '0';
+	signal reset_buff : std_logic_vector ((RESET_BUFF_LENGTH-1) downto 0) := (others => '0');
+  signal reset_int, reset_tmp_val : std_logic := '0';
 	
 begin
 
+  sync_reset : process
+  begin
+  
+    if reset_tmp_val = '0' then
+      wait until rising_edge(reset); --capture incoming reset
+      reset_tmp_val <= '1';
+    end if;
+    
+    --clk in reset on local clock
+    wait until falling_edge(clk);
+    reset_buff <= reset_buff((RESET_BUFF_LENGTH-2) downto 0) & reset_tmp_val; --shift in reset_val bit
+    reset_int <= reset_buff((DATA_RDY_BUFF_LENGTH-1));
+      
+  end process sync_reset;
 
-  combine_clk : process
+
+
+  sync_data_rdy : process
   begin
   
     wait until rising_edge(clk);
     --shift ready signal through clock domain buffer
-    data_rdy_buff <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-2) downto 0) & data_rdy_temp; --shift  in an extra high bit  
+    data_rdy_buff <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-2) downto 0) & data_rdy_int; --shift  in an extra high bit  
     data_rdy <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-1));
       
-  end process combine_clk;
+  end process sync_data_rdy;
 
 
   gather_data: process 
@@ -77,12 +96,13 @@ begin
       
   begin
   
-    if reset = '1' then --reset
+    if reset_int = '1' then --reset
       
       bits_written := 0; --reset received data counter
       input_reg <= (others => '0'); --clear internal storage register
       data_rdy_buff <= (others => '0'); --clear data_rdy line buffer
       data_rdy <= '0'; --indicate ready to receive new data
+      reset_tmp_val <= reset;
     
     else --clock in data on rising edge data clock
   
@@ -96,7 +116,7 @@ begin
       else ---if all data has been received
        
         data_out <= input_reg; --put data on output port
-        data_rdy_temp <= '1';  --signal data ready internally
+        data_rdy_int <= '1';  --signal data ready internally
                
       end if; 
       

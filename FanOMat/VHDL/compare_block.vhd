@@ -34,10 +34,14 @@ begin
         --only save data once for each data_rdy signal
         wait until data_rdy = '0'; 
         
-        --reset data interface
-        data_updated <= '1';
-        wait until rising_edge(clk); --TODO: synchronize reset in clock domains
-        data_updated <= '0';        
+        --re-check for reset due to asynchronous wait
+        if reset = '0' then 
+        --reset data interface to allow for new data
+          wait until rising_edge(clk);
+          data_updated <= '1';
+          wait until rising_edge(clk); 
+          data_updated <= '0';        
+        end if;
         
       end if;
     
