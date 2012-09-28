@@ -7,7 +7,7 @@ entity counter is
 		counter_width : positive := 8 
 	);
 	port (
-		count_val : out unsigned (counter_width downto 0); 
+		count_val : out unsigned (counter_width-1 downto 0); 
 		clk, reset : in std_logic;
 		ovf_out : out std_logic
 	);
@@ -15,7 +15,7 @@ end entity counter;
 
 architecture behaviour of counter is
 	
-	signal counter_value : unsigned (counter_width downto 0) := (others => '0');
+	signal counter_value : unsigned (counter_width-1 downto 0) := (others => '0');
 	
 begin
 
@@ -30,7 +30,7 @@ begin
       
       wait until rising_edge(clk);
       --describe counter behaviour
-      if counter_value = (2**counter_width -1) then
+      if counter_value = ((2**counter_width) -1) then
         ovf_out <= '1'; --signal overflow
         counter_value <= (others => '0');
       else 

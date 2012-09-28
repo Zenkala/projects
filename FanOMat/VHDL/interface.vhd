@@ -43,10 +43,9 @@ entity interface is
 		data_in, data_clk : in std_logic;
 		reset : in std_logic;
 		clk : in std_logic;
-    --write_en : in std_logic;
     --outputs   
 		data_rdy : out std_logic;
-		data_out : out unsigned (data_width downto 0)  --data width is compare value width + pwm output select bit
+		data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
 	);
 end entity interface;
 
@@ -54,7 +53,7 @@ architecture behaviour of interface is
 	
 	constant DATA_RDY_BUFF_LENGTH : positive := 2;
 	constant RESET_BUFF_LENGTH : positive := 2;
-	signal input_reg : unsigned (data_width downto 0) := (others => '0');
+	signal input_reg : unsigned (data_width-1 downto 0) := (others => '0');
 	signal data_rdy_buff : std_logic_vector ((DATA_RDY_BUFF_LENGTH-1) downto 0) := (others => '0');
 	signal data_rdy_int : std_logic := '0';
 	signal reset_buff : std_logic_vector ((RESET_BUFF_LENGTH-1) downto 0) := (others => '0');
@@ -110,7 +109,7 @@ begin
       
       if bits_written < data_width then --clock in new data
       
-        input_reg <= input_reg((data_width-1) downto 0) & data_in; --shift in new data
+        input_reg <= input_reg((data_width-2) downto 0) & data_in; --shift in new data
         bits_written := bits_written + 1;
               
       else ---if all data has been received
