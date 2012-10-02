@@ -54,6 +54,18 @@ architecture behaviour of pwm_gen is
   );
   end component counter;
   
+  component one_to_many_mux is
+  generic ( nr_outputs : positive := 4;
+            nr_sel_bits : positive := 2; --adjust so that pwm_channels can be respresented by this number of bits
+            bit_width : positive := 2 
+  );
+  port (
+          output : out unsigned ((nr_outputs * bit_width)-1 downto 0);   --output bus
+          input : in unsigned (bit_width-1 downto 0);
+          sel : in unsigned(nr_sel_bits-1 downto 0)
+       );
+  end component one_to_many_mux;
+  
   
   --counter -> compare_block interconnection signals
   signal counter_overflow : std_logic := '0';
@@ -63,7 +75,8 @@ architecture behaviour of pwm_gen is
   type update_value_array is array (0 to pwm_channels-1) of unsigned (pwm_counter_bits downto 0);
   --interface -> compare_block interconnection signals
   signal data_rdy_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
-  signal update_value_bus : update_value_array;
+  --signal update_value_bus : update_value_array;
+  signal update_value_bus : unsigned ((pwm_channels*(pwm_counter_bits+1))-1 downto 0) := (others => '0');
   signal data_updated_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
   signal update_value_int : unsigned (pwm_counter_bits downto 0) := (others => '0');
   signal data_rdy_int : std_logic := '0';
@@ -103,7 +116,7 @@ begin
                 data_rdy => data_rdy_bus(i),
                 cnt_ovf => counter_overflow,
                 cnt_value => counter_value,
-                update_value => update_value_bus(i),
+                update_value => update_value_bus((i*(pwm_counter_bits+1))+(pwm_counter_bits+1)-1 downto (i*(pwm_counter_bits+1))),
                 pwm_pin4 => pwm_pin4_block(i), 
                 pwm_pin3 => pwm_pin3_block(i),
                 data_updated => data_updated_bus(i)
@@ -111,7 +124,14 @@ begin
    end generate pwm_compare_blocks;
 
    --instantiate multiplexer for interface
-   
+   demultiplexer : one_to_many_mux 
+   generic map ( pwm_channels, 4, pwm_counter_bits+1)
+   port map    (
+                 output => update_value_bus,
+                 input => update_value_int,
+                 sel => channel_sel
+               );
+
 
 
 end architecture behaviour;
