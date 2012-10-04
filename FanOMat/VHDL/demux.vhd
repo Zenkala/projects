@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.NUMERIC_STD.all;
 
-entity one_to_many_mux is
+entity demux is
   generic ( nr_outputs : positive := 4;
             nr_sel_bits : positive := 2; --adjust so that pwm_channels can be respresented by this number of bits
             bit_width : positive := 2 
@@ -12,9 +12,9 @@ port (
         input : in unsigned (bit_width-1 downto 0);
         sel : in unsigned(nr_sel_bits-1 downto 0)
      );
-end one_to_many_mux;
+end demux;
 
-architecture Behavioral of one_to_many_mux is
+architecture behaviour of demux is
 
 begin
 
@@ -43,9 +43,11 @@ begin
       
       end loop;
     
-    end if; --end if selected
+    else --if selected is not in range, all outputs should be zerp
+      output <= (others => '0');    
+    end if;
   
   end process;
 
 
-end Behavioral;
+end behaviour;

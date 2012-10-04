@@ -89,7 +89,7 @@ begin
   end process sync_data_rdy;
 
 
-  gather_data: process 
+  gather_data: process(data_clk, reset)
   
     variable bits_written : integer range 0 to (data_width) := 0;
       
@@ -103,10 +103,8 @@ begin
       data_rdy <= '0'; --indicate ready to receive new data
       reset_tmp_val <= reset;
     
-    else --clock in data on rising edge data clock
+    elsif data_clk'EVENT and data_clk = '1' then --clock in data on rising edge data clock
   
-      wait until rising_edge(data_clk); 
-      
       if bits_written < data_width then --clock in new data
       
         input_reg <= input_reg((data_width-2) downto 0) & data_in; --shift in new data

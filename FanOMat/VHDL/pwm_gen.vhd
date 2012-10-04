@@ -54,7 +54,7 @@ architecture behaviour of pwm_gen is
   );
   end component counter;
   
-  component one_to_many_mux is
+  component demux is
   generic ( nr_outputs : positive := 4;
             nr_sel_bits : positive := 2; --adjust so that pwm_channels can be respresented by this number of bits
             bit_width : positive := 2 
@@ -64,15 +64,13 @@ architecture behaviour of pwm_gen is
           input : in unsigned (bit_width-1 downto 0);
           sel : in unsigned(nr_sel_bits-1 downto 0)
        );
-  end component one_to_many_mux;
+  end component demux;
   
   
   --counter -> compare_block interconnection signals
   signal counter_overflow : std_logic := '0';
   signal counter_value : unsigned (pwm_counter_bits-1 downto 0) := (others => '0');
   
-  --interface data output interconnect bus declaration
-  type update_value_array is array (0 to pwm_channels-1) of unsigned (pwm_counter_bits downto 0);
   --interface -> compare_block interconnection signals
   signal data_rdy_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
   --signal update_value_bus : update_value_array;
@@ -124,7 +122,7 @@ begin
    end generate pwm_compare_blocks;
 
    --instantiate multiplexer for interface
-   demultiplexer : one_to_many_mux 
+   demultiplexer : demux 
    generic map ( pwm_channels, 4, pwm_counter_bits+1)
    port map    (
                  output => update_value_bus,
