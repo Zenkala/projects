@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity demux_test is
   generic ( nr_outputs : positive := 7;
             nr_sel_bits : positive := 3; --adjust so that pwm_channels can be respresented by this number of bits
-            bit_width : positive := 4 
+            bit_width : positive := 1 
   );
   port (output : out unsigned ((nr_outputs * bit_width)-1 downto 0) --output bus
   );
@@ -25,7 +25,7 @@ architecture behaviour of demux_test is
        );
   end component demux;
 
-  component compare_testset 
+  component demux_testset 
     generic ( nr_sel_bits : positive; --adjust so that pwm_channels can be respresented by this number of bits
               bit_width : positive 
     );
@@ -33,7 +33,7 @@ architecture behaviour of demux_test is
           data : out unsigned (bit_width-1 downto 0);
           sel : out unsigned(nr_sel_bits-1 downto 0)
        );
-  end component compare_testset;
+  end component demux_testset;
 
 
   signal data_bus : unsigned (bit_width-1 downto 0) := (others => '0');
@@ -42,7 +42,7 @@ architecture behaviour of demux_test is
 begin
 
   --instantiate testset
-  testset : compare_testset 
+  testset : demux_testset 
   generic map (nr_sel_bits,bit_width)   
   port map (   data => data_bus,
                sel => sel_bus

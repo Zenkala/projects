@@ -37,7 +37,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity interface is
-  generic (data_width : positive := 9);
+  generic ( data_width : positive := 9;
+            clk_domain_buff_length : positive := 2
+  );
 	port (
 		--inputs
 		data_in, data_clk : in std_logic;
@@ -50,74 +52,69 @@ entity interface is
 end entity interface;
 
 architecture behaviour of interface is
+
+    procedure clock_out_data (  signal data_rdy_buff : out std_logic_vector;
+                                signal clk : in std_logic;
+                                signal reset : in std_logic
+                             ) is
+
+    begin
+    
+        for i in 0 to clk_domain_buff_length-1 loop
+          --sync with clock
+          wait until falling_edge(clk);
+          --dont ignore reset
+          if reset = '1' then exit; end if;
+          --clock out data rdy signal
+          data_rdy_buff(i) <= '1';   
+        end loop;
+        
+    end clock_out_data; 
+
 	
-	constant DATA_RDY_BUFF_LENGTH : positive := 2;
-	constant RESET_BUFF_LENGTH : positive := 2;
+	signal data_rdy_buff : std_logic_vector ((clk_domain_buff_length-1) downto 0) := (others => '0');
 	signal input_reg : unsigned (data_width-1 downto 0) := (others => '0');
-	signal data_rdy_buff : std_logic_vector ((DATA_RDY_BUFF_LENGTH-1) downto 0) := (others => '0');
-	signal data_rdy_int : std_logic := '0';
-	signal reset_buff : std_logic_vector ((RESET_BUFF_LENGTH-1) downto 0) := (others => '0');
-  signal reset_int, reset_tmp_val : std_logic := '0';
 	
 begin
 
-  sync_reset : process
-  begin
+  --connect internal signals
+  data_rdy <= data_rdy_buff((clk_domain_buff_length-1));
+  data_out <= input_reg; --put data on output port
   
-    if reset_tmp_val = '0' then
-      wait until rising_edge(reset); --capture incoming reset
-      reset_tmp_val <= '1';
-    end if;
-    
-    --clk in reset on local clock
-    wait until falling_edge(clk);
-    reset_buff <= reset_buff((RESET_BUFF_LENGTH-2) downto 0) & reset_tmp_val; --shift in reset_val bit
-    reset_int <= reset_buff((DATA_RDY_BUFF_LENGTH-1));
-      
-  end process sync_reset;
-
-
-
-  sync_data_rdy : process
-  begin
-  
-    wait until rising_edge(clk);
-    --shift ready signal through clock domain buffer
-    data_rdy_buff <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-2) downto 0) & data_rdy_int; --shift  in an extra high bit  
-    data_rdy <= data_rdy_buff((DATA_RDY_BUFF_LENGTH-1));
-      
-  end process sync_data_rdy;
-
-
-  gather_data: process(data_clk, reset)
+  gather_data: process
   
     variable bits_written : integer range 0 to (data_width) := 0;
-      
+   
   begin
-  
-    if reset_int = '1' then --reset
+    
+    wait until rising_edge(data_clk) or rising_edge(reset);
       
+    if reset = '1' then --reset
+      
+      --only perform reset on inactive data clk
+      while data_clk /= '0' loop end loop;
       bits_written := 0; --reset received data counter
-      input_reg <= (others => '0'); --clear internal storage register
+      wait until falling_edge(clk); --synchronize reset with read clk
+      input_reg <= (others => '0'); --clear internal storage register 
       data_rdy_buff <= (others => '0'); --clear data_rdy line buffer
-      data_rdy <= '0'; --indicate ready to receive new data
-      reset_tmp_val <= reset;
     
     elsif data_clk'EVENT and data_clk = '1' then --clock in data on rising edge data clock
   
       if bits_written < data_width then --clock in new data
       
+        --clock in and store data
         input_reg <= input_reg((data_width-2) downto 0) & data_in; --shift in new data
         bits_written := bits_written + 1;
-              
-      else ---if all data has been received
-       
-        data_out <= input_reg; --put data on output port
-        data_rdy_int <= '1';  --signal data ready internally
-               
-      end if; 
+        
+      end if;-- end if bits_written < data_width
       
-    end if;
+      if bits_written = data_width then --if all data has been received, clock out ready signal
+               
+        clock_out_data(data_rdy_buff,clk,reset);
+               
+      end if;-- end if bits_written = data_width 
+      
+    end if;--end if data_clk'EVENT
    
   end process gather_data;
 

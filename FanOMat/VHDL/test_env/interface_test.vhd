@@ -3,69 +3,63 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity interface_test is
-  generic (data_width : positive := 9);
-  port (
-    data_rdy : out std_logic;
-    data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
-  );
+    generic ( data_width : positive := 9;
+              clk_domain_buff_length : positive := 2     
+    );
+    port (
+      data_rdy : out std_logic;
+      data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
+    );
 end entity interface_test;
 
 architecture behaviour of interface_test is
 
-  component compare_block
-    generic (compare_width : positive);
+  component interface
+    generic (data_width : positive := 9);
     port (
-      clk,reset : in std_logic;
-      data_rdy : in std_logic;
-      cnt_ovf : in std_logic;
-      cnt_value : in unsigned (compare_width-1 downto 0);
-      update_value : in unsigned (compare_width downto 0);
-      pwm_pin4, pwm_pin3 : out std_logic;    
-      data_updated : out std_logic
-    );
-  end component compare_block;
-
-  component compare_testset
-    generic (compare_width : positive);
-    port (
-      clk,reset : out std_logic;
+      --inputs
+      data_in, data_clk : in std_logic;
+      reset : in std_logic;
+      clk : in std_logic;
+      --outputs   
       data_rdy : out std_logic;
-      cnt_ovf : out std_logic;
-      cnt_value : out unsigned (compare_width-1 downto 0);
-      update_value : out unsigned (compare_width downto 0)
+      data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
     );
-  end component compare_testset;
+  end component interface;
+
+  component interface_testset 
+    generic ( data_width : positive := 9 );
+    port (
+      data_out, data_clk : out std_logic;
+      reset : out std_logic;
+      clk : out std_logic
+    );
+  end component interface_testset;
 
 
-  signal clk_line,reset_line,ovf_line,data_rdy_line : std_logic := '0';
-  signal cnt_bus : unsigned (compare_width-1 downto 0);
-  signal update_bus : unsigned (compare_width downto 0);
+  signal clk_line,reset_line,data_line,data_clk_line : std_logic := '0';
+  
     
 begin
 
   --instantiate testset
-  testset : compare_testset 
-  generic map (compare_width)   
-  port map (   clk => clk_line,
-               reset => reset_line,
-               cnt_ovf => ovf_line,
-               data_rdy => data_rdy_line,
-               cnt_value => cnt_bus,
-               update_value => update_bus 
+  testset : interface_testset 
+  generic map (data_width)   
+  port map (   data_out => data_line,
+               data_clk => data_clk_line,
+               reset => reset_line, 
+               clk => clk_line
            );
            
   --instantiate counter
-  compare_instance : compare_block
-  generic map (compare_width)      
+  interface_instance : interface
+  generic map (data_width)      
   port map    ( clk => clk_line,
                 reset => reset_line,
-                data_rdy => data_rdy_line,
-                cnt_ovf => ovf_line,
-                cnt_value => cnt_bus,
-                update_value => update_bus,
-                pwm_pin4 => pwm_pin4,
-                pwm_pin3 => pwm_pin3,
-                data_updated => data_updated
+                data_rdy => data_rdy,
+                data_in => data_line,
+                data_clk => data_clk_line,
+                data_out => data_out
               );            
 
 end architecture behaviour;

@@ -18,7 +18,7 @@ architecture behaviour of demux is
 
 begin
 
-  process(sel)
+  process(sel, input)
     
     variable offset, selected : natural := 0;
   
@@ -26,6 +26,7 @@ begin
   
     --calculate selected input and output offset
     selected := to_integer(sel);
+
     
     if selected < nr_outputs then 
     

@@ -1,11 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
 
 entity pwm_gen is
-  generic ( pwm_counter_bits : positive := 8;
-            pwm_channels : positive := 4;
-            channel_sel_bits : positive := 2 --adjust so that pwm_channels can be respresented by this number of bits
+  generic ( pwm_counter_bits : positive := 6;
+            pwm_channels : positive := 12;
+            channel_sel_bits : positive := 4 --adjust so that pwm_channels can be respresented by this number of bits
   );
 	port (
 		clk, reset : in std_logic;
@@ -72,15 +73,20 @@ architecture behaviour of pwm_gen is
   signal counter_value : unsigned (pwm_counter_bits-1 downto 0) := (others => '0');
   
   --interface -> compare_block interconnection signals
-  signal data_rdy_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
+  signal data_rdy_bus : unsigned (pwm_channels-1 downto 0) := (others => '0');
   --signal update_value_bus : update_value_array;
   signal update_value_bus : unsigned ((pwm_channels*(pwm_counter_bits+1))-1 downto 0) := (others => '0');
   signal data_updated_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
   signal update_value_int : unsigned (pwm_counter_bits downto 0) := (others => '0');
-  signal data_rdy_int : std_logic := '0';
+  signal data_rdy_int : unsigned (0 downto 0) := (others => '0');
+   
+  --connect data updated to reset signal
+  signal interface_reset : std_logic := '0';
   
 	
 begin
+
+   interface_reset <= reset or or_reduce(data_updated_bus); 
 
    --instantiate counter
    pwm_counter : counter 
@@ -96,11 +102,11 @@ begin
    data_interface : interface 
    generic map (pwm_counter_bits+1)   
    port map (   clk => clk,
-                reset => reset,
+                reset => interface_reset,
                 data_in => data_in,
                 data_out => update_value_int,
                 data_clk => data_clk,
-                data_rdy => data_rdy_int
+                data_rdy => data_rdy_int(0)
             );
 
 
@@ -122,11 +128,20 @@ begin
    end generate pwm_compare_blocks;
 
    --instantiate multiplexer for interface
-   demultiplexer : demux 
-   generic map ( pwm_channels, 4, pwm_counter_bits+1)
+   value_demux : demux 
+   generic map ( pwm_channels, channel_sel_bits, pwm_counter_bits+1)
    port map    (
                  output => update_value_bus,
                  input => update_value_int,
+                 sel => channel_sel
+               );
+               
+      --instantiate multiplexer for interface
+   signal_demux : demux 
+   generic map ( pwm_channels, channel_sel_bits, 1)
+   port map    (
+                 output => data_rdy_bus,
+                 input => data_rdy_int,
                  sel => channel_sel
                );
 
