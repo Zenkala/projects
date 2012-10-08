@@ -11,7 +11,7 @@ entity counter_testset is
   );
 end entity counter_testset;
 
-architecture behaviour of counter_testset is
+architecture bhv of counter_testset is
 
   signal clk_internal : std_logic := '1';
   constant clk_period : time := 10 ns;
@@ -84,4 +84,4 @@ begin
     
   end process;
   
-end architecture behaviour;
+end architecture bhv;

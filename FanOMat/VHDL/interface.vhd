@@ -40,79 +40,67 @@ entity interface is
   generic ( data_width : positive := 9;
             clk_domain_buff_length : positive := 2
   );
-	port (
-		--inputs
-		data_in, data_clk : in std_logic;
-		reset : in std_logic;
-		clk : in std_logic;
+  port (
+    --inputs
+    data_in, data_clk : in std_logic;
+    reset : in std_logic;
+    clk : in std_logic;
     --outputs   
-		data_rdy : out std_logic;
-		data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
-	);
+    data_rdy : out std_logic;
+    data_out : out unsigned (data_width-1 downto 0)  --data width is compare value width + pwm output select bit
+  );
 end entity interface;
 
-architecture behaviour of interface is
 
-    procedure clock_out_data (  signal data_rdy_buff : out std_logic_vector;
-                                signal clk : in std_logic;
-                                signal reset : in std_logic
-                             ) is
+architecture bhv of interface is
 
-    begin
-    
-        for i in 0 to clk_domain_buff_length-1 loop
-          --sync with clock
-          wait until falling_edge(clk);
-          --dont ignore reset
-          if reset = '1' then exit; end if;
-          --clock out data rdy signal
-          data_rdy_buff(i) <= '1';   
-        end loop;
-        
-    end clock_out_data; 
-
-	
-	signal data_rdy_buff : std_logic_vector ((clk_domain_buff_length-1) downto 0) := (others => '0');
-	signal input_reg : unsigned (data_width-1 downto 0) := (others => '0');
-	
+  signal data_rdy_buff : std_logic_vector ((clk_domain_buff_length-1) downto 0) := (others => '0');
+  signal input_reg : unsigned (data_width-1 downto 0) := (others => '0');
+  signal reset_int : std_logic := '0';
+  
 begin
 
   --connect internal signals
   data_rdy <= data_rdy_buff((clk_domain_buff_length-1));
   data_out <= input_reg; --put data on output port
   
-  gather_data: process
+  --capture external reset 
+  sync_reset : process(clk)
+  begin
+  
+    if clk'EVENT and clk='0' and data_clk = '0' then
+      reset_int <= reset;
+    end if;
+  
+  end process sync_reset;
+  
+  --MCU interface process
+  gather_data: process (clk, data_clk, reset_int)
   
     variable bits_written : integer range 0 to (data_width) := 0;
    
   begin
     
-    wait until rising_edge(data_clk) or rising_edge(reset);
+    if reset_int = '1' then --reset
       
-    if reset = '1' then --reset
-      
-      --only perform reset on inactive data clk
-      while data_clk /= '0' loop end loop;
       bits_written := 0; --reset received data counter
-      wait until falling_edge(clk); --synchronize reset with read clk
-      input_reg <= (others => '0'); --clear internal storage register 
+      input_reg <= (others => '0'); --clear ;internal storage register 
       data_rdy_buff <= (others => '0'); --clear data_rdy line buffer
-    
+
     elsif data_clk'EVENT and data_clk = '1' then --clock in data on rising edge data clock
   
-      if bits_written < data_width then --clock in new data
-      
+      if bits_written < data_width then
         --clock in and store data
         input_reg <= input_reg((data_width-2) downto 0) & data_in; --shift in new data
         bits_written := bits_written + 1;
+      end if;
         
-      end if;-- end if bits_written < data_width
+    elsif clk'EVENT and clk = '0' then
       
-      if bits_written = data_width then --if all data has been received, clock out ready signal
-               
-        clock_out_data(data_rdy_buff,clk,reset);
-               
-      end if;-- end if bits_written = data_width 
+      if bits_written = data_width then
+        --shift out data ready signal through clock domains
+        data_rdy_buff <= data_rdy_buff(clk_domain_buff_length-2 downto 0) & '1';
+      end if;
       
     end if;--end if data_clk'EVENT
    
@@ -120,4 +108,83 @@ begin
 
 
 
-end architecture behaviour;
+end architecture bhv;
+
+
+
+architecture rtl of interface is
+
+  signal data_rdy_buff : std_logic_vector ((clk_domain_buff_length-1) downto 0);
+  signal input_reg : unsigned (data_width-1 downto 0) ;
+  signal reset_int : std_logic ;
+  
+  signal data_rdy_int : std_logic ;
+  
+begin
+
+  --connect internal signals
+  data_rdy <= data_rdy_buff((clk_domain_buff_length-1));
+  data_out <= input_reg; --put data on output port
+  
+  --capture external reset 
+  sync_reset : process(clk, data_clk)
+  begin
+  
+    if clk'EVENT and clk='0' and data_clk = '0' then
+      reset_int <= reset;
+    end if;
+  
+  end process sync_reset;
+  
+  
+  --shift out data rdy signal
+  shift_data_rdy : process(clk, reset_int, data_clk)
+  begin
+  
+    if reset_int = '1' then
+    
+      data_rdy_buff <= (others => '0');
+          
+    elsif clk'EVENT and clk='1' and data_clk = '0' then
+
+      --shift out data ready signal through clock domains
+      data_rdy_buff <= data_rdy_buff(clk_domain_buff_length-2 downto 0) & data_rdy_int;
+    
+    end if;
+  
+  end process shift_data_rdy;
+  
+  
+  --MCU interface process
+  gather_data: process (data_clk, reset_int)
+  
+    variable bits_written : integer range 0 to (data_width) ;
+   
+  begin
+    
+    if reset_int = '1' then --reset
+      
+      bits_written := 0; --reset received data counter
+      input_reg <= (others => '0'); --clear ;internal storage register
+      data_rdy_int <= '0'; 
+    
+    elsif data_clk'EVENT and data_clk = '1' then --clock in data on rising edge data clock
+  
+      if bits_written < data_width then
+        --clock in and store data
+        input_reg <= input_reg((data_width-2) downto 0) & data_in; --shift in new data
+        bits_written := bits_written + 1;
+        
+        if bits_written = data_width then 
+          data_rdy_int <= '1';
+        end if;
+          
+      end if;
+        
+    end if;--end if data_clk'EVENT
+   
+  end process gather_data;
+
+
+
+end architecture rtl;

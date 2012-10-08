@@ -4,12 +4,12 @@ use ieee.numeric_std.all;
 use ieee.std_logic_misc.all;
 
 entity pwm_gen is
-  generic ( pwm_counter_bits : positive := 6;
-            pwm_channels : positive := 12;
-            channel_sel_bits : positive := 4 --adjust so that pwm_channels can be respresented by this number of bits
+  generic ( pwm_counter_bits : positive := 8;
+            pwm_channels : positive := 4;
+            channel_sel_bits : positive := 2 --adjust so that pwm_channels can be respresented by this number of bits
   );
 	port (
-		clk, reset : in std_logic;
+		clk, reset, reset_intf : in std_logic;
 		data_in, data_clk : in std_logic;
 		data_rdy : out std_logic;
 		channel_sel : in unsigned(channel_sel_bits-1 downto 0);
@@ -18,7 +18,7 @@ entity pwm_gen is
 	);
 end entity pwm_gen;
 
-architecture behaviour of pwm_gen is
+architecture struct of pwm_gen is
 
   component compare_block 
   generic (compare_width : positive := 8);
@@ -69,16 +69,16 @@ architecture behaviour of pwm_gen is
   
   
   --counter -> compare_block interconnection signals
-  signal counter_overflow : std_logic := '0';
-  signal counter_value : unsigned (pwm_counter_bits-1 downto 0) := (others => '0');
+  signal counter_overflow : std_logic;
+  signal counter_value : unsigned (pwm_counter_bits-1 downto 0);
   
   --interface -> compare_block interconnection signals
-  signal data_rdy_bus : unsigned (pwm_channels-1 downto 0) := (others => '0');
+  signal data_rdy_bus : unsigned (pwm_channels-1 downto 0);
   --signal update_value_bus : update_value_array;
-  signal update_value_bus : unsigned ((pwm_channels*(pwm_counter_bits+1))-1 downto 0) := (others => '0');
-  signal data_updated_bus : std_logic_vector (pwm_channels-1 downto 0) := (others => '0');
-  signal update_value_int : unsigned (pwm_counter_bits downto 0) := (others => '0');
-  signal data_rdy_int : unsigned (0 downto 0) := (others => '0');
+  signal update_value_bus : unsigned ((pwm_channels*(pwm_counter_bits+1))-1 downto 0);
+  signal data_updated_bus : std_logic_vector (pwm_channels-1 downto 0);
+  signal update_value_int : unsigned (pwm_counter_bits downto 0);
+  signal data_rdy_int : unsigned (0 downto 0);
    
   --connect data updated to reset signal
   signal interface_reset : std_logic := '0';
@@ -86,7 +86,8 @@ architecture behaviour of pwm_gen is
 	
 begin
 
-   interface_reset <= reset or or_reduce(data_updated_bus); 
+   interface_reset <= reset or or_reduce(data_updated_bus) or reset_intf; 
+   data_rdy <= data_rdy_int(0);
 
    --instantiate counter
    pwm_counter : counter 
@@ -147,4 +148,31 @@ begin
 
 
 
-end architecture behaviour;
+end architecture struct;
+
+configuration pwm_gen_rtl of pwm_gen is
+
+    for struct
+
+      for pwm_counter : counter 
+        use entity work.counter(bhv);
+      end for;
+      
+      for data_interface : interface 
+        use entity work.interface(rtl);
+      end for;
+      
+      for all : demux
+        use entity work.demux(bhv);
+      end for;
+      
+      for pwm_compare_blocks
+        for all : compare_block
+          use entity work.compare_block(rtl);
+        end for;
+      end for;
+      
+    end for;
+
+end configuration pwm_gen_rtl;
+

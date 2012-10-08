@@ -11,7 +11,7 @@ entity demux_test is
   );
 end entity demux_test;
 
-architecture behaviour of demux_test is
+architecture struct of demux_test is
 
   component demux 
     generic ( nr_outputs : positive;
@@ -56,4 +56,4 @@ begin
                sel => sel_bus
            );
 
-end architecture behaviour;
+end architecture struct;

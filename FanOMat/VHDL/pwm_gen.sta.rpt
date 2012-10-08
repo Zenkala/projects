@@ -1,0 +1,1083 @@
+TimeQuest Timing Analyzer report for pwm_gen
+Mon Oct 08 17:31:58 2012
+Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Fmax Summary
+  7. Setup Summary
+  8. Hold Summary
+  9. Recovery Summary
+ 10. Removal Summary
+ 11. Minimum Pulse Width Summary
+ 12. Setup: 'clk'
+ 13. Setup: 'data_clk'
+ 14. Hold: 'clk'
+ 15. Hold: 'data_clk'
+ 16. Recovery: 'data_clk'
+ 17. Recovery: 'clk'
+ 18. Removal: 'data_clk'
+ 19. Removal: 'clk'
+ 20. Minimum Pulse Width: 'clk'
+ 21. Minimum Pulse Width: 'data_clk'
+ 22. Setup Times
+ 23. Hold Times
+ 24. Clock to Output Times
+ 25. Minimum Clock to Output Times
+ 26. Setup Transfers
+ 27. Hold Transfers
+ 28. Recovery Transfers
+ 29. Removal Transfers
+ 30. Report TCCS
+ 31. Report RSKM
+ 32. Unconstrained Paths
+ 33. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                                    ;
++--------------------+-----------------------------------------------------------------+
+; Quartus II Version ; Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition ;
+; Revision Name      ; pwm_gen                                                         ;
+; Device Family      ; MAX II                                                          ;
+; Device Name        ; EPM2210F324C3                                                   ;
+; Timing Models      ; Final                                                           ;
+; Delay Model        ; Slow Model                                                      ;
+; Rise/Fall Delays   ; Unavailable                                                     ;
++--------------------+-----------------------------------------------------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++---------------------------------------------------+
+; SDC File List                                     ;
++---------------+--------+--------------------------+
+; SDC File Path ; Status ; Read at                  ;
++---------------+--------+--------------------------+
+; pwm_gen.sdc   ; OK     ; Mon Oct 08 17:31:57 2012 ;
++---------------+--------+--------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                  ;
++------------+------+----------+-----------+-------+---------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; Clock Name ; Type ; Period   ; Frequency ; Rise  ; Fall    ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
++------------+------+----------+-----------+-------+---------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; clk        ; Base ; 125.000  ; 8.0 MHz   ; 0.000 ; 62.500  ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk }      ;
+; data_clk   ; Base ; 1000.000 ; 1.0 MHz   ; 0.000 ; 500.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { data_clk } ;
++------------+------+----------+-----------+-------+---------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+
+
++--------------------------------------------------+
+; Fmax Summary                                     ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 152.86 MHz ; 152.86 MHz      ; clk        ;      ;
+; 180.67 MHz ; 180.67 MHz      ; data_clk   ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Setup Summary                      ;
++----------+---------+---------------+
+; Clock    ; Slack   ; End Point TNS ;
++----------+---------+---------------+
+; clk      ; 60.090  ; 0.000         ;
+; data_clk ; 994.465 ; 0.000         ;
++----------+---------+---------------+
+
+
++----------------------------------+
+; Hold Summary                     ;
++----------+-------+---------------+
+; Clock    ; Slack ; End Point TNS ;
++----------+-------+---------------+
+; clk      ; 0.524 ; 0.000         ;
+; data_clk ; 0.883 ; 0.000         ;
++----------+-------+---------------+
+
+
++-----------------------------------+
+; Recovery Summary                  ;
++----------+--------+---------------+
+; Clock    ; Slack  ; End Point TNS ;
++----------+--------+---------------+
+; data_clk ; 56.784 ; 0.000         ;
+; clk      ; 56.794 ; 0.000         ;
++----------+--------+---------------+
+
+
++-----------------------------------+
+; Removal Summary                   ;
++----------+--------+---------------+
+; Clock    ; Slack  ; End Point TNS ;
++----------+--------+---------------+
+; data_clk ; 67.337 ; 0.000         ;
+; clk      ; 67.476 ; 0.000         ;
++----------+--------+---------------+
+
+
++------------------------------------+
+; Minimum Pulse Width Summary        ;
++----------+---------+---------------+
+; Clock    ; Slack   ; End Point TNS ;
++----------+---------+---------------+
+; clk      ; 62.334  ; 0.000         ;
+; data_clk ; 499.834 ; 0.000         ;
++----------+---------+---------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'clk'                                                                                                                                                                                                    ;
++---------+------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                                                  ; To Node                                                            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 60.090  ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int ; interface:data_interface|reset_int                                 ; clk          ; clk         ; 62.500       ; 0.000      ; 2.202      ;
+; 60.124  ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; interface:data_interface|reset_int                                 ; clk          ; clk         ; 62.500       ; 0.000      ; 2.168      ;
+; 60.726  ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; interface:data_interface|reset_int                                 ; clk          ; clk         ; 62.500       ; 0.000      ; 1.566      ;
+; 61.084  ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int ; interface:data_interface|reset_int                                 ; clk          ; clk         ; 62.500       ; 0.000      ; 1.208      ;
+; 61.630  ; data_clk                                                   ; interface:data_interface|reset_int                                 ; data_clk     ; clk         ; 62.500       ; 2.400      ; 3.062      ;
+; 61.630  ; data_clk                                                   ; interface:data_interface|reset_int                                 ; data_clk     ; clk         ; 62.500       ; 2.400      ; 3.062      ;
+; 118.458 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.334      ;
+; 118.506 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.286      ;
+; 118.522 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.270      ;
+; 118.522 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.270      ;
+; 118.522 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.270      ;
+; 118.522 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.270      ;
+; 118.522 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.270      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.544 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.248      ;
+; 118.787 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 6.005      ;
+; 118.887 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.905      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.138 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.654      ;
+; 119.177 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.615      ;
+; 119.226 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 5.566      ;
+; 119.227 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.565      ;
+; 119.227 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.565      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.238 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.554      ;
+; 119.277 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.515      ;
+; 119.512 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 5.280      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.517 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.275      ;
+; 119.612 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 5.180      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 119.617 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 5.175      ;
+; 120.233 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.559      ;
+; 120.281 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.511      ;
+; 120.297 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.495      ;
+; 120.297 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.495      ;
+; 120.297 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.495      ;
+; 120.297 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.495      ;
+; 120.297 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.495      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.319 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.473      ;
+; 120.598 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; 125.000      ; 0.000      ; 4.194      ;
+; 120.661 ; counter:pwm_counter|counter_value[0]                       ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 125.000      ; 0.000      ; 4.131      ;
+; 120.773 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.019      ;
+; 120.789 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.003      ;
+; 120.789 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.003      ;
+; 120.789 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.003      ;
+; 120.789 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.003      ;
+; 120.789 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; clk          ; clk         ; 125.000      ; 0.000      ; 4.003      ;
+; 120.838 ; counter:pwm_counter|counter_value[1]                       ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 125.000      ; 0.000      ; 3.954      ;
+; 120.894 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; 125.000      ; 0.000      ; 3.898      ;
+; 120.965 ; counter:pwm_counter|ovf_out                                ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; 125.000      ; 0.000      ; 3.827      ;
+; 121.001 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 3.791      ;
+; 121.002 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.790      ;
+; 121.002 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.790      ;
+; 121.065 ; interface:data_interface|data_rdy_buff[1]                  ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; 125.000      ; 0.000      ; 3.727      ;
+; 121.489 ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.303      ;
+; 121.493 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 3.299      ;
+; 121.494 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.298      ;
+; 121.494 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.298      ;
+; 121.510 ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.282      ;
+; 121.535 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ; clk          ; clk         ; 125.000      ; 0.000      ; 3.257      ;
+; 121.540 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.252      ;
+; 121.540 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.252      ;
+; 121.540 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.252      ;
+; 121.540 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; clk          ; clk         ; 125.000      ; 0.000      ; 3.252      ;
++---------+------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'data_clk'                                                                                                                                                                             ;
++---------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                                             ; To Node                                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 994.465 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 5.327      ;
+; 994.663 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 5.129      ;
+; 994.908 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.884      ;
+; 994.908 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.884      ;
+; 994.908 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.884      ;
+; 994.908 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.884      ;
+; 994.908 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.884      ;
+; 994.955 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.837      ;
+; 995.106 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.686      ;
+; 995.106 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.686      ;
+; 995.106 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.686      ;
+; 995.106 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.686      ;
+; 995.106 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.686      ;
+; 995.398 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.394      ;
+; 995.398 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.394      ;
+; 995.398 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.394      ;
+; 995.398 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.394      ;
+; 995.398 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.394      ;
+; 995.491 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.301      ;
+; 995.691 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.101      ;
+; 995.694 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 4.098      ;
+; 995.889 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.903      ;
+; 995.892 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.900      ;
+; 995.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.858      ;
+; 995.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.858      ;
+; 995.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.858      ;
+; 995.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.858      ;
+; 995.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.858      ;
+; 995.974 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.818      ;
+; 996.172 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.620      ;
+; 996.181 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.611      ;
+; 996.184 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.608      ;
+; 996.464 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.328      ;
+; 996.717 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.075      ;
+; 996.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 3.072      ;
+; 996.925 ; interface:data_interface|input_reg[5]                 ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 2.867      ;
+; 997.000 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 2.792      ;
+; 997.354 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 2.438      ;
+; 997.399 ; interface:data_interface|input_reg[0]                 ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 2.393      ;
+; 997.538 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 2.254      ;
+; 997.798 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.994      ;
+; 998.070 ; interface:data_interface|input_reg[7]                 ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.722      ;
+; 998.118 ; interface:data_interface|input_reg[6]                 ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.674      ;
+; 998.176 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.616      ;
+; 998.178 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.614      ;
+; 998.179 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.613      ;
+; 998.183 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.609      ;
+; 998.183 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.609      ;
+; 998.295 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.497      ;
+; 998.295 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.497      ;
+; 998.297 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.495      ;
+; 998.383 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.409      ;
+; 998.385 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.407      ;
+; 998.386 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.406      ;
+; 998.390 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.402      ;
+; 998.580 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.212      ;
+; 998.581 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.211      ;
+; 998.581 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.211      ;
+; 998.582 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.210      ;
+; 998.602 ; interface:data_interface|input_reg[2]                 ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.190      ;
+; 998.604 ; interface:data_interface|input_reg[3]                 ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.188      ;
+; 998.608 ; interface:data_interface|data_rdy_int                 ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.184      ;
+; 998.613 ; interface:data_interface|input_reg[4]                 ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.179      ;
+; 998.771 ; interface:data_interface|input_reg[1]                 ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 1000.000     ; 0.000      ; 1.021      ;
++---------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'clk'                                                                                                                                                                                                           ;
++-------+--------------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                                          ; To Node                                                            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.524 ; data_clk                                                           ; interface:data_interface|data_rdy_buff[0]                          ; data_clk     ; clk         ; 0.000        ; 2.400      ; 3.062      ;
+; 0.524 ; data_clk                                                           ; interface:data_interface|data_rdy_buff[1]                          ; data_clk     ; clk         ; 0.000        ; 2.400      ; 3.062      ;
+; 0.524 ; data_clk                                                           ; interface:data_interface|data_rdy_buff[0]                          ; data_clk     ; clk         ; 0.000        ; 2.400      ; 3.062      ;
+; 0.524 ; data_clk                                                           ; interface:data_interface|data_rdy_buff[1]                          ; data_clk     ; clk         ; 0.000        ; 2.400      ; 3.062      ;
+; 0.674 ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 0.812      ;
+; 0.674 ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 0.812      ;
+; 0.674 ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 0.812      ;
+; 0.674 ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 0.812      ;
+; 0.872 ; interface:data_interface|input_reg[5]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.010      ;
+; 0.874 ; interface:data_interface|data_rdy_buff[0]                          ; interface:data_interface|data_rdy_buff[1]                          ; clk          ; clk         ; 0.000        ; 0.000      ; 1.012      ;
+; 0.880 ; interface:data_interface|input_reg[1]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.018      ;
+; 1.025 ; interface:data_interface|input_reg[6]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.163      ;
+; 1.027 ; interface:data_interface|input_reg[0]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.165      ;
+; 1.034 ; interface:data_interface|input_reg[7]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.172      ;
+; 1.037 ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.175      ;
+; 1.041 ; interface:data_interface|input_reg[4]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.179      ;
+; 1.042 ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 1.180      ;
+; 1.052 ; interface:data_interface|input_reg[2]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.190      ;
+; 1.054 ; interface:data_interface|input_reg[3]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.192      ;
+; 1.068 ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 1.206      ;
+; 1.070 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 1.208      ;
+; 1.118 ; interface:data_interface|input_reg[8]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.256      ;
+; 1.120 ; interface:data_interface|input_reg[6]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.258      ;
+; 1.203 ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.341      ;
+; 1.290 ; interface:data_interface|input_reg[7]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.428      ;
+; 1.323 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[1]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.461      ;
+; 1.323 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[2]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.461      ;
+; 1.326 ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.464      ;
+; 1.328 ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.466      ;
+; 1.328 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[0]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.466      ;
+; 1.335 ; counter:pwm_counter|counter_value[7]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.473      ;
+; 1.337 ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.475      ;
+; 1.395 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.533      ;
+; 1.398 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.536      ;
+; 1.405 ; counter:pwm_counter|counter_value[4]                               ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.543      ;
+; 1.412 ; counter:pwm_counter|counter_value[5]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.550      ;
+; 1.413 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.551      ;
+; 1.413 ; counter:pwm_counter|counter_value[6]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.551      ;
+; 1.417 ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 1.555      ;
+; 1.426 ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.564      ;
+; 1.427 ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 1.565      ;
+; 1.458 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.596      ;
+; 1.499 ; interface:data_interface|input_reg[4]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.637      ;
+; 1.508 ; interface:data_interface|input_reg[3]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.646      ;
+; 1.540 ; interface:data_interface|input_reg[1]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.678      ;
+; 1.543 ; interface:data_interface|input_reg[2]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.681      ;
+; 1.567 ; interface:data_interface|input_reg[4]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.705      ;
+; 1.567 ; interface:data_interface|input_reg[2]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.705      ;
+; 1.569 ; interface:data_interface|input_reg[4]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.707      ;
+; 1.582 ; interface:data_interface|input_reg[7]                              ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.720      ;
+; 1.582 ; interface:data_interface|input_reg[7]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.720      ;
+; 1.583 ; counter:pwm_counter|counter_value[4]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.721      ;
+; 1.596 ; counter:pwm_counter|counter_value[5]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.734      ;
+; 1.633 ; interface:data_interface|input_reg[5]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.771      ;
+; 1.638 ; interface:data_interface|input_reg[8]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.776      ;
+; 1.639 ; interface:data_interface|input_reg[0]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.777      ;
+; 1.677 ; interface:data_interface|input_reg[3]                              ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.815      ;
+; 1.695 ; counter:pwm_counter|counter_value[7]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.833      ;
+; 1.745 ; interface:data_interface|input_reg[5]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.883      ;
+; 1.752 ; interface:data_interface|input_reg[5]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.890      ;
+; 1.807 ; counter:pwm_counter|counter_value[6]                               ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 0.000        ; 0.000      ; 1.945      ;
+; 1.815 ; interface:data_interface|data_rdy_int                              ; interface:data_interface|data_rdy_buff[0]                          ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.953      ;
+; 1.831 ; interface:data_interface|input_reg[3]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 1.969      ;
+; 1.843 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[2]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.981      ;
+; 1.843 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.981      ;
+; 1.848 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[1]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 1.986      ;
+; 1.898 ; interface:data_interface|input_reg[2]                              ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 2.036      ;
+; 1.912 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.050      ;
+; 1.912 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.050      ;
+; 1.917 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[2]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.055      ;
+; 1.960 ; interface:data_interface|input_reg[1]                              ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; data_clk     ; clk         ; 0.000        ; 0.000      ; 2.098      ;
+; 1.981 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.119      ;
+; 1.983 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.121      ;
+; 1.985 ; interface:data_interface|data_rdy_buff[1]                          ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 2.123      ;
+; 1.986 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.124      ;
+; 2.000 ; counter:pwm_counter|counter_value[5]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.138      ;
+; 2.001 ; counter:pwm_counter|counter_value[6]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.139      ;
+; 2.055 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.193      ;
+; 2.069 ; counter:pwm_counter|counter_value[5]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.207      ;
+; 2.187 ; interface:data_interface|data_rdy_buff[1]                          ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; clk          ; clk         ; 0.000        ; 0.000      ; 2.325      ;
+; 2.193 ; counter:pwm_counter|counter_value[4]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.331      ;
+; 2.193 ; counter:pwm_counter|counter_value[4]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.331      ;
+; 2.193 ; counter:pwm_counter|counter_value[4]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.331      ;
+; 2.204 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.342      ;
+; 2.204 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.342      ;
+; 2.204 ; counter:pwm_counter|counter_value[2]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.342      ;
+; 2.273 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.411      ;
+; 2.273 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.411      ;
+; 2.273 ; counter:pwm_counter|counter_value[1]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.411      ;
+; 2.275 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.413      ;
+; 2.275 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.413      ;
+; 2.275 ; counter:pwm_counter|counter_value[3]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.413      ;
+; 2.281 ; interface:data_interface|data_rdy_buff[1]                          ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; 0.000        ; 0.000      ; 2.419      ;
+; 2.347 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.485      ;
+; 2.347 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.485      ;
+; 2.347 ; counter:pwm_counter|counter_value[0]                               ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 0.000        ; 0.000      ; 2.485      ;
+; 2.380 ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; 0.000        ; 0.000      ; 2.518      ;
+; 2.380 ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; 0.000        ; 0.000      ; 2.518      ;
+; 2.381 ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; 0.000        ; 0.000      ; 2.519      ;
+; 2.425 ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; clk          ; clk         ; 0.000        ; 0.000      ; 2.563      ;
++-------+--------------------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'data_clk'                                                                                                                                                                            ;
++-------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                             ; To Node                                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.883 ; interface:data_interface|input_reg[1]                 ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.021      ;
+; 1.041 ; interface:data_interface|input_reg[4]                 ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.179      ;
+; 1.046 ; interface:data_interface|data_rdy_int                 ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.184      ;
+; 1.050 ; interface:data_interface|input_reg[3]                 ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.188      ;
+; 1.052 ; interface:data_interface|input_reg[2]                 ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.190      ;
+; 1.072 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.210      ;
+; 1.073 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.211      ;
+; 1.073 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.211      ;
+; 1.074 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.212      ;
+; 1.264 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.402      ;
+; 1.268 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.406      ;
+; 1.269 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.407      ;
+; 1.271 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.409      ;
+; 1.357 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.495      ;
+; 1.359 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.497      ;
+; 1.359 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.497      ;
+; 1.471 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[0] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.609      ;
+; 1.471 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.609      ;
+; 1.475 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[1] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.613      ;
+; 1.476 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[2] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.614      ;
+; 1.478 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|\gather_data:bits_written[3] ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.616      ;
+; 1.536 ; interface:data_interface|input_reg[6]                 ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.674      ;
+; 1.584 ; interface:data_interface|input_reg[7]                 ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.722      ;
+; 1.856 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 1.994      ;
+; 2.116 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 2.254      ;
+; 2.255 ; interface:data_interface|input_reg[0]                 ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 2.393      ;
+; 2.300 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|data_rdy_int                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 2.438      ;
+; 2.654 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 2.792      ;
+; 2.729 ; interface:data_interface|input_reg[5]                 ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 2.867      ;
+; 2.934 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.072      ;
+; 2.937 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.075      ;
+; 3.190 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.328      ;
+; 3.470 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.608      ;
+; 3.473 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.611      ;
+; 3.482 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.620      ;
+; 3.680 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[0]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.818      ;
+; 3.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.858      ;
+; 3.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.858      ;
+; 3.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.858      ;
+; 3.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.858      ;
+; 3.720 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.858      ;
+; 3.762 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.900      ;
+; 3.765 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 3.903      ;
+; 3.960 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[6]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.098      ;
+; 3.963 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[7]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.101      ;
+; 4.163 ; interface:data_interface|\gather_data:bits_written[2] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.301      ;
+; 4.256 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.394      ;
+; 4.256 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.394      ;
+; 4.256 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.394      ;
+; 4.256 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.394      ;
+; 4.256 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.394      ;
+; 4.548 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.686      ;
+; 4.548 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.686      ;
+; 4.548 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.686      ;
+; 4.548 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.686      ;
+; 4.548 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.686      ;
+; 4.699 ; interface:data_interface|\gather_data:bits_written[1] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.837      ;
+; 4.746 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[5]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.884      ;
+; 4.746 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[4]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.884      ;
+; 4.746 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[3]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.884      ;
+; 4.746 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[2]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.884      ;
+; 4.746 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[1]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 4.884      ;
+; 4.991 ; interface:data_interface|\gather_data:bits_written[0] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 5.129      ;
+; 5.189 ; interface:data_interface|\gather_data:bits_written[3] ; interface:data_interface|input_reg[8]                 ; data_clk     ; data_clk    ; 0.000        ; 0.000      ; 5.327      ;
++-------+-------------------------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Recovery: 'data_clk'                                                                                                                                                      ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                          ; To Node                                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 56.784 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[7]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.508      ;
+; 56.794 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[8]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.498      ;
+; 56.794 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[6]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.498      ;
+; 56.794 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[0]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.498      ;
+; 56.805 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[5]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.487      ;
+; 56.805 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[4]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.487      ;
+; 56.805 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[3]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.487      ;
+; 56.805 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[2]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.487      ;
+; 56.805 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[1]                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 5.487      ;
+; 57.317 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[2] ; clk          ; data_clk    ; 62.500       ; 0.000      ; 4.975      ;
+; 57.317 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[0] ; clk          ; data_clk    ; 62.500       ; 0.000      ; 4.975      ;
+; 57.317 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[1] ; clk          ; data_clk    ; 62.500       ; 0.000      ; 4.975      ;
+; 57.317 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[3] ; clk          ; data_clk    ; 62.500       ; 0.000      ; 4.975      ;
+; 57.317 ; interface:data_interface|reset_int ; interface:data_interface|data_rdy_int                 ; clk          ; data_clk    ; 62.500       ; 0.000      ; 4.975      ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Recovery: 'clk'                                                                                                                                                                                              ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                                ; To Node                                                            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 56.794 ; interface:data_interface|reset_int                       ; interface:data_interface|data_rdy_buff[0]                          ; clk          ; clk         ; 62.500       ; 0.000      ; 5.498      ;
+; 56.794 ; interface:data_interface|reset_int                       ; interface:data_interface|data_rdy_buff[1]                          ; clk          ; clk         ; 62.500       ; 0.000      ; 5.498      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[0]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[1]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[2]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
+; 57.178 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ; clk          ; clk         ; 62.500       ; 0.000      ; 5.114      ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removal: 'data_clk'                                                                                                                                                       ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                          ; To Node                                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 67.337 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[2] ; clk          ; data_clk    ; -62.500      ; 0.000      ; 4.975      ;
+; 67.337 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[0] ; clk          ; data_clk    ; -62.500      ; 0.000      ; 4.975      ;
+; 67.337 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[1] ; clk          ; data_clk    ; -62.500      ; 0.000      ; 4.975      ;
+; 67.337 ; interface:data_interface|reset_int ; interface:data_interface|\gather_data:bits_written[3] ; clk          ; data_clk    ; -62.500      ; 0.000      ; 4.975      ;
+; 67.337 ; interface:data_interface|reset_int ; interface:data_interface|data_rdy_int                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 4.975      ;
+; 67.849 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[5]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.487      ;
+; 67.849 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[4]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.487      ;
+; 67.849 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[3]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.487      ;
+; 67.849 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[2]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.487      ;
+; 67.849 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[1]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.487      ;
+; 67.860 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[8]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.498      ;
+; 67.860 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[6]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.498      ;
+; 67.860 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[0]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.498      ;
+; 67.870 ; interface:data_interface|reset_int ; interface:data_interface|input_reg[7]                 ; clk          ; data_clk    ; -62.500      ; 0.000      ; 5.508      ;
++--------+------------------------------------+-------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removal: 'clk'                                                                                                                                                                                               ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                                ; To Node                                                            ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[7]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|ovf_out                                        ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[6]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[0]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[1]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[2]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[3]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[4]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; counter:pwm_counter|counter_value[5]                               ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.476 ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ; clk          ; clk         ; -62.500      ; 0.000      ; 5.114      ;
+; 67.860 ; interface:data_interface|reset_int                       ; interface:data_interface|data_rdy_buff[0]                          ; clk          ; clk         ; -62.500      ; 0.000      ; 5.498      ;
+; 67.860 ; interface:data_interface|reset_int                       ; interface:data_interface|data_rdy_buff[1]                          ; clk          ; clk         ; -62.500      ; 0.000      ; 5.498      ;
++--------+----------------------------------------------------------+--------------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Minimum Pulse Width: 'clk'                                                                                                                          ;
++--------+--------------+----------------+------------------+-------+------------+--------------------------------------------------------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target                                                             ;
++--------+--------------+----------------+------------------+-------+------------+--------------------------------------------------------------------+
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:0:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:1:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:2:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|\update_data:data_stored ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[0]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[1]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[2]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[3]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[4]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[5]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[6]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|compare_value[7]         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|data_updated_int         ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; compare_block:\pwm_compare_blocks:3:pwm_x|pwm_out_sel              ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Fall       ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal           ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Fall       ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal           ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; counter:pwm_counter|counter_value[0]                               ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; counter:pwm_counter|counter_value[0]                               ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; counter:pwm_counter|counter_value[1]                               ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; counter:pwm_counter|counter_value[1]                               ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; counter:pwm_counter|counter_value[2]                               ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; counter:pwm_counter|counter_value[2]                               ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; counter:pwm_counter|counter_value[3]                               ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; counter:pwm_counter|counter_value[3]                               ;
+; 62.334 ; 62.500       ; 0.166          ; High Pulse Width ; clk   ; Rise       ; counter:pwm_counter|counter_value[4]                               ;
+; 62.334 ; 62.500       ; 0.166          ; Low Pulse Width  ; clk   ; Rise       ; counter:pwm_counter|counter_value[4]                               ;
++--------+--------------+----------------+------------------+-------+------------+--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Minimum Pulse Width: 'data_clk'                                                                                                            ;
++---------+--------------+----------------+------------------+----------+------------+-------------------------------------------------------+
+; Slack   ; Actual Width ; Required Width ; Type             ; Clock    ; Clock Edge ; Target                                                ;
++---------+--------------+----------------+------------------+----------+------------+-------------------------------------------------------+
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[0] ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[0] ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[1] ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[1] ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[2] ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[2] ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[3] ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|\gather_data:bits_written[3] ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|data_rdy_int                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|data_rdy_int                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[0]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[0]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[1]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[1]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[2]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[2]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[3]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[3]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[4]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[4]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[5]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[5]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[6]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[6]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[7]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[7]                 ;
+; 499.834 ; 500.000      ; 0.166          ; High Pulse Width ; data_clk ; Rise       ; interface:data_interface|input_reg[8]                 ;
+; 499.834 ; 500.000      ; 0.166          ; Low Pulse Width  ; data_clk ; Rise       ; interface:data_interface|input_reg[8]                 ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_clk|combout                                      ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_clk|combout                                      ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[0]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[0]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[1]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[1]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[2]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[2]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[3]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|\gather_data:bits_written[3]|clk       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|data_rdy_int|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|data_rdy_int|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[0]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[0]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[1]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[1]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[2]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[2]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[3]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[3]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[4]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[4]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[5]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[5]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[6]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[6]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[7]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[7]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; High Pulse Width ; data_clk ; Rise       ; data_interface|input_reg[8]|clk                       ;
+; 500.000 ; 500.000      ; 0.000          ; Low Pulse Width  ; data_clk ; Rise       ; data_interface|input_reg[8]|clk                       ;
+; 996.711 ; 1000.000     ; 3.289          ; Port Rate        ; data_clk ; Rise       ; data_clk                                              ;
++---------+--------------+----------------+------------------+----------+------------+-------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; Setup Times                                                                 ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; channel_sel[*]  ; clk        ; 5.526 ; 5.526 ; Rise       ; clk             ;
+;  channel_sel[0] ; clk        ; 5.526 ; 5.526 ; Rise       ; clk             ;
+;  channel_sel[1] ; clk        ; 4.520 ; 4.520 ; Rise       ; clk             ;
+; data_clk        ; clk        ; 0.870 ; 0.870 ; Rise       ; clk             ;
+; data_clk        ; clk        ; 0.870 ; 0.870 ; Fall       ; clk             ;
+; reset           ; clk        ; 2.631 ; 2.631 ; Fall       ; clk             ;
+; data_in         ; data_clk   ; 1.622 ; 1.622 ; Rise       ; data_clk        ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------------------+
+; Hold Times                                                                    ;
++-----------------+------------+--------+--------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------------+------------+--------+--------+------------+-----------------+
+; channel_sel[*]  ; clk        ; -1.379 ; -1.379 ; Rise       ; clk             ;
+;  channel_sel[0] ; clk        ; -1.729 ; -1.729 ; Rise       ; clk             ;
+;  channel_sel[1] ; clk        ; -1.379 ; -1.379 ; Rise       ; clk             ;
+; data_clk        ; clk        ; -0.524 ; -0.524 ; Rise       ; clk             ;
+; data_clk        ; clk        ; -0.524 ; -0.524 ; Fall       ; clk             ;
+; reset           ; clk        ; -0.918 ; -0.918 ; Fall       ; clk             ;
+; data_in         ; data_clk   ; -1.276 ; -1.276 ; Rise       ; data_clk        ;
++-----------------+------------+--------+--------+------------+-----------------+
+
+
++----------------------------------------------------------------------------------+
+; Clock to Output Times                                                            ;
++--------------------+------------+--------+--------+------------+-----------------+
+; Data Port          ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++--------------------+------------+--------+--------+------------+-----------------+
+; data_rdy           ; clk        ; 5.598  ; 5.598  ; Rise       ; clk             ;
+; pwm_pin3_block[*]  ; clk        ; 12.397 ; 12.397 ; Rise       ; clk             ;
+;  pwm_pin3_block[0] ; clk        ; 11.279 ; 11.279 ; Rise       ; clk             ;
+;  pwm_pin3_block[1] ; clk        ; 12.397 ; 12.397 ; Rise       ; clk             ;
+;  pwm_pin3_block[2] ; clk        ; 11.717 ; 11.717 ; Rise       ; clk             ;
+;  pwm_pin3_block[3] ; clk        ; 10.495 ; 10.495 ; Rise       ; clk             ;
+; pwm_pin4_block[*]  ; clk        ; 12.176 ; 12.176 ; Rise       ; clk             ;
+;  pwm_pin4_block[0] ; clk        ; 12.176 ; 12.176 ; Rise       ; clk             ;
+;  pwm_pin4_block[1] ; clk        ; 10.880 ; 10.880 ; Rise       ; clk             ;
+;  pwm_pin4_block[2] ; clk        ; 11.124 ; 11.124 ; Rise       ; clk             ;
+;  pwm_pin4_block[3] ; clk        ; 10.716 ; 10.716 ; Rise       ; clk             ;
+; pwm_pin3_block[*]  ; clk        ; 9.114  ; 9.114  ; Fall       ; clk             ;
+;  pwm_pin3_block[0] ; clk        ; 9.114  ; 9.114  ; Fall       ; clk             ;
+;  pwm_pin3_block[1] ; clk        ; 8.627  ; 8.627  ; Fall       ; clk             ;
+;  pwm_pin3_block[2] ; clk        ; 9.094  ; 9.094  ; Fall       ; clk             ;
+;  pwm_pin3_block[3] ; clk        ; 8.327  ; 8.327  ; Fall       ; clk             ;
+; pwm_pin4_block[*]  ; clk        ; 8.434  ; 8.434  ; Fall       ; clk             ;
+;  pwm_pin4_block[0] ; clk        ; 7.046  ; 7.046  ; Fall       ; clk             ;
+;  pwm_pin4_block[1] ; clk        ; 7.662  ; 7.662  ; Fall       ; clk             ;
+;  pwm_pin4_block[2] ; clk        ; 8.052  ; 8.052  ; Fall       ; clk             ;
+;  pwm_pin4_block[3] ; clk        ; 8.434  ; 8.434  ; Fall       ; clk             ;
++--------------------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                                  ;
++--------------------+------------+-------+-------+------------+-----------------+
+; Data Port          ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------------+------------+-------+-------+------------+-----------------+
+; data_rdy           ; clk        ; 5.598 ; 5.598 ; Rise       ; clk             ;
+; pwm_pin3_block[*]  ; clk        ; 7.404 ; 7.404 ; Rise       ; clk             ;
+;  pwm_pin3_block[0] ; clk        ; 7.513 ; 7.513 ; Rise       ; clk             ;
+;  pwm_pin3_block[1] ; clk        ; 7.526 ; 7.526 ; Rise       ; clk             ;
+;  pwm_pin3_block[2] ; clk        ; 7.516 ; 7.516 ; Rise       ; clk             ;
+;  pwm_pin3_block[3] ; clk        ; 7.404 ; 7.404 ; Rise       ; clk             ;
+; pwm_pin4_block[*]  ; clk        ; 6.131 ; 6.131 ; Rise       ; clk             ;
+;  pwm_pin4_block[0] ; clk        ; 8.432 ; 8.432 ; Rise       ; clk             ;
+;  pwm_pin4_block[1] ; clk        ; 6.131 ; 6.131 ; Rise       ; clk             ;
+;  pwm_pin4_block[2] ; clk        ; 6.487 ; 6.487 ; Rise       ; clk             ;
+;  pwm_pin4_block[3] ; clk        ; 6.864 ; 6.864 ; Rise       ; clk             ;
+; pwm_pin3_block[*]  ; clk        ; 8.327 ; 8.327 ; Fall       ; clk             ;
+;  pwm_pin3_block[0] ; clk        ; 9.114 ; 9.114 ; Fall       ; clk             ;
+;  pwm_pin3_block[1] ; clk        ; 8.627 ; 8.627 ; Fall       ; clk             ;
+;  pwm_pin3_block[2] ; clk        ; 9.094 ; 9.094 ; Fall       ; clk             ;
+;  pwm_pin3_block[3] ; clk        ; 8.327 ; 8.327 ; Fall       ; clk             ;
+; pwm_pin4_block[*]  ; clk        ; 7.046 ; 7.046 ; Fall       ; clk             ;
+;  pwm_pin4_block[0] ; clk        ; 7.046 ; 7.046 ; Fall       ; clk             ;
+;  pwm_pin4_block[1] ; clk        ; 7.662 ; 7.662 ; Fall       ; clk             ;
+;  pwm_pin4_block[2] ; clk        ; 8.052 ; 8.052 ; Fall       ; clk             ;
+;  pwm_pin4_block[3] ; clk        ; 8.434 ; 8.434 ; Fall       ; clk             ;
++--------------------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 242      ; 0        ; 4        ; 0        ;
+; data_clk   ; clk      ; 39       ; 2        ; 1        ; 1        ;
+; data_clk   ; data_clk ; 64       ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 242      ; 0        ; 4        ; 0        ;
+; data_clk   ; clk      ; 39       ; 2        ; 1        ; 1        ;
+; data_clk   ; data_clk ; 64       ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Recovery Transfers                                                ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 0        ; 55       ; 0        ; 0        ;
+; clk        ; data_clk ; 0        ; 14       ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Removal Transfers                                                 ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clk        ; clk      ; 0        ; 55       ; 0        ; 0        ;
+; clk        ; data_clk ; 0        ; 14       ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 4     ; 4    ;
+; Unconstrained Input Port Paths  ; 91    ; 91   ;
+; Unconstrained Output Ports      ; 9     ; 9    ;
+; Unconstrained Output Port Paths ; 145   ; 145  ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
+    Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+    Info: Processing started: Mon Oct 08 17:31:56 2012
+Info: Command: quartus_sta pwm_gen -c pwm_gen
+Info: qsta_default_script.tcl version: #2
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (306004): Started post-fitting delay annotation
+Info (306005): Delay annotation completed successfully
+Info (332104): Reading SDC File: 'pwm_gen.sdc'
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info (332146): Worst-case setup slack is 60.090
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    60.090         0.000 clk 
+    Info (332119):   994.465         0.000 data_clk 
+Info (332146): Worst-case hold slack is 0.524
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.524         0.000 clk 
+    Info (332119):     0.883         0.000 data_clk 
+Info (332146): Worst-case recovery slack is 56.784
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    56.784         0.000 data_clk 
+    Info (332119):    56.794         0.000 clk 
+Info (332146): Worst-case removal slack is 67.337
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    67.337         0.000 data_clk 
+    Info (332119):    67.476         0.000 clk 
+Info (332146): Worst-case minimum pulse width slack is 62.334
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    62.334         0.000 clk 
+    Info (332119):   499.834         0.000 data_clk 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 279 megabytes
+    Info: Processing ended: Mon Oct 08 17:31:58 2012
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

@@ -12,7 +12,7 @@ entity demux_testset is
      );
 end entity demux_testset;
 
-architecture behaviour of demux_testset is
+architecture bhv of demux_testset is
 
 begin
 
@@ -32,4 +32,4 @@ begin
     wait;
   end process;
   
-end architecture behaviour;
+end architecture bhv;

@@ -1,11 +1,20 @@
-{D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd}
+{D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity compare_test
--- Compiling architecture behaviour of compare_test
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Compiling entity pwm_gen
+-- Compiling architecture struct of pwm_gen
+-- Compiling configuration pwm_gen_rtl
+-- Loading entity pwm_gen
+-- Loading architecture struct of pwm_gen
+-- Loading entity counter
+-- Loading entity interface
+-- Loading entity compare_block
+-- Loading entity demux
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -14,25 +23,45 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity demux_testset
--- Compiling architecture behaviour of demux_testset
+-- Compiling architecture bhv of demux_testset
 
-} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd}
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity pwm_gen
--- Compiling architecture behaviour of pwm_gen
+-- Compiling entity compare_test
+-- Compiling architecture struct of compare_test
 
-} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd}
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity testbench
--- Compiling architecture structure of testbench
+-- Compiling entity pwm_gen_testset
+-- Compiling architecture bhv of pwm_gen_testset
+
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd}
+Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity interface_test
+-- Compiling architecture struct of interface_test
+
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd}
+Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity compare_block
+-- Compiling architecture bhv of compare_block
+-- Compiling architecture rtl of compare_block
+-- Loading entity compare_block
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -41,16 +70,7 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity demux_test
--- Compiling architecture behaviour of demux_test
-
-} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd}
-Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity testset
--- Compiling architecture RTL of testset
+-- Compiling architecture struct of demux_test
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -59,7 +79,7 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity counter_test
--- Compiling architecture behaviour of counter_test
+-- Compiling architecture struct of counter_test
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -68,16 +88,7 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity counter
--- Compiling architecture behaviour of counter
-
-} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd}
-Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity compare_testset
--- Compiling architecture behaviour of compare_testset
+-- Compiling architecture bhv of counter
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -86,7 +97,18 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity interface
--- Compiling architecture behaviour of interface
+-- Compiling architecture bhv of interface
+-- Compiling architecture rtl of interface
+-- Loading entity interface
+
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd}
+Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity compare_testset
+-- Compiling architecture bhv of compare_testset
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -95,7 +117,7 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity counter_testset
--- Compiling architecture behaviour of counter_testset
+-- Compiling architecture bhv of counter_testset
 
 } {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd}
 Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
@@ -104,6 +126,42 @@ Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Compiling entity demux
--- Compiling architecture behaviour of demux
+-- Compiling architecture bhv of demux
+
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd}
+Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package ATTRIBUTES
+-- Loading package std_logic_misc
+-- Compiling entity pwm_gen_testbench
+-- Compiling architecture struct of pwm_gen_testbench
+-- Compiling configuration pwm_gen_testbench_bhv
+-- Loading entity pwm_gen_testbench
+-- Loading architecture struct of pwm_gen_testbench
+-- Loading entity pwm_gen_testset
+-- Loading entity counter
+-- Loading entity interface
+-- Loading entity compare_block
+-- Loading entity demux
+-- Compiling configuration pwm_gen_testbench_rtl
+-- Loading entity pwm_gen_testbench
+-- Loading architecture struct of pwm_gen_testbench
+-- Loading entity pwm_gen_testset
+-- Loading entity counter
+-- Loading entity interface
+-- Loading entity compare_block
+-- Loading entity demux
+
+} {} {}} {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd} {1 {vcom -work work -2002 -explicit {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd}
+Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity interface_testset
+-- Compiling architecture bhv of interface_testset
 
 } {} {}}

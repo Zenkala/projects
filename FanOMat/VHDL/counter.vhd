@@ -13,33 +13,35 @@ entity counter is
 	);
 end entity counter;
 
-architecture behaviour of counter is
+architecture bhv of counter is
 	
-	signal counter_value : unsigned (counter_width-1 downto 0) := (others => '0');
-	signal reset_internal : std_logic := '0';
+	signal counter_value : unsigned (counter_width-1 downto 0) ;
+	signal reset_internal : std_logic ;
 	
 begin
 
   count_val <= counter_value;  
   
-  --seperate reset capture process
-  reset_capture : process
-  begin
-    wait until falling_edge(clk);
-    reset_internal <= reset;  
-  end process reset_capture;
-  
-  update_counter : process
-  
+  --capture external reset 
+  sync_reset : process(clk)
   begin
   
-    wait until rising_edge(clk);
-    
+    if clk'EVENT and clk='0' then
+      reset_internal <= reset;
+    end if;
+  
+  end process sync_reset;
+  
+  update_counter : process(clk, reset_internal)
+  
+  begin
+  
     if reset_internal = '1' then
       --reset counter
       counter_value <= (others => '0');
       ovf_out <= '0';
-    else
+    
+    elsif clk'EVENT and clk = '1' then --on rising edge clock
       
       --describe counter behaviour
       if counter_value = ((2**counter_width) -1) then
@@ -56,4 +58,4 @@ begin
 
   
 
-end architecture behaviour;
+end architecture bhv;

@@ -5,20 +5,16 @@ use ieee.std_logic_misc.all;
 
 entity pwm_gen_testbench is
   generic ( pwm_counter_bits : positive := 6;
-            pwm_channels : positive := 12;
-            channel_sel_bits : positive := 4 --adjust so that pwm_channels can be respresented by this number of bits
+            pwm_channels : positive := 4;
+            channel_sel_bits : positive := 2 --adjust so that pwm_channels can be respresented by this number of bits
   );
   port (
-    --clk, reset : in std_logic;
-    --data_in, data_clk : in std_logic;
-    --data_rdy : out std_logic;
-    --channel_sel : in unsigned(channel_sel_bits-1 downto 0);
     pwm_pin4_block : out std_logic_vector(pwm_channels-1 downto 0);
     pwm_pin3_block : out std_logic_vector(pwm_channels-1 downto 0)    
   );
 end entity pwm_gen_testbench;
 
-architecture behaviour of pwm_gen is
+architecture struct of pwm_gen_testbench is
 
   component pwm_gen_testset 
     generic ( channel_sel_bits : positive := 2; --adjust so that pwm_channels can be respresented by this number of bits
@@ -178,4 +174,64 @@ begin
 
 
 
-end architecture behaviour;
+end architecture struct;
+
+configuration pwm_gen_testbench_bhv of pwm_gen_testbench is
+
+    for struct
+
+      for testset_instance : pwm_gen_testset
+        use entity work.pwm_gen_testset(bhv);
+      end for;
+      
+      for pwm_counter : counter 
+        use entity work.counter(bhv);
+      end for;
+      
+      for data_interface : interface 
+        use entity work.interface(bhv);
+      end for;
+      
+      for all : demux
+        use entity work.demux(bhv);
+      end for;
+      
+      for pwm_compare_blocks
+        for all : compare_block
+          use entity work.compare_block(bhv);
+        end for;
+      end for;
+      
+    end for;
+
+end configuration pwm_gen_testbench_bhv;
+
+configuration pwm_gen_testbench_rtl of pwm_gen_testbench is
+
+    for struct
+
+      for testset_instance : pwm_gen_testset
+        use entity work.pwm_gen_testset(bhv);
+      end for;
+      
+      for pwm_counter : counter 
+        use entity work.counter(bhv);
+      end for;
+      
+      for data_interface : interface 
+        use entity work.interface(rtl);
+      end for;
+      
+      for all : demux
+        use entity work.demux(bhv);
+      end for;
+      
+      for pwm_compare_blocks
+        for all : compare_block
+          use entity work.compare_block(rtl);
+        end for;
+      end for;
+      
+    end for;
+
+end configuration pwm_gen_testbench_rtl;

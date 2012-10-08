@@ -14,19 +14,18 @@ port (
      );
 end demux;
 
-architecture behaviour of demux is
+architecture bhv of demux is
 
 begin
 
   process(sel, input)
     
-    variable offset, selected : natural := 0;
+    variable offset, selected : natural ;
   
   begin
   
     --calculate selected input and output offset
     selected := to_integer(sel);
-
     
     if selected < nr_outputs then 
     
@@ -51,4 +50,4 @@ begin
   end process;
 
 
-end behaviour;
+end bhv;

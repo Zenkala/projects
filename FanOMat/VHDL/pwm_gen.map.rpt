@@ -1,0 +1,380 @@
+Analysis & Synthesis report for pwm_gen
+Mon Oct 08 17:31:52 2012
+Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Parameter Settings for User Entity Instance: Top-level Entity: |pwm_gen
+ 11. Parameter Settings for User Entity Instance: counter:pwm_counter
+ 12. Parameter Settings for User Entity Instance: interface:data_interface
+ 13. Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:0:pwm_x
+ 14. Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:1:pwm_x
+ 15. Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:2:pwm_x
+ 16. Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:3:pwm_x
+ 17. Parameter Settings for User Entity Instance: demux:value_demux
+ 18. Parameter Settings for User Entity Instance: demux:signal_demux
+ 19. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                ;
++-----------------------------+-----------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Mon Oct 08 17:31:52 2012         ;
+; Quartus II 32-bit Version   ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
+; Revision Name               ; pwm_gen                                       ;
+; Top-level Entity Name       ; pwm_gen                                       ;
+; Family                      ; MAX II                                        ;
+; Total logic elements        ; 124                                           ;
+; Total pins                  ; 15                                            ;
+; Total virtual pins          ; 0                                             ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                                 ;
++-----------------------------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EPM2210F324C3      ;                    ;
+; Top-level entity name                                                      ; pwm_gen            ; pwm_gen            ;
+; Family name                                                                ; MAX II             ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                               ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                        ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; pwm_gen.vhd                      ; yes             ; User VHDL File  ; D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd       ;         ;
+; interface.vhd                    ; yes             ; User VHDL File  ; D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd     ;         ;
+; demux.vhd                        ; yes             ; User VHDL File  ; D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd         ;         ;
+; counter.vhd                      ; yes             ; User VHDL File  ; D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd       ;         ;
+; compare_block.vhd                ; yes             ; User VHDL File  ; D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                            ;
++---------------------------------------------+----------------------------------------------------------+
+; Resource                                    ; Usage                                                    ;
++---------------------------------------------+----------------------------------------------------------+
+; Total logic elements                        ; 124                                                      ;
+;     -- Combinational with no register       ; 53                                                       ;
+;     -- Register only                        ; 52                                                       ;
+;     -- Combinational with a register        ; 19                                                       ;
+;                                             ;                                                          ;
+; Logic element usage by number of LUT inputs ;                                                          ;
+;     -- 4 input functions                    ; 15                                                       ;
+;     -- 3 input functions                    ; 41                                                       ;
+;     -- 2 input functions                    ; 15                                                       ;
+;     -- 1 input functions                    ; 1                                                        ;
+;     -- 0 input functions                    ; 0                                                        ;
+;                                             ;                                                          ;
+; Logic elements by mode                      ;                                                          ;
+;     -- normal mode                          ; 89                                                       ;
+;     -- arithmetic mode                      ; 35                                                       ;
+;     -- qfbk mode                            ; 0                                                        ;
+;     -- register cascade mode                ; 0                                                        ;
+;     -- synchronous clear/load mode          ; 0                                                        ;
+;     -- asynchronous clear/load mode         ; 69                                                       ;
+;                                             ;                                                          ;
+; Total registers                             ; 71                                                       ;
+; Total logic cells in carry chains           ; 40                                                       ;
+; I/O pins                                    ; 15                                                       ;
+; Maximum fan-out node                        ; compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ;
+; Maximum fan-out                             ; 61                                                       ;
+; Total fan-out                               ; 463                                                      ;
+; Average fan-out                             ; 3.33                                                     ;
++---------------------------------------------+----------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                     ;
++------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------+--------------+
+; Compilation Hierarchy Node                     ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                ; Library Name ;
++------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------+--------------+
+; |pwm_gen                                       ; 124 (1)     ; 71           ; 0          ; 15   ; 0            ; 53 (1)       ; 52 (0)            ; 19 (0)           ; 40 (0)          ; 0 (0)      ; |pwm_gen                                           ; work         ;
+;    |compare_block:\pwm_compare_blocks:0:pwm_x| ; 24 (24)     ; 11           ; 0          ; 0    ; 0            ; 13 (13)      ; 10 (10)           ; 1 (1)            ; 8 (8)           ; 0 (0)      ; |pwm_gen|compare_block:\pwm_compare_blocks:0:pwm_x ; work         ;
+;    |compare_block:\pwm_compare_blocks:1:pwm_x| ; 24 (24)     ; 11           ; 0          ; 0    ; 0            ; 13 (13)      ; 10 (10)           ; 1 (1)            ; 8 (8)           ; 0 (0)      ; |pwm_gen|compare_block:\pwm_compare_blocks:1:pwm_x ; work         ;
+;    |compare_block:\pwm_compare_blocks:2:pwm_x| ; 22 (22)     ; 11           ; 0          ; 0    ; 0            ; 11 (11)      ; 10 (10)           ; 1 (1)            ; 8 (8)           ; 0 (0)      ; |pwm_gen|compare_block:\pwm_compare_blocks:2:pwm_x ; work         ;
+;    |compare_block:\pwm_compare_blocks:3:pwm_x| ; 23 (23)     ; 12           ; 0          ; 0    ; 0            ; 11 (11)      ; 11 (11)           ; 1 (1)            ; 8 (8)           ; 0 (0)      ; |pwm_gen|compare_block:\pwm_compare_blocks:3:pwm_x ; work         ;
+;    |counter:pwm_counter|                       ; 11 (11)     ; 9            ; 0          ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 9 (9)            ; 8 (8)           ; 0 (0)      ; |pwm_gen|counter:pwm_counter                       ; work         ;
+;    |interface:data_interface|                  ; 19 (19)     ; 17           ; 0          ; 0    ; 0            ; 2 (2)        ; 11 (11)           ; 6 (6)            ; 0 (0)           ; 0 (0)      ; |pwm_gen|interface:data_interface                  ; work         ;
++------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                              ;
++----------------------------------------------------------+----------------------------------------------------------------------+
+; Register name                                            ; Reason for Removal                                                   ;
++----------------------------------------------------------+----------------------------------------------------------------------+
+; counter:pwm_counter|reset_internal                       ; Merged with compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ;
+; compare_block:\pwm_compare_blocks:0:pwm_x|reset_internal ; Merged with compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ;
+; compare_block:\pwm_compare_blocks:1:pwm_x|reset_internal ; Merged with compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ;
+; compare_block:\pwm_compare_blocks:2:pwm_x|reset_internal ; Merged with compare_block:\pwm_compare_blocks:3:pwm_x|reset_internal ;
+; Total Number of Removed Registers = 4                    ;                                                                      ;
++----------------------------------------------------------+----------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 71    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 69    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 48    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |pwm_gen ;
++------------------+-------+----------------------------------------------+
+; Parameter Name   ; Value ; Type                                         ;
++------------------+-------+----------------------------------------------+
+; pwm_counter_bits ; 8     ; Signed Integer                               ;
+; pwm_channels     ; 4     ; Signed Integer                               ;
+; channel_sel_bits ; 2     ; Signed Integer                               ;
++------------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: counter:pwm_counter ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; counter_width  ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: interface:data_interface ;
++------------------------+-------+--------------------------------------+
+; Parameter Name         ; Value ; Type                                 ;
++------------------------+-------+--------------------------------------+
+; data_width             ; 9     ; Signed Integer                       ;
+; clk_domain_buff_length ; 2     ; Signed Integer                       ;
++------------------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:0:pwm_x ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; compare_width  ; 8     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:1:pwm_x ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; compare_width  ; 8     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:2:pwm_x ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; compare_width  ; 8     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: compare_block:\pwm_compare_blocks:3:pwm_x ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; compare_width  ; 8     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: demux:value_demux ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; nr_outputs     ; 4     ; Signed Integer                        ;
+; nr_sel_bits    ; 2     ; Signed Integer                        ;
+; bit_width      ; 9     ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: demux:signal_demux ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; nr_outputs     ; 4     ; Signed Integer                         ;
+; nr_sel_bits    ; 2     ; Signed Integer                         ;
+; bit_width      ; 1     ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+    Info: Processing started: Mon Oct 08 17:31:51 2012
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pwm_gen -c pwm_gen
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 3 design units, including 1 entities, in source file pwm_gen.vhd
+    Info (12022): Found design unit 1: pwm_gen-struct
+    Info (12022): Found design unit 2: pwm_gen_rtl
+    Info (12023): Found entity 1: pwm_gen
+Info (12021): Found 3 design units, including 1 entities, in source file interface.vhd
+    Info (12022): Found design unit 1: interface-bhv
+    Info (12022): Found design unit 2: interface-rtl
+    Info (12023): Found entity 1: interface
+Info (12021): Found 2 design units, including 1 entities, in source file demux.vhd
+    Info (12022): Found design unit 1: demux-bhv
+    Info (12023): Found entity 1: demux
+Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
+    Info (12022): Found design unit 1: counter-bhv
+    Info (12023): Found entity 1: counter
+Info (12021): Found 3 design units, including 1 entities, in source file compare_block.vhd
+    Info (12022): Found design unit 1: compare_block-bhv
+    Info (12022): Found design unit 2: compare_block-rtl
+    Info (12023): Found entity 1: compare_block
+Info (12127): Elaborating entity "pwm_gen" for the top level hierarchy
+Info (12129): Elaborating entity "counter" using architecture "A:bhv" for hierarchy "counter:pwm_counter"
+Info (12129): Elaborating entity "interface" using architecture "A:rtl" for hierarchy "interface:data_interface"
+Info (12129): Elaborating entity "compare_block" using architecture "A:rtl" for hierarchy "compare_block:\pwm_compare_blocks:0:pwm_x"
+Info (12129): Elaborating entity "demux" using architecture "A:bhv" for hierarchy "demux:value_demux"
+Info (12129): Elaborating entity "demux" using architecture "A:bhv" for hierarchy "demux:signal_demux"
+Info (21057): Implemented 139 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 6 input pins
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 124 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 334 megabytes
+    Info: Processing ended: Mon Oct 08 17:31:52 2012
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:02
+
+

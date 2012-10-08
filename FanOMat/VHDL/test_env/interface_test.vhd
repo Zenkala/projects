@@ -12,7 +12,7 @@ entity interface_test is
     );
 end entity interface_test;
 
-architecture behaviour of interface_test is
+architecture struct of interface_test is
 
   component interface
     generic (data_width : positive := 9);
@@ -62,4 +62,4 @@ begin
                 data_out => data_out
               );            
 
-end architecture behaviour;
+end architecture struct;

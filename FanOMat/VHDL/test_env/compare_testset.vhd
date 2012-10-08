@@ -13,7 +13,7 @@ entity compare_testset is
   );
 end entity compare_testset;
 
-architecture behaviour of compare_testset is
+architecture bhv of compare_testset is
 
    component counter 
     generic ( 
@@ -126,4 +126,4 @@ begin
     
   end process;
   
-end architecture behaviour;
+end architecture bhv;

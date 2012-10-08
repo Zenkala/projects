@@ -4,32 +4,32 @@ K3
 cModel Technology
 dD:\My Dropbox\Projects\Altera\ex2
 Ecompare_block
-Z0 w1349273331
+Z0 w1349727950
 Z1 DPx4 ieee 11 numeric_std 0 22 k7B<7GmYYYmX;0X]XHFD10
 Z2 DPx3 std 6 textio 0 22 G^o2zK;Vh4eVdKTVo98653
 Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
-Z4 dC:\Users\tomv\Dropbox\Projects\GIT\workspace\FanOMat\VHDL
-Z5 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd
-Z6 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd
+Z4 dD:\My Dropbox\Projects\GIT\workspace\FanOMat\VHDL
+Z5 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd
+Z6 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd
 l0
 L5
 VHTCFVNlbKJ_;2M0^`V^Fb1
 Z7 OV;C;10.0d;49
 32
-Z8 !s108 1349618366.273000
-Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd|
-Z10 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd|
+Z8 !s108 1349728045.414000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd|
+Z10 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/compare_block.vhd|
 Z11 o-work work -2002 -explicit -O0
 Z12 tExplicit 1
 !s100 DO5Wa56:n6IaS6L9F4f:`0
-Abehaviour
+Artl
 R1
 R2
 R3
-DEx4 work 13 compare_block 0 22 HTCFVNlbKJ_;2M0^`V^Fb1
-l24
-L18
-VVoa_C?^gT^S7H2S=i>T[o1
+Z13 DEx4 work 13 compare_block 0 22 HTCFVNlbKJ_;2M0^`V^Fb1
+l104
+L97
+VA?GcInM1fOW^fDCGSYQVQ3
 R7
 32
 R8
@@ -37,556 +37,623 @@ R9
 R10
 R11
 R12
-!s100 E>I71L2W;ScDbEDPhP0me0
+!s100 NX`:bzkiKIoGzHCI6MKlV0
+Abhv
+R1
+R2
+R3
+R13
+l25
+L18
+VBMlJkh<[jQW]z6_=L5Ebk2
+R7
+32
+R8
+R9
+R10
+R11
+R12
+!s100 S2SH_dF[bahaRB`FC1d=K0
 Ecompare_test
-Z13 w1349268026
+Z14 w1349700530
 R1
 R2
 R3
 R4
-Z14 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd
-Z15 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd
+Z15 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd
+Z16 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd
 l0
 L5
 Va^DbEhBAJW`WeX<FbGnZ82
 R7
 32
-Z16 !s108 1349618367.586000
-Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd|
-Z18 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd|
+Z17 !s108 1349728046.892000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd|
+Z19 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_test.vhd|
 R11
 R12
 !s100 m:FSKmfg^QV=O][IOUbno2
-Abehaviour
+Astruct
 R1
 R2
 R3
 DEx4 work 12 compare_test 0 22 a^DbEhBAJW`WeX<FbGnZ82
 l44
 L13
-VFn>G`>Xn@A[zjAc3WO7213
+VjPH=J2ncdHMhbDj0egWmO1
 R7
 32
-R16
 R17
 R18
+R19
 R11
 R12
-!s100 ngC7F49Q3zLaKGf0HB1^T3
+!s100 :_CDzYb72WH00XfggeL991
 Ecompare_testset
-Z19 w1349270929
+Z20 w1349700522
 R1
 R2
 R3
 R4
-Z20 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd
-Z21 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd
+Z21 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd
+Z22 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd
 l0
 L5
 VYE0BzlP5YYAioeOheMiJ@3
 R7
 32
-Z22 !s108 1349618368.013000
-Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd|
-Z24 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd|
+Z23 !s108 1349728047.072000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd|
+Z25 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/compare_testset.vhd|
 R11
 R12
 !s100 ;7LI@P[6ed0QYn1QBY^5^0
-Abehaviour
+Abhv
 R1
 R2
 R3
 DEx4 work 15 compare_testset 0 22 YE0BzlP5YYAioeOheMiJ@3
 l32
 L16
-Vc?kfYhFC59Y8VEW1caTTg2
+Vkm4NUbMoA72^DiCz2:dLd2
 R7
 32
-R22
 R23
 R24
+R25
 R11
 R12
-!s100 ffQ_NzE]XNfGfE?K7OIRQ3
+!s100 <;ERFSRHJ:z?fb7??1[O[0
 Ecounter
-Z25 w1349264950
+Z26 w1349728002
 R1
 R2
 R3
 R4
-Z26 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd
-Z27 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd
+Z27 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd
+Z28 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd
 l0
 L5
 Vz>JZDd[[ENMD0hBNDB[FX2
 R7
 32
-Z28 !s108 1349618366.527000
-Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd|
-Z30 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd|
+Z29 !s108 1349728045.679000
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd|
+Z31 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/counter.vhd|
 R11
 R12
 !s100 PD225NaSo6Rc=0b_?jODb2
-Abehaviour
+Abhv
 R1
 R2
 R3
-DEx4 work 7 counter 0 22 z>JZDd[[ENMD0hBNDB[FX2
+Z32 DEx4 work 7 counter 0 22 z>JZDd[[ENMD0hBNDB[FX2
 l21
 L16
-V5G7O;?b[<Ak>Y:Zdnd1C53
+VN2jGojc4ei>SD:KL;<BG22
 R7
 32
-R28
 R29
 R30
+R31
 R11
 R12
-!s100 42]0_h>n2dWUK0l?U5lfE2
+!s100 S2RC5`kgD`iXHh7E^eajA0
 Ecounter_test
-Z31 w1349267522
+Z33 w1349700513
 R1
 R2
 R3
 R4
-Z32 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd
-Z33 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd
+Z34 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd
+Z35 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd
 l0
 L5
 VW?1iD0D8d1CQQBAn<6f;Y3
 R7
 32
-Z34 !s108 1349618368.247000
-Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd|
-Z36 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd|
+Z36 !s108 1349728047.333000
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd|
+Z38 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_test.vhd|
 R11
 R12
 !s100 KcmkG:obnFoF;AOGk0=^h0
-Abehaviour
+Astruct
 R1
 R2
 R3
 DEx4 work 12 counter_test 0 22 W?1iD0D8d1CQQBAn<6f;Y3
 l40
 L15
-Va?HlM_zD7=BlR57YI:Rnl2
+V9;]zIbOVBDA`X=[7@_PEO2
 R7
 32
-R34
-R35
 R36
+R37
+R38
 R11
 R12
-!s100 QeFBWz5zRnVcEggQVCPFN3
+!s100 VfCLhA4Ak>3:IQ9E@d`P<1
 Ecounter_testset
-Z37 w1349263997
+Z39 w1349700506
 R1
 R2
 R3
 R4
-Z38 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd
-Z39 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd
+Z40 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd
+Z41 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd
 l0
 L5
 VjboN:43>:cN:0^<[FUbE<3
 R7
 32
-Z40 !s108 1349618368.601000
-Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd|
-Z42 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd|
+Z42 !s108 1349728047.527000
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd|
+Z44 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/counter_testset.vhd|
 R11
 R12
 !s100 ^L3GlFYBijz5j=[QXRcE30
-Abehaviour
+Abhv
 R1
 R2
 R3
 DEx4 work 15 counter_testset 0 22 jboN:43>:cN:0^<[FUbE<3
 l19
 L14
-V?PRDY@U6icFBaUZ=G@l<`3
+V?N?o^]Sg1NRHWUC1UR`3^2
 R7
 32
-R40
-R41
 R42
+R43
+R44
 R11
 R12
-!s100 2fC_?Ec9H:jZz>nbdH=]@2
+!s100 I>T^DzUJf`^Z=>`eaiQ6_3
 Edemux
-Z43 w1349619198
+Z45 w1349728010
 R1
 R2
 R3
 R4
-Z44 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd
-Z45 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd
+Z46 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd
+Z47 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd
 l0
 L5
 VgRRld]d@`W@M9AVORa[Ho3
 R7
 32
-Z46 !s108 1349619204.735000
-Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd|
-Z48 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd|
+Z48 !s108 1349728045.857000
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd|
+Z50 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/demux.vhd|
 R11
 R12
 !s100 :QaabfzAT8@N@8GQ8k3AU2
-Abehaviour
+Abhv
 R1
 R2
 R3
-DEx4 work 5 demux 0 22 gRRld]d@`W@M9AVORa[Ho3
+Z51 DEx4 work 5 demux 0 22 gRRld]d@`W@M9AVORa[Ho3
 l19
 L17
-Vd;1BB?aHS2@YZH^Phlc^T1
+V[o9XZMdibheaoaE1QW9B71
 R7
 32
-R46
-R47
 R48
+R49
+R50
 R11
 R12
-!s100 0`DZDiLlzUbgIdozIC4f<2
+!s100 Xk;dPM<9K[6`:XAnG7[490
 Edemux_test
-Z49 w1349618439
+Z52 w1349700499
 R1
 R2
 R3
 R4
-Z50 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd
-Z51 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd
+Z53 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd
+Z54 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd
 l0
 L5
 V;d[<oUWP<HejcSG4d<O`]2
 R7
 32
-Z52 !s108 1349618445.212000
-Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd|
-Z54 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd|
+Z55 !s108 1349728047.653000
+Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd|
+Z57 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_test.vhd|
 R11
 R12
 !s100 oOW8K]9K;_N6VjK?Fh6T80
-Abehaviour
+Astruct
 R1
 R2
 R3
 DEx4 work 10 demux_test 0 22 ;d[<oUWP<HejcSG4d<O`]2
 l42
 L14
-VTCM3=21Yj9NR_nj>WR@G33
+VDdIoZN2fX@z4Y6aMFEaA33
 R7
 32
-R52
-R53
-R54
+R55
+R56
+R57
 R11
 R12
-!s100 ZmIVRV4LEdM8GC02:__3f2
+!s100 CB>W<8mT5n50O>Paa2T5<0
 Edemux_testset
-Z55 w1349261019
+Z58 w1349700491
 R1
 R2
 R3
 R4
-Z56 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd
-Z57 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd
+Z59 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd
+Z60 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd
 l0
 L5
 VN^PZ;a=4^KXI?]:TJTffK2
 R7
 32
-Z58 !s108 1349618369.135000
-Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd|
-Z60 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd|
+Z61 !s108 1349728048.439000
+Z62 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd|
+Z63 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/demux_testset.vhd|
 R11
 R12
 !s100 UPOUD5RW9gd5zG5A<J88F3
-Abehaviour
+Abhv
 R1
 R2
 R3
 DEx4 work 13 demux_testset 0 22 N^PZ;a=4^KXI?]:TJTffK2
 l17
 L15
-VdJk9Ifah[KjDEP@EzElAS2
+VbmanjzEf3b7bVo?9A98jf3
 R7
 32
-R58
-R59
-R60
+R61
+R62
+R63
 R11
 R12
-!s100 5?lgnGog?MG<VMc6@OBki1
+!s100 <JW9PkRgNNGZ^6B?a0GTM1
 Einterface
-Z61 w1349634477
+Z64 w1349727981
 R1
 R2
 R3
 R4
-Z62 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd
-Z63 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd
+Z65 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd
+Z66 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd
 l0
 L39
 VR=LX6KE3BF[fO^V9HK4[<2
-!s100 32Ib4lmD4ajdkhdDQWW471
 R7
 32
-Z64 !s108 1349634490.849000
-Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd|
-Z66 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd|
+Z67 !s108 1349728046.274000
+Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd|
+Z69 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/interface.vhd|
 R11
 R12
-Abehaviour
+!s100 32Ib4lmD4ajdkhdDQWW471
+Artl
 R1
 R2
 R3
-Z67 DEx4 work 9 interface 0 22 R=LX6KE3BF[fO^V9HK4[<2
-l78
-L54
-V6ima0=TA[QP1;[faFFCJh3
-!s100 HTAc0><6h?VaVfR3D<mMf1
+Z70 DEx4 work 9 interface 0 22 R=LX6KE3BF[fO^V9HK4[<2
+l123
+L115
+VIT7oeE@?R=U3hOH1ADimX0
 R7
 32
-R64
-R65
-R66
+R67
+R68
+R69
 R11
 R12
+!s100 VJia7QgB5AzDQPC6VUA@T2
+Abhv
+R1
+R2
+R3
+R70
+l61
+L55
+VZ@F^m<US>QdCU4X7DZaYg3
+R7
+32
+R67
+R68
+R69
+R11
+R12
+!s100 3hPFIL6B<:j5?CAYA`UCK0
 Einterface_test
-Z68 w1349614629
+Z71 w1349700483
 R1
 R2
 R3
 R4
-Z69 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd
-Z70 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd
+Z72 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd
+Z73 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd
 l0
 L5
 VRAWTidVKgNiWnIW@m2bfd3
 R7
 32
-Z71 !s108 1349618369.494000
-Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd|
-Z73 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd|
+Z74 !s108 1349728049.207000
+Z75 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd|
+Z76 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_test.vhd|
 R11
 R12
 !s100 c`k0Y8VG:gaFej@aj<nNX0
-Abehaviour
+Astruct
 R1
 R2
 R3
 DEx4 work 14 interface_test 0 22 RAWTidVKgNiWnIW@m2bfd3
 l43
 L15
-V^nZeIa4KMl9I:h>BY6B>a1
+VQ;5`_QUZWkf:7gCg^mAkb0
 R7
 32
-R71
-R72
-R73
+R74
+R75
+R76
 R11
 R12
-!s100 R46ohdM72A7EACNX[PaMC0
+!s100 lZchECBMUd9jUZ;VAl95B2
 Einterface_testset
-Z74 w1349525210
+Z77 w1349700470
 R1
 R2
 R3
 R4
-Z75 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd
-Z76 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd
+Z78 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd
+Z79 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd
 l0
 L5
 VfCZ`<IjWhh2bkaeh@PY`00
 R7
 32
-Z77 !s108 1349618369.740000
-Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd|
-Z79 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd|
+Z80 !s108 1349728049.834000
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd|
+Z82 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/interface_testset.vhd|
 R11
 R12
 !s100 UC=OjTHYikm9FH4BK7[ni2
-Abehaviour
+Abhv
 R1
 R2
 R3
 DEx4 work 17 interface_testset 0 22 fCZ`<IjWhh2bkaeh@PY`00
 l21
 L14
-V[Lolhl4M94jSa1=TR5nJi3
+V`3]YKlGN4@zYfJEKNlgKI3
 R7
 32
-R77
-R78
-R79
+R80
+R81
+R82
 R11
 R12
-!s100 @fUd5bhP2[[BDFdln3DX@0
+!s100 i^o`2`IAYzJH2BzEYdK@90
 Epwm_gen
-Z80 w1349620216
-Z81 DPx8 synopsys 10 attributes 0 22 Fb?eGzjff51Ud2l4[U_732
-Z82 DPx4 ieee 14 std_logic_misc 0 22 10=1C[Hafn:kggH?^M@3X2
+Z83 w1349727919
+Z84 DPx8 synopsys 10 attributes 0 22 Fb?eGzjff51Ud2l4[U_732
+Z85 DPx4 ieee 14 std_logic_misc 0 22 10=1C[Hafn:kggH?^M@3X2
 R1
 R2
 R3
 R4
-8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
-FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+Z86 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+Z87 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
 l0
 L6
-V3<X;cF<8f21:B;Ji75QD_2
+V>0X3flKgGfl^TPQl7WCY<3
 R7
 32
+Z88 !s108 1349728046.620000
+Z89 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd|
+Z90 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd|
 R11
 R12
-!s108 1349620268.867000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd|
-!s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd|
-!s100 WCO]ec;?Kd09meJVQU2SN1
-Abehaviour
-R81
-R82
-R1
-R2
-R3
-DEx4 work 7 pwm_gen 0 22 3<X;cF<8f21:B;Ji75QD_2
-Z83 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd
-Z84 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd
-l107
-L21
-VjZmeb0EMES8gnJEnShDcD3
-R7
-32
-Z85 !s108 1349620287.995000
-Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd|
-Z87 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd|
-R11
-R12
-!s100 `Z3LnSaET=GcGK@2JOf1_0
-Epwm_gen_testbench
-w1349620131
-R81
-R82
-R1
-R2
-R3
-R4
-R83
+!s100 J3fiW1DMWGSeh7XCM=<GY2
+Astruct
 R84
-l0
-L6
-VX0Fm]jQBoJOhGZl?^Wo]D2
+R85
+R1
+R2
+R3
+Z91 DEx4 work 7 pwm_gen 0 22 >0X3flKgGfl^TPQl7WCY<3
+l87
+L21
+VXX8Cm`YI40HbGcREYl?Uf1
 R7
 32
+R88
+R89
+R90
+R11
+R12
+!s100 4d<=8m4ZKINf0NdQ`lF@;0
+Cpwm_gen_rtl
+Z92 astruct
+epwm_gen
+R13
+R51
+R70
+R32
+DAx4 work 7 pwm_gen 6 struct 22 XX8Cm`YI40HbGcREYl?Uf1
+R84
 R85
+R1
+R2
+R3
+R91
+R83
+R4
 R86
 R87
+l0
+L153
+V3<<2aob_cRZmY5S79VFba0
+R7
+32
+R88
+R89
+R90
 R11
 R12
-!s100 ezj:=aKG_171OboHVX>C72
-Epwm_gen_testset
-Z88 w1349619789
+!s100 P>E2V;_DCz_[Q7aNe]SSn1
+Epwm_gen_testbench
+Z93 w1349706845
+R84
+R85
 R1
 R2
 R3
 R4
-Z89 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd
-Z90 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd
+Z94 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd
+Z95 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd
+l0
+L6
+VWGXY1^;j3FYiJnM:6:Xh60
+R7
+32
+Z96 !s108 1349728050.418000
+Z97 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd|
+Z98 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testbench.vhd|
+R11
+R12
+!s100 M@HcCTP5YaL14VHk>n3642
+Astruct
+R84
+R85
+R1
+R2
+R3
+Z99 DEx4 work 17 pwm_gen_testbench 0 22 WGXY1^;j3FYiJnM:6:Xh60
+l103
+L17
+V:6WXzlV9@XE?e@f?WX2I71
+!s100 W`gDPRWPQglNB[QC4jMI81
+R7
+32
+R96
+R97
+R98
+R11
+R12
+Cpwm_gen_testbench_bhv
+R92
+Z100 epwm_gen_testbench
+R13
+R51
+R70
+R32
+Z101 DEx4 work 15 pwm_gen_testset 0 22 hoCmAIkI29GIMcb@m]9CC0
+Z102 DAx4 work 17 pwm_gen_testbench 6 struct 22 :6WXzlV9@XE?e@f?WX2I71
+R84
+R85
+R1
+R2
+R3
+R99
+R93
+R4
+R94
+R95
+l0
+L179
+VJ?C3E_Rg2m8INGGD9ej0A1
+R7
+32
+R96
+R97
+R98
+R11
+R12
+!s100 =gI8d@^`@H^o[TJ0>i6n93
+Cpwm_gen_testbench_rtl
+R92
+R100
+R13
+R51
+R70
+R32
+R101
+R102
+R84
+R85
+R1
+R2
+R3
+R99
+R93
+R4
+R94
+R95
+l0
+L209
+V[S1m_V=^[kJ_k?Mz:f0XF3
+R7
+32
+R96
+R97
+R98
+R11
+R12
+!s100 ^^K8fJA>LeeQLcG4L1g=o2
+Epwm_gen_testset
+Z103 w1349700455
+R1
+R2
+R3
+R4
+Z104 8D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd
+Z105 FD:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd
 l0
 L5
 VhoCmAIkI29GIMcb@m]9CC0
+!s100 H>fDoD3XVo30]XXCilU;@2
 R7
 32
-Z91 !s108 1349620087.659000
-Z92 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd|
-Z93 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd|
+Z106 !s108 1349728051.424000
+Z107 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd|
+Z108 !s107 D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/pwm_gen_testset.vhd|
 R11
 R12
-!s100 H>fDoD3XVo30]XXCilU;@2
-Abehaviour
+Abhv
 R1
 R2
 R3
-DEx4 work 15 pwm_gen_testset 0 22 hoCmAIkI29GIMcb@m]9CC0
+R101
 l25
 L18
-VXT^?976]hCOkA90YiI2M<2
+Z109 V6?Fh0oBoSI_BQ[`Q>WGfZ3
+Z110 !s100 hlOJf8B8Ka_BSf^A:<^X[3
 R7
 32
-R91
-R92
-R93
+R106
+R107
+R108
 R11
 R12
-!s100 cnSdTBUI;meJOST?L7AP]0
-Etestbench
-Z94 w1348831713
-R1
-R2
-R3
-R4
-Z95 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd
-Z96 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd
-l0
-L5
-VOmh88:`DRF6MS__FQB4mE3
-R7
-32
-Z97 !s108 1349527702.223000
-Z98 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd|
-Z99 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testbench.vhd|
-R11
-R12
-!s100 P2Ae5Lk?mS<;fEAjI0YIW1
-Astructure
-R1
-R2
-R3
-DEx4 work 9 testbench 0 22 Omh88:`DRF6MS__FQB4mE3
-l12
-L8
-V3JLzCkRn]3bTbBCA:9egQ0
-R7
-32
-R97
-R98
-R99
-R11
-R12
-!s100 UMh4[b;QCWk3LkA1zngJd0
-Etestset
-Z100 w1349259871
-R1
-R2
-R3
-R4
-Z101 8C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd
-Z102 FC:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd
-l0
-L5
-V:0G=n8<nQPb_THK:CQ@>L2
-R7
-32
-Z103 !s108 1349527702.831000
-Z104 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd|
-Z105 !s107 C:/Users/tomv/Dropbox/Projects/GIT/workspace/FanOMat/VHDL/test_env/testset.vhd|
-R11
-R12
-!s100 51B[cm<ePQahgCm251DYJ0
-Artl
-R1
-R2
-R3
-DEx4 work 7 testset 0 22 :0G=n8<nQPb_THK:CQ@>L2
-l17
-L12
-V32XEKB^`YiSEDgP;f7F`Q1
-R7
-32
-R103
-R104
-R105
-R11
-R12
-!s100 9eCVo>bGdnHC@O;8COXc<0

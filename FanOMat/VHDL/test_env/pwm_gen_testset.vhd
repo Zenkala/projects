@@ -15,7 +15,7 @@ entity pwm_gen_testset is
     );
 end entity pwm_gen_testset;
 
-architecture behaviour of pwm_gen_testset is
+architecture bhv of pwm_gen_testset is
 
   signal clk_internal : std_logic := '0';
   constant clk_period : time := 10 ns;
@@ -72,4 +72,4 @@ begin
   
   end process;
   
-end architecture behaviour;
+end architecture bhv;

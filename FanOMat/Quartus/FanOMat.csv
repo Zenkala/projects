@@ -1,0 +1,36 @@
+# Copyright (C) 1991-2012 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+# Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+# File: D:\My Dropbox\Projects\GIT\workspace\FanOMat\Quartus\FanOMat.csv
+# Generated on: Mon Oct 08 17:08:03 2012
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus II software.
+
+To,Direction,Location,I/O Bank,I/O Standard,Reserved,Current Strength
+channel_sel[1],Input,PIN_C9,2,,,
+channel_sel[0],Input,PIN_C10,2,,,
+clk,Input,PIN_K13,3,,,
+data_clk,Input,PIN_J13,3,,,
+data_in,Input,PIN_D10,2,,,
+data_rdy,Output,PIN_D11,2,,,
+pwm_pin3_block[3],Output,PIN_V5,4,,,
+pwm_pin3_block[2],Output,PIN_U5,4,,,
+pwm_pin3_block[1],Output,PIN_V4,4,,,
+pwm_pin3_block[0],Output,PIN_U4,4,,,
+pwm_pin4_block[3],Output,PIN_V13,4,,,
+pwm_pin4_block[2],Output,PIN_U13,4,,,
+pwm_pin4_block[1],Output,PIN_U12,4,,,
+pwm_pin4_block[0],Output,PIN_V12,4,,,
+reset,Input,PIN_C11,2,,,

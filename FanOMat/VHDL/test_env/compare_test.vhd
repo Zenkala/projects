@@ -10,7 +10,7 @@ entity compare_test is
   );
 end entity compare_test;
 
-architecture behaviour of compare_test is
+architecture struct of compare_test is
 
   component compare_block
     generic (compare_width : positive);
@@ -68,4 +68,4 @@ begin
                 data_updated => data_updated
               );            
 
-end architecture behaviour;
+end architecture struct;

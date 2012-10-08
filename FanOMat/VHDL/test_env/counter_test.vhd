@@ -12,7 +12,7 @@ entity counter_test is
   );
 end entity counter_test;
 
-architecture behaviour of counter_test is
+architecture struct of counter_test is
 
   component counter 
     generic ( 
@@ -55,4 +55,4 @@ begin
               ovf_out => ovf_out
            );
 
-end architecture behaviour;
+end architecture struct;
