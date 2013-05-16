@@ -1,0 +1,6 @@
+17:25:08 **** Clean-only build of configuration Default for project ArduPlane-2.71 ****
+make clean 
+make: *** No rule to make target `clean'.  Stop.
+
+17:25:08 Build Finished (took 64ms)
+

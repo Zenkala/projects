@@ -1,0 +1,94 @@
+//==================================================================================
+// Project Logger by Tom Vocke, 02-05-2013
+//==================================================================================
+
+/*
+This project is intented to provide logging capabilities on the internal dataflash
+of the ArduPilot Mega. It provides functions for storing, and retreiving sensor logs
+via a serial interface, and makes use of the standard ArduPilot libraries.
+*/
+
+//guard
+#ifndef _H_LOGGER
+#define _H_LOGGER
+//==================================================================================
+// Includes
+//==================================================================================
+
+//fastserial libraries
+#include <FastSerial.h>
+
+// Common dependencies
+#include <AP_Common.h>
+#include <AP_Menu.h>
+#include <AP_Param.h>
+
+//compass libraries
+#include <AP_Compass_HMC5843.h>
+#include <Compass.h>
+#include <AP_Compass.h>
+#include <AP_Compass_HIL.h>
+
+//IMU libraries
+#include <AP_InertialSensor_Oilpan.h>
+#include <AP_InertialSensor_Stub.h>
+#include <AP_InertialSensor.h>
+#include <AP_InertialSensor_MPU6000.h>
+
+//dataflash libraries
+#include <DataFlash.h>
+#include <DataFlash_APM2.h>
+#include <DataFlash_APM1.h>
+
+//menu libraries
+#include <AP_Menu.h>
+
+//==================================================================================
+//Definitions
+//==================================================================================
+
+//  Choose the logs to enable (1) = enable, (0) = disable
+#define EN_IMU_LOG 		(1)
+#define EN_COMPASS_LOG	(1)
+#define EN_THROTTLE_LOG	(1)
+#define EN_GPS_LOG		(1)
+
+//log system definitions
+LOG_PACKET_HEADER
+
+
+//==================================================================================
+// Type Definitions
+//==================================================================================
+
+typedef struct log_GPS {
+    LOG_PACKET_HEADER;
+    uint32_t gps_time;
+    uint8_t  num_sats;
+    int32_t  latitude;
+    int32_t  longitude;
+    int32_t  rel_altitude;
+    int32_t  altitude;
+    uint32_t ground_speed;
+    int32_t  ground_course;
+};
+
+
+
+//==================================================================================
+// Global Variables
+//==================================================================================
+
+
+//==================================================================================
+// Function prototypes
+//==================================================================================
+
+//initialize necessary interface for dataflash logging
+uint8_t Log_Init();
+
+
+
+
+//end of logger.h
+#endif

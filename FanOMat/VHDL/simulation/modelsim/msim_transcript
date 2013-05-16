@@ -1,0 +1,132 @@
+# Reading D:/altera/12sp2/modelsim_ase/tcl/vsim/pref.tcl 
+# do pwm_gen_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying D:\altera\12sp2\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied D:\altera\12sp2\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd}
+# Model Technology ModelSim ALTERA vcom 10.0d Compiler 2012.01 Jan 18 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package ATTRIBUTES
+# -- Loading package std_logic_misc
+# -- Compiling entity pwm_gen
+# -- Compiling architecture struct of pwm_gen
+# -- Compiling configuration pwm_gen_rtl
+# -- Loading entity pwm_gen
+# -- Loading architecture struct of pwm_gen
+# ** Error: (vcom-11) Could not find work.counter.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(158): (vcom-1195) Cannot find expanded name "work.counter".
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(158): (vcom-1105) Name (indexed name) does not denote an entity name.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(158): Unknown expanded name.
+# ** Error: (vcom-11) Could not find work.interface.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(162): (vcom-1195) Cannot find expanded name "work.interface".
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(162): (vcom-1105) Name (indexed name) does not denote an entity name.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(162): Unknown expanded name.
+# ** Error: (vcom-11) Could not find work.demux.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(166): (vcom-1195) Cannot find expanded name "work.demux".
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(166): (vcom-1105) Name (indexed name) does not denote an entity name.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(166): Unknown expanded name.
+# ** Error: (vcom-11) Could not find work.compare_block.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(171): (vcom-1195) Cannot find expanded name "work.compare_block".
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(171): (vcom-1105) Name (indexed name) does not denote an entity name.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(171): Unknown expanded name.
+# ** Error: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd(177): VHDL Compiler exiting
+# ** Error: D:/altera/12sp2/modelsim_ase/win32aloem/vcom failed.
+# Error in macro ./pwm_gen_run_msim_rtl_vhdl.do line 8
+# D:/altera/12sp2/modelsim_ase/win32aloem/vcom failed.
+#     while executing
+# "vcom -93 -work work {D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd}"
+#  
+vsim work.pwm_gen(struct)
+# vsim work.pwm_gen(struct) 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.pwm_gen(struct)
+# ** Warning: (vsim-3473) Component instance "pwm_counter : counter" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "data_interface : interface" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(0) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(1) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(2) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(3) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(4) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(5) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(6) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(7) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(8) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(9) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(10) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(11) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "value_demux : demux" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "signal_demux : demux" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+vsim work.pwm_gen(struct)
+# vsim work.pwm_gen(struct) 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading synopsys.attributes
+# Loading ieee.std_logic_misc(body)
+# Loading work.pwm_gen(struct)
+# ** Warning: (vsim-3473) Component instance "pwm_counter : counter" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "data_interface : interface" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(0) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(1) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(2) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(3) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(4) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(5) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(6) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(7) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(8) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(9) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(10) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "pwm_x : compare_block" is not bound.
+#    Time: 0 ps  Iteration: 0  Region: /pwm_gen/pwm_compare_blocks(11) File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "value_demux : demux" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+# ** Warning: (vsim-3473) Component instance "signal_demux : demux" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /pwm_gen File: D:/My Dropbox/Projects/GIT/workspace/FanOMat/VHDL/pwm_gen.vhd
+add wave *
+run 10000ns

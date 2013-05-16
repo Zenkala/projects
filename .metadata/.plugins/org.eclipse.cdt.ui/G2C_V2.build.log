@@ -1,0 +1,20 @@
+17:35:26 **** Incremental Build of configuration Release for project G2C_V2 ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega2560 G2C_V2.elf
+AVR Memory Usage
+----------------
+Device: atmega2560
+
+Program:   22214 bytes (8.5% Full)
+(.text + .data + .bootloader)
+
+Data:        484 bytes (5.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+17:35:26 Build Finished (took 115ms)
+

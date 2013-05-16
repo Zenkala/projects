@@ -26,8 +26,8 @@ begin
 
   --signal connections
   --determine which pin to pwm, depending on pwm_out_sel bit
-  pwm_pin4 <= pwm_int when pwm_out_sel = '1' else '1';
-  pwm_pin3 <= pwm_int when pwm_out_sel = '0' else '0';
+  pwm_pin4 <= pwm_int when pwm_out_sel = '1' else '1'; 
+  pwm_pin3 <= pwm_int when pwm_out_sel = '0' else '0'; 
   
   --capture external reset 
   sync_reset : process(clk)
@@ -82,9 +82,9 @@ begin
     wait until rising_edge(clk);
     
     if cnt_value < compare_value and reset_internal = '0' then
-      pwm_int <= '1';    
+      pwm_int <= '1'; 
     else
-      pwm_int <= '0';
+      pwm_int <= '0'; 
     end if;
      
   end process generate_pwm;
@@ -106,8 +106,8 @@ begin
   --signal connections
   data_updated <= data_updated_int;
   --determine which pin to pwm, depending on pwm_out_sel bit
-  pwm_pin4 <= pwm_int when pwm_out_sel = '1' else '1';
-  pwm_pin3 <= pwm_int when pwm_out_sel = '0' else '0';
+  pwm_pin4 <= pwm_int when pwm_out_sel = '1' else '1'; --altered for dev_board
+  pwm_pin3 <= pwm_int when pwm_out_sel = '0' else '1'; --altered for dev_board
   
   --capture external reset 
   sync_reset : process(clk)
@@ -166,9 +166,9 @@ begin
   begin
     
     if cnt_value < compare_value and reset_internal = '0' then
-      pwm_int <= '1';    
+      pwm_int <= '0'; --inverted for dev_board     
     else
-      pwm_int <= '0';
+      pwm_int <= '1'; --inverted for dev_board
     end if;
      
   end process generate_pwm;

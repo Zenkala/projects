@@ -25,7 +25,8 @@ architecture struct of pwm_gen_testbench is
       clk, reset : out std_logic;
       data_out, data_clk : out std_logic;
       channel_sel : out unsigned(channel_sel_bits-1 downto 0);
-      data_rdy : in std_logic := '0'
+      data_rdy : in std_logic := '0';
+      reset_intf : out std_logic := '0'
       );
   end component pwm_gen_testset;
 
@@ -98,11 +99,12 @@ architecture struct of pwm_gen_testbench is
   
   --connect data updated to reset signal
   signal interface_reset : std_logic := '0';
+  signal reset_intf_int : std_logic := '0';
   
   
 begin
 
-   interface_reset <= reset_int or or_reduce(data_updated_bus); 
+   interface_reset <= reset_int or or_reduce(data_updated_bus) or reset_intf_int; 
 
    --instantiate testset
    testset_instance : pwm_gen_testset
@@ -112,7 +114,8 @@ begin
               data_out => data_out_line,
               data_clk => data_clk_line,
               channel_sel => channel_sel_bus,
-              data_rdy => data_rdy_int(0)
+              data_rdy => data_rdy_int(0),
+              reset_intf => reset_intf_int
             );
 
    --instantiate counter

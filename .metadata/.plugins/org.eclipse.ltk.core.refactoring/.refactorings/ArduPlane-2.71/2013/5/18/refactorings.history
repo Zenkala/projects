@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ArduPlane-2.71/Logger/ArduCopter.pde&apos; to &apos;Logger_Main.pde&apos;" description="Rename resource &apos;ArduCopter.pde&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Logger/ArduCopter.pde" name="Logger_Main.pde" stamp="1367485786474" updateReferences="true"/>
+</session>

@@ -5,8 +5,8 @@ use ieee.std_logic_misc.all;
 
 entity pwm_gen is
   generic ( pwm_counter_bits : positive := 8;
-            pwm_channels : positive := 4;
-            channel_sel_bits : positive := 2 --adjust so that pwm_channels can be respresented by this number of bits
+            pwm_channels : positive := 12;
+            channel_sel_bits : positive := 4 --adjust so that pwm_channels can be respresented by this number of bits
   );
 	port (
 		clk, reset, reset_intf : in std_logic;

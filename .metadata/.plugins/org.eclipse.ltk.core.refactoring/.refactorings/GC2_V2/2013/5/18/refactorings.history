@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;GC2_V2/GC2_V2.ino&apos; to &apos;GC2_V2.cpp&apos;" description="Rename resource &apos;GC2_V2.ino&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="GC2_V2.ino" name="GC2_V2.cpp" stamp="1367502705786" updateReferences="true"/>
+</session>

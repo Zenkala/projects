@@ -1,0 +1,11 @@
+void set_throttle(uint16_t out){
+  APM_RC.OutputCh(CH_3,constrain(1000+8*out,1000,2250));
+}
+
+boolean glide_switch(){
+  return APM_RC.InputCh(CH_5) > 1500;
+}
+
+boolean enable_switch(){
+  return APM_RC.InputCh(CH_7) < 1300;
+}

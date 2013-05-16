@@ -1,0 +1,147 @@
+12:06:20 **** Build of configuration Release for project flash_test ****
+make all 
+Building file: /opt/arduinoIDE/libraries/SPI/SPI.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"SPI/SPI.d" -MT"SPI/SPI.d"  -c -o "SPI/SPI.o" -x c++ "/opt/arduinoIDE/libraries/SPI/SPI.cpp"
+Finished building: /opt/arduinoIDE/libraries/SPI/SPI.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/FastSerial/BetterStream.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"FastSerial/BetterStream.d" -MT"FastSerial/BetterStream.d"  -c -o "FastSerial/BetterStream.o" -x c++ "/opt/arduinoIDE/libraries/FastSerial/BetterStream.cpp"
+Finished building: /opt/arduinoIDE/libraries/FastSerial/BetterStream.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/FastSerial/FastSerial.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"FastSerial/FastSerial.d" -MT"FastSerial/FastSerial.d"  -c -o "FastSerial/FastSerial.o" -x c++ "/opt/arduinoIDE/libraries/FastSerial/FastSerial.cpp"
+Finished building: /opt/arduinoIDE/libraries/FastSerial/FastSerial.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/FastSerial/ftoa_engine.S
+Invoking: AVR Assembler
+avr-gcc -x assembler-with-cpp -mmcu=atmega2560 -MMD -MP -MF"FastSerial/ftoa_engine.d" -MT"FastSerial/ftoa_engine.d" -c -o "FastSerial/ftoa_engine.o" "/opt/arduinoIDE/libraries/FastSerial/ftoa_engine.S"
+Finished building: /opt/arduinoIDE/libraries/FastSerial/ftoa_engine.S
+ 
+Building file: /opt/arduinoIDE/libraries/FastSerial/ultoa_invert.S
+Invoking: AVR Assembler
+avr-gcc -x assembler-with-cpp -mmcu=atmega2560 -MMD -MP -MF"FastSerial/ultoa_invert.d" -MT"FastSerial/ultoa_invert.d" -c -o "FastSerial/ultoa_invert.o" "/opt/arduinoIDE/libraries/FastSerial/ultoa_invert.S"
+Finished building: /opt/arduinoIDE/libraries/FastSerial/ultoa_invert.S
+ 
+Building file: /opt/arduinoIDE/libraries/FastSerial/vprintf.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"FastSerial/vprintf.d" -MT"FastSerial/vprintf.d"  -c -o "FastSerial/vprintf.o" -x c++ "/opt/arduinoIDE/libraries/FastSerial/vprintf.cpp"
+Finished building: /opt/arduinoIDE/libraries/FastSerial/vprintf.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/DataFlash/DataFlash.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"DataFlash/DataFlash.d" -MT"DataFlash/DataFlash.d"  -c -o "DataFlash/DataFlash.o" -x c++ "/opt/arduinoIDE/libraries/DataFlash/DataFlash.cpp"
+Finished building: /opt/arduinoIDE/libraries/DataFlash/DataFlash.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/DataFlash/DataFlash_APM1.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"DataFlash/DataFlash_APM1.d" -MT"DataFlash/DataFlash_APM1.d"  -c -o "DataFlash/DataFlash_APM1.o" -x c++ "/opt/arduinoIDE/libraries/DataFlash/DataFlash_APM1.cpp"
+Finished building: /opt/arduinoIDE/libraries/DataFlash/DataFlash_APM1.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/DataFlash/DataFlash_APM2.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"DataFlash/DataFlash_APM2.d" -MT"DataFlash/DataFlash_APM2.d"  -c -o "DataFlash/DataFlash_APM2.o" -x c++ "/opt/arduinoIDE/libraries/DataFlash/DataFlash_APM2.cpp"
+Finished building: /opt/arduinoIDE/libraries/DataFlash/DataFlash_APM2.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Semaphore/AP_Semaphore.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Semaphore/AP_Semaphore.d" -MT"AP_Semaphore/AP_Semaphore.d"  -c -o "AP_Semaphore/AP_Semaphore.o" -x c++ "/opt/arduinoIDE/libraries/AP_Semaphore/AP_Semaphore.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Semaphore/AP_Semaphore.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/AP_Math.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/AP_Math.d" -MT"AP_Math/AP_Math.d"  -c -o "AP_Math/AP_Math.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/AP_Math.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/AP_Math.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/location.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/location.d" -MT"AP_Math/location.d"  -c -o "AP_Math/location.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/location.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/location.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/matrix3.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/matrix3.d" -MT"AP_Math/matrix3.d"  -c -o "AP_Math/matrix3.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/matrix3.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/matrix3.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/polygon.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/polygon.d" -MT"AP_Math/polygon.d"  -c -o "AP_Math/polygon.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/polygon.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/polygon.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/quaternion.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/quaternion.d" -MT"AP_Math/quaternion.d"  -c -o "AP_Math/quaternion.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/quaternion.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/quaternion.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Math/vector3.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Math/vector3.d" -MT"AP_Math/vector3.d"  -c -o "AP_Math/vector3.o" -x c++ "/opt/arduinoIDE/libraries/AP_Math/vector3.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Math/vector3.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Common/AP_Common.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Common/AP_Common.d" -MT"AP_Common/AP_Common.d"  -c -o "AP_Common/AP_Common.o" -x c++ "/opt/arduinoIDE/libraries/AP_Common/AP_Common.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Common/AP_Common.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Common/AP_Loop.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Common/AP_Loop.d" -MT"AP_Common/AP_Loop.d"  -c -o "AP_Common/AP_Loop.o" -x c++ "/opt/arduinoIDE/libraries/AP_Common/AP_Loop.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Common/AP_Loop.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Common/AP_Param.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Common/AP_Param.d" -MT"AP_Common/AP_Param.d"  -c -o "AP_Common/AP_Param.o" -x c++ "/opt/arduinoIDE/libraries/AP_Common/AP_Param.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Common/AP_Param.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Common/AP_Var_menufuncs.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Common/AP_Var_menufuncs.d" -MT"AP_Common/AP_Var_menufuncs.d"  -c -o "AP_Common/AP_Var_menufuncs.o" -x c++ "/opt/arduinoIDE/libraries/AP_Common/AP_Var_menufuncs.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Common/AP_Var_menufuncs.cpp
+ 
+Building file: /opt/arduinoIDE/libraries/AP_Common/c++.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"AP_Common/c++.d" -MT"AP_Common/c++.d"  -c -o "AP_Common/c++.o" -x c++ "/opt/arduinoIDE/libraries/AP_Common/c++.cpp"
+Finished building: /opt/arduinoIDE/libraries/AP_Common/c++.cpp
+ 
+Building file: ../flash_test.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/flash_test" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"flash_test.d" -MT"flash_test.d"  -c -o "flash_test.o" -x c++ "../flash_test.cpp"
+Finished building: ../flash_test.cpp
+ 
+Building target: flash_test.elf
+Invoking: AVR C++ Linker
+avr-gcc -Os -Wl,--gc-sections  -L"/home/tomv/Dropbox/projects/GIT/workspace/Arduino_Mega_2560_or_Mega_ADK/Release" -mmcu=atmega2560  -o"flash_test.elf"  ./SPI/SPI.o  ./FastSerial/BetterStream.o ./FastSerial/FastSerial.o ./FastSerial/ftoa_engine.o ./FastSerial/ultoa_invert.o ./FastSerial/vprintf.o  ./DataFlash/DataFlash.o ./DataFlash/DataFlash_APM1.o ./DataFlash/DataFlash_APM2.o  ./AP_Semaphore/AP_Semaphore.o  ./AP_Math/AP_Math.o ./AP_Math/location.o ./AP_Math/matrix3.o ./AP_Math/polygon.o ./AP_Math/quaternion.o ./AP_Math/vector3.o  ./AP_Common/AP_Common.o ./AP_Common/AP_Loop.o ./AP_Common/AP_Param.o ./AP_Common/AP_Var_menufuncs.o ./AP_Common/c++.o  ./flash_test.o   -l"Arduino_Mega_2560_or_Mega_ADK" -lm
+Finished building target: flash_test.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S flash_test.elf  >"flash_test.lss"
+Finished building: flash_test.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -O ihex flash_test.elf  "flash_test.hex"
+Finished building: flash_test.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex flash_test.elf  "flash_test.eep"
+Finished building: flash_test.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega2560 flash_test.elf
+AVR Memory Usage
+----------------
+Device: atmega2560
+
+Program:    8168 bytes (3.1% Full)
+(.text + .data + .bootloader)
+
+Data:        399 bytes (4.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+12:06:24 Build Finished (took 4s.31ms)
+

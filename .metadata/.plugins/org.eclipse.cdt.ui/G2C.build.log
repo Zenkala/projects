@@ -1,0 +1,15 @@
+11:45:40 **** Build of configuration Release for project G2C ****
+make all 
+Building file: ../GC2.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/AP_Common" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/AP_Math" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/AP_Semaphore" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/APM_RC" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/Arduino_Mega_ISR_Registry" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/DataFlash" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/SPI" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C/Streaming" -D__IN_ECLIPSE__=1 -DARDUINO=104 -DUSB_PID= -DUSB_VID= -Wall -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"GC2.d" -MT"GC2.d"  -c -o "GC2.o" -x c++ "../GC2.cpp"
+In file included from /home/tomv/Dropbox/projects/GIT/workspace/G2C/DataFlash/DataFlash_APM1.h:7:0,
+                 from /home/tomv/Dropbox/projects/GIT/workspace/G2C/DataFlash/DataFlash.h:94,
+                 from /home/tomv/Dropbox/projects/GIT/workspace/G2C/logger.h:24,
+                 from ../GC2.cpp:26:
+/home/tomv/Dropbox/projects/GIT/workspace/G2C/AP_Semaphore/AP_Semaphore.h:9:24: fatal error: FastSerial.h: No such file or directory
+compilation terminated.
+make: *** [GC2.o] Error 1
+
+11:45:41 Build Finished (took 310ms)
+

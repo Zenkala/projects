@@ -1,0 +1,297 @@
+//==================================================================================
+// Project Logger by Tom Vocke, 02-05-2013
+//==================================================================================
+
+/*
+This project is intented to provide logging capabilities on the internal dataflash
+of the ArduPilot Mega. It provides functions for storing, and retreiving sensor logs
+via a serial interface, and makes use of the standard ArduPilot libraries.
+*/
+
+//guard
+#ifndef _H_LOGGER
+#define _H_LOGGER
+//==================================================================================
+// Includes
+//==================================================================================
+
+//fastserial libraries
+#include <FastSerial.h>
+
+// Common dependencies
+#include <AP_Common.h>
+#include <AP_Menu.h>
+#include <AP_Param.h>
+
+//compass libraries
+#include <AP_Compass_HMC5843.h>
+#include <Compass.h>
+#include <AP_Compass.h>
+#include <AP_Compass_HIL.h>
+
+//IMU libraries
+#include <AP_InertialSensor_Oilpan.h>
+#include <AP_InertialSensor_Stub.h>
+#include <AP_InertialSensor.h>
+#include <AP_InertialSensor_MPU6000.h>
+
+//dataflash libraries
+#include <DataFlash.h>
+#include <DataFlash_APM2.h>
+#include <DataFlash_APM1.h>
+
+//menu libraries
+#include <AP_Menu.h>
+
+//==================================================================================
+//Definitions
+//==================================================================================
+
+//  Logging parameters
+#define TYPE_AIRSTART_MSG               0x00
+#define TYPE_GROUNDSTART_MSG            0x01
+#define LOG_ATTITUDE_MSG                0x01
+#define LOG_GPS_MSG                     0x02
+#define LOG_MODE_MSG                    0x03
+#define LOG_CONTROL_TUNING_MSG          0x04
+#define LOG_NAV_TUNING_MSG              0x05
+#define LOG_PERFORMANCE_MSG             0x06
+#define LOG_IMU_MSG                     0x07
+#define LOG_CMD_MSG                     0x08
+#define LOG_CURRENT_MSG                 0x09
+#define LOG_STARTUP_MSG                 0x0A
+#define LOG_MOTORS_MSG                  0x0B
+#define LOG_OPTFLOW_MSG                 0x0C
+#define LOG_EVENT_MSG                   0x0D
+#define LOG_PID_MSG                     0x0E
+#define LOG_COMPASS_MSG                 0x0F
+#define LOG_DMP_MSG                     0x10
+#define LOG_INAV_MSG                    0x11
+#define LOG_CAMERA_MSG                  0x12
+#define LOG_ERROR_MSG                   0x13
+#define LOG_DATA_INT16_MSG              0x14
+#define LOG_DATA_UINT16_MSG             0x15
+#define LOG_DATA_INT32_MSG              0x16
+#define LOG_DATA_UINT32_MSG             0x17
+#define LOG_DATA_FLOAT_MSG              0x18
+#define LOG_INDEX_MSG                   0xF0
+#define MAX_NUM_LOGS                    50
+
+#define MASK_LOG_ATTITUDE_FAST          (1<<0)
+#define MASK_LOG_ATTITUDE_MED           (1<<1)
+#define MASK_LOG_GPS                    (1<<2)
+#define MASK_LOG_PM                     (1<<3)
+#define MASK_LOG_CTUN                   (1<<4)
+#define MASK_LOG_NTUN                   (1<<5)
+#define MASK_LOG_MODE                   (1<<6)
+#define MASK_LOG_IMU                    (1<<7)
+#define MASK_LOG_CMD                    (1<<8)
+#define MASK_LOG_CURRENT                (1<<9)
+#define MASK_LOG_MOTORS                 (1<<10)
+#define MASK_LOG_OPTFLOW                (1<<11)
+#define MASK_LOG_PID                    (1<<12)
+#define MASK_LOG_COMPASS                (1<<13)
+#define MASK_LOG_INAV                   (1<<14)
+#define MASK_LOG_CAMERA                 (1<<15)
+
+//==================================================================================
+// Type Definitions
+//==================================================================================
+
+struct log_GPS {
+    LOG_PACKET_HEADER;
+    uint32_t gps_time;
+    uint8_t  num_sats;
+    int32_t  latitude;
+    int32_t  longitude;
+    int32_t  rel_altitude;
+    int32_t  altitude;
+    uint32_t ground_speed;
+    int32_t  ground_course;
+};
+
+struct log_IMU {
+    LOG_PACKET_HEADER;
+    Vector3f gyro;
+    Vector3f accel;
+};
+
+
+struct log_Current {
+    LOG_PACKET_HEADER;
+    int16_t throttle_in;
+    uint32_t throttle_integrator;
+    int16_t battery_voltage;
+    int16_t current_amps;
+    int16_t current_total;
+};
+
+
+struct log_Motors {
+    LOG_PACKET_HEADER;
+    int16_t motor_out[4];
+};
+
+struct log_Compass {
+    LOG_PACKET_HEADER;
+    int16_t mag_x;
+    int16_t mag_y;
+    int16_t mag_z;
+    int16_t offset_x;
+    int16_t offset_y;
+    int16_t offset_z;
+    int16_t motor_offset_x;
+    int16_t motor_offset_y;
+    int16_t motor_offset_z;
+};
+
+struct log_Cmd {
+    LOG_PACKET_HEADER;
+    uint8_t command_total;
+    uint8_t command_number;
+    uint8_t waypoint_id;
+    uint8_t waypoint_options;
+    uint8_t waypoint_param1;
+    int32_t waypoint_altitude;
+    int32_t waypoint_latitude;
+    int32_t waypoint_longitude;
+};
+
+struct log_Attitude {
+    LOG_PACKET_HEADER;
+    int16_t roll_in;
+    int16_t roll;
+    int16_t pitch_in;
+    int16_t pitch;
+    int16_t yaw_in;
+    uint16_t yaw;
+    uint16_t nav_yaw;
+};
+
+struct log_Error {
+    LOG_PACKET_HEADER;
+    uint8_t sub_system;
+    uint8_t error_code;
+};
+
+struct log_Data_Float {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+    float data_value;
+};
+
+struct log_Data_UInt32t {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+    uint32_t data_value;
+};
+
+struct log_Data_Int32t {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+    int32_t data_value;
+};
+
+struct log_Data_UInt16t {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+    uint16_t data_value;
+};
+
+struct log_Data_Int16t {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+    int16_t data_value;
+};
+
+struct log_Event {
+    LOG_PACKET_HEADER;
+    uint8_t id;
+};
+
+//==================================================================================
+// Global Variables
+//==================================================================================
+
+
+//==================================================================================
+// Function prototypes
+//==================================================================================
+
+ bool print_log_menu(void);
+ int8_t dump_log(uint8_t argc, const Menu::arg *argv);
+ void do_erase_logs(void);
+ int8_t erase_logs(uint8_t argc, const Menu::arg *argv);
+ int8_t select_logs(uint8_t argc, const Menu::arg *argv);
+ int8_t process_logs(uint8_t argc, const Menu::arg *argv);
+
+	// print_latlon - prints an latitude or longitude value held in an int32_t
+	// probably this should be moved to AP_Common
+void print_latlon(BetterStream *s, int32_t lat_or_lon);
+
+ uint8_t Log_Init();
+// Write an GPS packet. Total length : 31 bytes
+ void Log_Write_GPS();
+// Read a GPS packet
+ void Log_Read_GPS();
+// Write an imu accel/gyro packet. Total length : 27 bytes
+ void Log_Write_IMU();
+// Read a raw accel/gyro packet
+ void Log_Read_IMU();
+// Write an Current data packet. Total length : 16 bytes
+ void Log_Write_Current();
+// Read a Current packet
+ void Log_Read_Current();
+// Write an Motors packet. Total length : 12 ~ 20 bytes
+ void Log_Write_Motors();
+// Read a Motors packet.
+ void Log_Read_Motors();
+// Write a Compass packet. Total length : 15 bytes
+ void Log_Write_Compass();
+// Read a compass packet
+ void Log_Read_Compass();
+// Write a command processing packet.  Total length : 21 bytes
+ void Log_Write_Cmd(uint8_t num, struct Location *wp);
+// Read a command processing packet
+ void Log_Read_Cmd();
+// Write an attitude packet. Total length : 16 bytes
+ void Log_Write_Attitude();
+// Read an attitude packet
+ void Log_Read_Attitude();
+// Wrote an event packet
+ void Log_Write_Event(uint8_t id);
+// Read an event packet
+ void Log_Read_Event();
+// Write an int16_t data packet
+ void Log_Write_Data(uint8_t id, int16_t value);
+// Read an int16_t data packet
+ void Log_Read_Int16t();
+// Write an uint16_t data packet
+ void Log_Write_Data(uint8_t id, uint16_t value);
+// Read an uint16_t data packet
+ void Log_Read_UInt16t();
+// Write an int32_t data packet
+ void Log_Write_Data(uint8_t id, int32_t value);
+// Read an int32_t data packet
+ void Log_Read_Int32t();
+// Write a uint32_t data packet
+ void Log_Write_Data(uint8_t id, uint32_t value);
+// Read a uint32_t data packet
+ void Log_Read_UInt32t();
+// Write a float data packet
+ void Log_Write_Data(uint8_t id, float value);
+// Read a float data packet
+ void Log_Read_Float();
+// Write an error packet. Total length : 5 bytes
+ void Log_Write_Error(uint8_t sub_system, uint8_t error_code);
+// Read an error packet
+ void Log_Read_Error();
+// Read the DataFlash log memory
+ void Log_Read(uint8_t log_num, int16_t start_page, int16_t end_page);
+// read one packet from the dataflash
+ void log_callback(uint8_t msgid);
+
+
+
+//end of logger.h
+#endif

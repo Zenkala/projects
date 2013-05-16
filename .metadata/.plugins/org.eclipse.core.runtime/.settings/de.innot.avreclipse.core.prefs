@@ -1,0 +1,9 @@
+avrpaths//systempath/AVRDUDE=/usr/bin
+avrpaths//systempath/AVRGCC=/usr/bin
+avrpaths//systempath/AVRINCLUDE=/usr/lib/avr/include
+avrpaths//systempath/MAKE=/usr/bin
+avrpaths//systempath/PDFPATH=
+avrpaths/AVRDUDE=/opt/arduinoIDE/hardware/tools
+avrpaths/AVRGCC=/opt/arduinoIDE/hardware/tools/avr/bin
+avrpaths/AVRINCLUDE=/opt/arduinoIDE/hardware/tools/avr/lib/avr/include
+eclipse.preferences.version=1

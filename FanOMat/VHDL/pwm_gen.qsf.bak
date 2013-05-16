@@ -1,0 +1,81 @@
+set_global_assignment -name TOP_LEVEL_ENTITY pwm_gen
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2012 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 32-bit
+# Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+# Date created = 17:10:46  October 08, 2012
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#   pwm_gen_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#   assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE EPM2210F324C3
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "12.0 SP2"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:10:46  OCTOBER 08, 2012"
+set_global_assignment -name LAST_QUARTUS_VERSION "12.0 SP2"
+set_global_assignment -name VHDL_FILE pwm_gen.vhd
+set_global_assignment -name VHDL_FILE interface.vhd
+set_global_assignment -name VHDL_FILE demux.vhd
+set_global_assignment -name VHDL_FILE counter.vhd
+set_global_assignment -name VHDL_FILE compare_block.vhd
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+
+
+# -------------------------------------------------------------------------- #
+# pin assignment
+# -------------------------------------------------------------------------- #
+set_location_assignment PIN_C9 -to channel_sel[1]
+set_location_assignment PIN_C10 -to channel_sel[0]
+set_location_assignment PIN_K13 -to clk
+set_location_assignment PIN_C11 -to reset
+set_location_assignment PIN_C12 -to reset_intf
+set_location_assignment PIN_J13 -to data_clk
+set_location_assignment PIN_D10 -to data_in
+set_location_assignment PIN_D11 -to data_rdy
+set_location_assignment PIN_U4 -to pwm_pin3_block[0]
+set_location_assignment PIN_V4 -to pwm_pin3_block[1]
+set_location_assignment PIN_U5 -to pwm_pin3_block[2]
+set_location_assignment PIN_V5 -to pwm_pin3_block[3]
+set_location_assignment PIN_V12 -to pwm_pin4_block[0]
+set_location_assignment PIN_U12 -to pwm_pin4_block[1]
+set_location_assignment PIN_U13 -to pwm_pin4_block[2]
+set_location_assignment PIN_V13 -to pwm_pin4_block[3]
+
+
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name SDC_FILE pwm_gen.sdc

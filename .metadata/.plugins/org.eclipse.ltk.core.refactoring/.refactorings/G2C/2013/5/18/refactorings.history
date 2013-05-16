@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;G2C/radio.ino&apos; to &apos;radio.cpp&apos;" description="Rename resource &apos;radio.ino&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="radio.ino" name="radio.cpp" stamp="1367506985024" updateReferences="true"/>
+</session>

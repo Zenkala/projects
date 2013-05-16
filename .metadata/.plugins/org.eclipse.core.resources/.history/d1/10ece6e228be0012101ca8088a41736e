@@ -1,0 +1,119 @@
+//==================================================================================
+// Project Logger by Tom Vocke, 02-05-2013
+//==================================================================================
+
+/*
+This project is intented to provide logging capabilities on the internal dataflash
+of the ArduPilot Mega. It provides functions for storing, and retreiving sensor logs
+via a serial interface, and makes use of the standard ArduPilot libraries.
+*/
+
+//guard
+#ifndef _H_LOGGER
+#define _H_LOGGER
+//==================================================================================
+// Includes
+//==================================================================================
+
+//fastserial libraries
+#include <FastSerial.h>
+
+// Common dependencies
+#include <AP_Common.h>
+#include <AP_Menu.h>
+#include <AP_Param.h>
+
+//compass libraries
+#include <AP_Compass_HMC5843.h>
+#include <Compass.h>
+#include <AP_Compass.h>
+#include <AP_Compass_HIL.h>
+
+//IMU libraries
+#include <AP_InertialSensor_Oilpan.h>
+#include <AP_InertialSensor_Stub.h>
+#include <AP_InertialSensor.h>
+#include <AP_InertialSensor_MPU6000.h>
+
+//dataflash libraries
+#include <DataFlash.h>
+
+//menu libraries
+#include <AP_Menu.h>
+
+//==================================================================================
+//Definitions
+//==================================================================================
+
+//  Choose the logs to enable (1) = enable, (0) = disable
+#define EN_IMU_LOG 		(1)
+#define EN_COMPASS_LOG	(1)
+#define EN_THROTTLE_LOG	(1)
+#define EN_GPS_LOG		(1)
+
+//log system definitions
+#define LOG_PACKET_HEADER              	uint32_t magic_nr;
+
+
+//return value definitions
+#define LOG_INIT_OK (0)
+#define LOG_INIT_ERR (1)
+
+//enable log system
+#define LOGGING_ENABLED (1)
+
+//dataflash handling delay when erasing
+#define LOG_DF_DELAY_US (1)
+
+//==================================================================================
+// Type Definitions
+//==================================================================================
+
+typedef struct logEntry {
+    LOG_PACKET_HEADER;
+#if EN_IMU_LOG == (1)
+    //TODO : put IMU log variables here
+#endif
+#if EN_COMPASS_LOG == (1)
+    //TODO : put COMPASS log variables here
+#endif
+#if EN_THROTTLE_LOG == (1)
+    //TODO : put THROTTLE log variables here
+#endif
+#if EN_GPS_LOG == (1)
+    //TODO : put GPS log variables here
+#endif
+    //TODO : remove filler
+    uint8_t filler[64];
+
+} logEntry;
+
+
+
+//==================================================================================
+// Global Variables
+//==================================================================================
+
+
+//==================================================================================
+// Function prototypes
+//==================================================================================
+
+//initialize necessary interface for dataflash logging
+int8_t logInit(void);
+//test the dataflash
+void logPrintDFVendor(void);
+//write a block of data to the dataflash
+void logWriteBlock(const void *pBuffer, uint16_t size);
+//keep the menu alive by calling this function periodically
+void logMenuPeriodicCall(void);
+// Write a log packet
+void logWriteEntry(logEntry *entry);
+// Read a log packet
+logEntry logReadEntry();
+//provide delay function for LOG_DF_DELAY_US * us
+void logUsDelay(unsigned long us);
+//end of logger.h
+void logUsDelay(unsigned long us);
+
+#endif

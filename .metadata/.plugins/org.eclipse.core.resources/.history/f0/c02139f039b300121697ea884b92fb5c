@@ -1,0 +1,16 @@
+/*
+ * radio.h
+ *
+ *  Created on: May 2, 2013
+ *      Author: tomv
+ */
+
+#ifndef RADIO_H_
+#define RADIO_H_
+
+void set_throttle(uint16_t out){};
+boolean glide_switch(){};
+boolean enable_switch(){};
+
+
+#endif /* RADIO_H_ */

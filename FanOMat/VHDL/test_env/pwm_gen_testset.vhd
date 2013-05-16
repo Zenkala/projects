@@ -11,7 +11,8 @@ entity pwm_gen_testset is
     clk, reset : out std_logic;
     data_out, data_clk : out std_logic;
     channel_sel : out unsigned(channel_sel_bits-1 downto 0);
-    data_rdy : in std_logic := '0'
+    data_rdy : in std_logic := '0';
+    reset_intf : out std_logic := '0'
     );
 end entity pwm_gen_testset;
 
@@ -24,6 +25,7 @@ architecture bhv of pwm_gen_testset is
   
 begin
 
+  reset_intf <= '0';
   --clock generation
   clk <= clk_internal;
   clk_internal <= not clk_internal after clk_period/2;  
