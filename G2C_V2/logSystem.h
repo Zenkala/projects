@@ -9,15 +9,15 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 */
 
 //guard
-#ifndef _H_LOGGER
-#define _H_LOGGER
+#ifndef _LOG_SYSTEM_H
+#define _LOG_SYSTEM_H
 //==================================================================================
 // Includes
 //==================================================================================
 
 // Common dependencies
 #include <AP_Common.h>
-
+#include "logMenu.h"
 
 //==================================================================================
 //Definitions
@@ -43,37 +43,56 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #define LOG_DF_DELAY_US (1)
 
 //==================================================================================
-// Type Definitions
-//==================================================================================
-
-typedef struct logEntry {
-    uint32_t header;
-#if EN_IMU_LOG == (1)
-    //TODO : put IMU log variables here
-#endif
-#if EN_COMPASS_LOG == (1)
-    //TODO : put COMPASS log variables here
-#endif
-#if EN_THROTTLE_LOG == (1)
-    //TODO : put THROTTLE log variables here
-#endif
-#if EN_GPS_LOG == (1)
-    //TODO : put GPS log variables here
-#endif
-    //TODO : remove filler
-    uint8_t filler[64];
-
-} logEntry;
-
-
-
-//==================================================================================
 // Class Definition
 //==================================================================================
 
 /// Class defining and handling one menu tree
 class logSystem {
 public:
+
+	//constructor
+	logSystem(FastSerial *port);
+
+	//==================================================================================
+	// Menu Function Prototypes
+	//==================================================================================
+	//dummy, remainder of re-use of library AP_Menu
+	static bool     logPrintMenu(void){return true;};
+	//writes a number of logs to the dataflash, and reads them back
+	static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv);
+	//erase the dataflash entirely
+	static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv);
+	//dump contents of log Nr X, if X <= 0, dump all
+	static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv);
+	//print an overview of the available logs on the dataflash
+	static int8_t   logLogsCmd(uint8_t argc, const logMenu::arg *argv);
+
+	//Instantiate serial menu
+	// Creates a constant array of structs representing menu options
+	// and stores them in Flash memory, not RAM.
+	// User enters the string in the console to call the functions on the right.
+	// See class Menu in AP_Common for implementation details
+	const struct logMenu::command logMenuCommands[] PROGMEM = {
+	    {"erase", logEraseCmd},
+	    {"print", logPrintCmd},
+	    {"logs", logLogsCmd},
+	    {"test", logTestCmd},
+	};
+
+	//==================================================================================
+	// Type Definitions
+	//==================================================================================
+	//Log entry type definition
+	typedef struct logEntry {
+	    uint32_t header;
+	    //TODO : remove filler and choose proper variables
+	    uint8_t filler[64];
+	} logEntry;
+
+	//==================================================================================
+	// Public Function Prototypes
+	//==================================================================================
+
 	//initialize necessary interface for dataflash logging
 	int8_t logInit(void);
 	//test the dataflash
@@ -95,29 +114,18 @@ public:
 	//end of logger.h
 	void logUsDelay(unsigned long us);
 
+
 private:
-    /// Implements the default 'help' command.
-    ///
-    void        _help(void);                                                            ///< implements the 'help' command
 
-    /// calls the function for the n'th menu item
-    ///
-    /// @param n			Index for the menu item to call
-    /// @param argc			Number of arguments prepared for the menu item
-    ///
-    int8_t                  _call(uint8_t n, uint8_t argc);
+	// A Macro to create the Log System Menu
+	LOG_MENU_STATIC(_logSysMenu, "Log", logMenuCommands, logPrintMenu);
 
-    const char *            _prompt;                                                    ///< prompt to display
-    const command *         _commands;                                                  ///< array of commands
-    const uint8_t           _entries;                                                   ///< size of the menu
-    const preprompt         _ppfunc;                                                    ///< optional pre-prompt action
+	//Instantiation of dataflash object
+	static DataFlash_APM2 _DataFlash;
+	//FastSerial port to run on
+	static FastSerial   *_Console;
 
-    static char             _inbuf[MENU_COMMANDLINE_MAX];       ///< input buffer
-    static arg              _argv[MENU_ARGS_MAX + 1];                   ///< arguments
 
-	// port to run on
-	static FastSerial       *_port;
-	static uint8_t           _curLength;                                                    ///< current amount of characters stored in buffer
 };
 
 //==================================================================================

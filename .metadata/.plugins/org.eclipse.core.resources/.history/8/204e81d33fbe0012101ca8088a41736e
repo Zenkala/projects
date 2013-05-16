@@ -1,0 +1,242 @@
+//==================================================================================
+// Project Logger by Tom Vocke, 02-05-2013
+//==================================================================================
+
+/*
+This project is intented to provide logging capabilities on the internal dataflash
+of the ArduPilot Mega. It provides functions for storing, and retreiving sensor logs
+via a serial interface, and makes use of the standard ArduPilot libraries.
+*/
+
+//guard
+#ifndef _H_LOGGER
+#define _H_LOGGER
+//==================================================================================
+// Includes
+//==================================================================================
+
+// Common dependencies
+#include <AP_Common.h>
+
+
+//==================================================================================
+//Definitions
+//==================================================================================
+
+//  Choose the logs to enable (1) = enable, (0) = disable
+#define EN_IMU_LOG 		(1)
+#define EN_COMPASS_LOG	(1)
+#define EN_THROTTLE_LOG	(1)
+#define EN_GPS_LOG		(1)
+
+//log packet header ("head" in hex)
+#define LOG_PACKET_HEADER (0x64616568)
+
+//return value definitions
+#define LOG_INIT_OK (0)
+#define LOG_INIT_ERR (1)
+
+//enable log system
+#define LOGGING_ENABLED (1)
+
+//dataflash handling delay when erasing
+#define LOG_DF_DELAY_US (1)
+
+//==================================================================================
+// Type Definitions
+//==================================================================================
+
+typedef struct logEntry {
+    uint32_t header;
+#if EN_IMU_LOG == (1)
+    //TODO : put IMU log variables here
+#endif
+#if EN_COMPASS_LOG == (1)
+    //TODO : put COMPASS log variables here
+#endif
+#if EN_THROTTLE_LOG == (1)
+    //TODO : put THROTTLE log variables here
+#endif
+#if EN_GPS_LOG == (1)
+    //TODO : put GPS log variables here
+#endif
+    //TODO : remove filler
+    uint8_t filler[64];
+
+} logEntry;
+
+
+
+//==================================================================================
+// Class Definition
+//==================================================================================
+
+/// Class defining and handling one menu tree
+class logSystem {
+public:
+
+	//===================================================================
+	//	Static Log System Menu Function Implementations
+	//===================================================================
+
+	//attempt to write a few logs to the dataflash, and read them back
+	//show progress in terminal
+	static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
+
+		uint8_t i,j;
+		logEntry entry;
+		entry.header = LOG_PACKET_HEADER;
+
+		Serial.printf_P(PSTR("logTestCmd :: size of one packet = %d \n"),sizeof(logEntry));
+		Serial.print_P(PSTR("logTestCmd :: writing logs."));
+		//generate random logs and write them to the dataflash
+
+		for (j = 0; j < 10; j++){
+			for (i = 0; i < 32; i++){
+				//write one entry
+				logWriteEntry(&entry);
+			}
+			//Start New Log
+			DataFlash.start_new_log();
+			//indicate log written
+			Serial.print_P(PSTR("."));
+		}
+
+		Serial.println();
+
+		//print log overview
+		logLogsCmd(0,(const logMenu::arg *)NULL);
+
+
+		return 0;
+	}
+
+
+	static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
+		Serial.print_P(PSTR("logEraseCmd :: erasing dataflash... "));
+		DataFlash.EraseAll(&delay);
+	    Serial.print_P(PSTR("complete \n"));
+		return 0;
+	}
+
+	static int8_t   logDumpCmd(uint8_t argc, const logMenu::arg *argv){
+
+		uint16_t dump_log;
+	    int16_t dump_log_start;
+	    int16_t dump_log_end;
+	    uint16_t last_log_num;
+
+	     // check that the requested log number can be read
+	    dump_log = argv[1].i;
+	    last_log_num = DataFlash.find_last_log();
+
+	    if (dump_log <= 0) {
+	        Serial.print_P(PSTR("logDumpCmd :: dumping all\n"));
+	        //TODO: implement dump all function
+	        //Log_Read(0, 1, 0);
+	    } else if ((argc != 2) || (dump_log <= (last_log_num - DataFlash.get_num_logs())) || (dump_log > last_log_num)) {
+	        Serial.print_P(PSTR("logDumpCmd :: bad log number\n"));
+	    } else { //dump log
+
+	    	Serial.printf_P(PSTR("logDumpCmd :: dumping log nr %d\n"), dump_log);
+	    	//get fisrt and last page of log
+			DataFlash.get_log_boundaries(dump_log, dump_log_start, dump_log_end);
+			//dump log
+			logDumpLogNr(dump_log_start,dump_log_end);
+			//indicate end
+			Serial.printf_P(PSTR("\nlogDumpCmd :: Done\n"));
+	    }
+
+	    //TODO : build actual return value
+	    return (0);
+
+	}
+
+	static int8_t logLogsCmd(uint8_t argc, const logMenu::arg *argv){
+
+		int16_t log_start;
+		int16_t log_end;
+		uint16_t temp;
+		uint16_t last_log_num = DataFlash.find_last_log();
+		int16_t last_log_start = log_start, last_log_end = log_end;
+		uint16_t num_logs = DataFlash.get_num_logs();
+
+		Serial.printf("logLogsCmd :: printing log list... \n");
+
+		if (num_logs == 0) {
+			Serial.print_P(PSTR("\nNo logs\n\n"));
+		}else{
+			Serial.printf_P(PSTR("\n%u logs\n"), (unsigned)num_logs);
+
+			for(int16_t i=num_logs; i>=1; i--) {
+				//update state
+				last_log_start = log_start, last_log_end = log_end;
+				temp = last_log_num-i+1;
+				//get log boundaries
+				DataFlash.get_log_boundaries(temp, log_start, log_end);
+				//print log overview
+				Serial.printf_P(PSTR("Log %04d [start %04d || end %04d] \n"), (int)temp, (int)log_start, (int)log_end);
+				if (last_log_start == log_start && last_log_end == log_end) {
+					// we are printing bogus logs
+					break;
+				}
+			}
+			Serial.println();
+		}
+
+		return 0;
+	}
+
+	//initialize necessary interface for dataflash logging
+	int8_t logInit(void);
+	//test the dataflash
+	void logPrintDFVendor(void);
+	//write a block of data to the dataflash
+	void logWriteBlock(const void *pBuffer, uint16_t size);
+	//keep the menu alive by calling this function periodically
+	void logMenuPeriodicCall(void);
+	// Write a log packet
+	void logWriteEntry(logEntry *entry);
+	// Read a log packet
+	logEntry logReadEntry();
+	// Print a log packet over the serial connection
+	void logPrintEntry(logEntry entry);
+	// Dumps a log on given pages over the serial port
+	void logDumpLogNr(int16_t startPage,int16_t endPage);
+	//provide delay function for LOG_DF_DELAY_US * us
+	void logUsDelay(unsigned long us);
+	//end of logger.h
+	void logUsDelay(unsigned long us);
+
+private:
+    /// Implements the default 'help' command.
+    ///
+    void        _help(void);                                                            ///< implements the 'help' command
+
+    /// calls the function for the n'th menu item
+    ///
+    /// @param n			Index for the menu item to call
+    /// @param argc			Number of arguments prepared for the menu item
+    ///
+    int8_t                  _call(uint8_t n, uint8_t argc);
+
+    const char *            _prompt;                                                    ///< prompt to display
+    const command *         _commands;                                                  ///< array of commands
+    const uint8_t           _entries;                                                   ///< size of the menu
+    const preprompt         _ppfunc;                                                    ///< optional pre-prompt action
+
+    static char             _inbuf[MENU_COMMANDLINE_MAX];       ///< input buffer
+    static arg              _argv[MENU_ARGS_MAX + 1];                   ///< arguments
+
+	// port to run on
+	static FastSerial       *_port;
+	static uint8_t           _curLength;                                                    ///< current amount of characters stored in buffer
+};
+
+//==================================================================================
+// Function prototypes
+//==================================================================================
+
+
+
+#endif

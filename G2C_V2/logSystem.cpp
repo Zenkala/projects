@@ -13,7 +13,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //==================================================================================
 
 //fastserial libraries
-#include <FastSerial.h>
+#include <Fast_Console->h>
 
 //logger system and menu
 #include "logSystem.h"
@@ -35,46 +35,31 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <DataFlash.h>
 
 
+//TODO: Finish class definition!!!!
 //==================================================================================
-// Function Prototypes
+// Log System Statics
 //==================================================================================
-// Code to Write and Read packets from DataFlash log memory
-// Code to interact with the user to dump or erase logs
 
-// These are function definitions so the Menu can be constructed before the functions
-// are defined below. Order matters to the compiler.
-static bool     logPrintMenu(void){return true;};
-//writes a number of logs to the dataflash, and reads them back
-static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv);
-//erase the dataflash
-static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv);
-//dump contents of log Nr X, if X <= 0, dump all
-static int8_t   logDumpCmd(uint8_t argc, const logMenu::arg *argv);
-//print an overview of the available logs on the dataflash
-static int8_t   logLogsCmd(uint8_t argc, const logMenu::arg *argv);
-
-//Instantiate serial menu
-// Creates a constant array of structs representing menu options
-// and stores them in Flash memory, not RAM.
-// User enters the string in the console to call the functions on the right.
-// See class Menu in AP_Common for implementation details
-const struct logMenu::command logMenuCommands[] PROGMEM = {
-    {"erase", logEraseCmd},
-    {"dump", logDumpCmd},
-    {"logs", logLogsCmd},
-    {"test", logTestCmd},
-};
+// A Macro to create the Log System Menu
+LOG_MENU(logSystem,_logSysMenu, "Log", logMenuCommands, logPrintMenu);
+//Instantiation of dataflash object
+DataFlash_APM2 logSystem::DataFlash;
+//FastSerial port to run on
+FastSerial   logSystem::*_Console;
 
 
 //==================================================================================
-// Menu and Dataflash Instance
+// Constructor
 //==================================================================================
+logSystem::logSystem(const prog_char *prompt, const logMenu::command *commands, uint8_t entries, preprompt ppfunc) :
+    _prompt(prompt),
+    _commands(commands),
+    _entries(entries),
+    _ppfunc(ppfunc)
+{
+	_curLength = 0;
+}
 
-// A Macro to create the Menu
-MENU2(logMenu, "Log", logMenuCommands, logPrintMenu);
-
-//Instantiate dataflash object
-DataFlash_APM2 DataFlash;
 
 //===================================================================
 //	Log Menu Function Implementations
@@ -88,8 +73,8 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	logEntry entry;
 	entry.header = LOG_PACKET_HEADER;
 
-	Serial.printf_P(PSTR("logTestCmd :: size of one packet = %d \n"),sizeof(logEntry));
-	Serial.print_P(PSTR("logTestCmd :: writing logs."));
+	_Console->printf_P(PSTR("logTestCmd :: size of one packet = %d \n"),sizeof(logEntry));
+	_Console->print_P(PSTR("logTestCmd :: writing logs."));
 	//generate random logs and write them to the dataflash
 
 	for (j = 0; j < 10; j++){
@@ -100,10 +85,10 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 		//Start New Log
 		DataFlash.start_new_log();
 		//indicate log written
-		Serial.print_P(PSTR("."));
+		_Console->print_P(PSTR("."));
 	}
 
-	Serial.println();
+	_Console->println();
 
 	//print log overview
 	logLogsCmd(0,(const logMenu::arg *)NULL);
@@ -114,13 +99,13 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 
 
 static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
-	Serial.print_P(PSTR("logEraseCmd :: erasing dataflash... "));
+	_Console->print_P(PSTR("logEraseCmd :: erasing dataflash... "));
 	DataFlash.EraseAll(&delay);
-    Serial.print_P(PSTR("complete \n"));
+    _Console->print_P(PSTR("complete \n"));
 	return 0;
 }
 
-static int8_t   logDumpCmd(uint8_t argc, const logMenu::arg *argv){
+static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv){
 
 	uint16_t dump_log;
     int16_t dump_log_start;
@@ -132,20 +117,20 @@ static int8_t   logDumpCmd(uint8_t argc, const logMenu::arg *argv){
     last_log_num = DataFlash.find_last_log();
 
     if (dump_log <= 0) {
-        Serial.print_P(PSTR("logDumpCmd :: dumping all\n"));
+        _Console->print_P(PSTR("logPrintCmd :: dumping all\n"));
         //TODO: implement dump all function
         //Log_Read(0, 1, 0);
     } else if ((argc != 2) || (dump_log <= (last_log_num - DataFlash.get_num_logs())) || (dump_log > last_log_num)) {
-        Serial.print_P(PSTR("logDumpCmd :: bad log number\n"));
+        _Console->print_P(PSTR("logPrintCmd :: bad log number\n"));
     } else { //dump log
 
-    	Serial.printf_P(PSTR("logDumpCmd :: dumping log nr %d\n"), dump_log);
+    	_Console->printf_P(PSTR("logPrintCmd :: dumping log nr %d\n"), dump_log);
     	//get fisrt and last page of log
 		DataFlash.get_log_boundaries(dump_log, dump_log_start, dump_log_end);
 		//dump log
 		logDumpLogNr(dump_log_start,dump_log_end);
 		//indicate end
-		Serial.printf_P(PSTR("\nlogDumpCmd :: Done\n"));
+		_Console->printf_P(PSTR("\nlogPrintCmd :: Done\n"));
     }
 
     //TODO : build actual return value
@@ -162,12 +147,12 @@ static int8_t logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 	int16_t last_log_start = log_start, last_log_end = log_end;
 	uint16_t num_logs = DataFlash.get_num_logs();
 
-	Serial.printf("logLogsCmd :: printing log list... \n");
+	_Console->printf("logLogsCmd :: printing log list... \n");
 
 	if (num_logs == 0) {
-		Serial.print_P(PSTR("\nNo logs\n\n"));
+		_Console->print_P(PSTR("\nNo logs\n\n"));
 	}else{
-		Serial.printf_P(PSTR("\n%u logs\n"), (unsigned)num_logs);
+		_Console->printf_P(PSTR("\n%u logs\n"), (unsigned)num_logs);
 
 		for(int16_t i=num_logs; i>=1; i--) {
 			//update state
@@ -176,13 +161,13 @@ static int8_t logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 			//get log boundaries
 			DataFlash.get_log_boundaries(temp, log_start, log_end);
 			//print log overview
-			Serial.printf_P(PSTR("Log %04d [start %04d || end %04d] \n"), (int)temp, (int)log_start, (int)log_end);
+			_Console->printf_P(PSTR("Log %04d [start %04d || end %04d] \n"), (int)temp, (int)log_start, (int)log_end);
 			if (last_log_start == log_start && last_log_end == log_end) {
 				// we are printing bogus logs
 				break;
 			}
 		}
-		Serial.println();
+		_Console->println();
 	}
 
 	return 0;
@@ -196,7 +181,7 @@ static int8_t logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 
 
 void logMenuPeriodicCall(){
-	logMenu.runOnce();
+	_logSysMenu.runOnce();
 }
 
 void logUsDelay(unsigned long us){
@@ -209,34 +194,34 @@ int8_t logInit(){
 	uint8_t result = LOG_INIT_ERR;
 
 	//initialize dataflash
-	Serial.print_P(PSTR("logInit :: initializing flash... "));
+	_Console->print_P(PSTR("logInit :: initializing flash... "));
     DataFlash.Init();
-    Serial.print_P(PSTR("done \n"));
+    _Console->print_P(PSTR("done \n"));
 
     if (DataFlash.CardInserted()) {
     	//if dataflash is unformatted erase all
     	if (DataFlash.NeedErase()) {
-    		Serial.print_P(PSTR("logInit :: erase needed, erasing dataflash... "));
+    		_Console->print_P(PSTR("logInit :: erase needed, erasing dataflash... "));
     		DataFlash.EraseAll(&logUsDelay);
-    	    Serial.print_P(PSTR("complete \n"));
+    	    _Console->print_P(PSTR("complete \n"));
     	}
     	//start new log
     	DataFlash.start_new_log();
-    	Serial.print_P(PSTR("logInit :: New log started \n"));
+    	_Console->print_P(PSTR("logInit :: New log started \n"));
     }
 
     //Print Dataflash Vendor
     logPrintDFVendor();
 
 	//initialize serial interface
-	Serial.print_P(PSTR("logInit :: initializing terminal... "));
+	_Console->print_P(PSTR("logInit :: initializing terminal... "));
     logMenu::set_port(&Serial);
-    Serial.set_blocking_writes(true);
-    Serial.print_P(PSTR("done \n"));
+    _Console->set_blocking_writes(true);
+    _Console->print_P(PSTR("done \n"));
 
     //Print initial log terminal indicator
-    Serial.println();
-    Serial.printf_P(PSTR("Log >> "));
+    _Console->println();
+    _Console->printf_P(PSTR("Log >> "));
 
     //return OK
     result = LOG_INIT_OK;
@@ -251,11 +236,11 @@ void logPrintDFVendor(){
 	//wait for read to finish
     delay(10);
     //print result
-    Serial.print_P(PSTR("logPrintDFVendor -> Manufacturer:"));
-    Serial.print(int(DataFlash.df_manufacturer));
-    Serial.print_P(PSTR(","));
-    Serial.print(DataFlash.df_device);
-    Serial.println();
+    _Console->print_P(PSTR("logPrintDFVendor -> Manufacturer:"));
+    _Console->print(int(DataFlash.df_manufacturer));
+    _Console->print_P(PSTR(","));
+    _Console->print(DataFlash.df_device);
+    _Console->println();
 
 }
 
@@ -296,12 +281,12 @@ void logPrintEntry(logEntry entry){
 	byte *bytePtr = (byte *)&entry;
 
 	for(i=0; i<4; i++){
-		Serial.printf("%c",(char)bytePtr[i]);
+		_Console->printf("%c",(char)bytePtr[i]);
 	}
 	for(i=0; i<sizeof(logEntry)-4; i++){
-		Serial.print(".");
+		_Console->print(".");
 	}
-	Serial.println();
+	_Console->println();
 
 }
 
@@ -320,7 +305,7 @@ void logDumpLogNr(int16_t startPage,int16_t endPage){
 
 	//determine total number of entries
 	nrEntries = (nrPages * (DataFlash.df_PageSize - 4)) / sizeof(logEntry);
-	Serial.printf_P(PSTR("logDumpLogNr :: log has %d pages and %d entries\n"),nrPages,nrEntries);
+	_Console->printf_P(PSTR("logDumpLogNr :: log has %d pages and %d entries\n"),nrPages,nrEntries);
 	//initiate reading
 	DataFlash.StartRead(startPage);
 	//read all the packets
