@@ -15,9 +15,16 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 // Includes
 //==================================================================================
 
+//fastserial libraries
+#include <FastSerial.h>
+
+//dataflash libraries
+#include <DataFlash.h>
+
 // Common dependencies
 #include <AP_Common.h>
 #include "logMenu.h"
+
 
 //==================================================================================
 //Definitions
@@ -51,7 +58,7 @@ class logSystem {
 public:
 
 	//constructor
-	logSystem(FastSerial *port);
+	logSystem();
 
 	//==================================================================================
 	// Menu Function Prototypes
@@ -66,18 +73,6 @@ public:
 	static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv);
 	//print an overview of the available logs on the dataflash
 	static int8_t   logLogsCmd(uint8_t argc, const logMenu::arg *argv);
-
-	//Instantiate serial menu
-	// Creates a constant array of structs representing menu options
-	// and stores them in Flash memory, not RAM.
-	// User enters the string in the console to call the functions on the right.
-	// See class Menu in AP_Common for implementation details
-	const struct logMenu::command logMenuCommands[] PROGMEM = {
-	    {"erase", logEraseCmd},
-	    {"print", logPrintCmd},
-	    {"logs", logLogsCmd},
-	    {"test", logTestCmd},
-	};
 
 	//==================================================================================
 	// Type Definitions
@@ -94,7 +89,7 @@ public:
 	//==================================================================================
 
 	//initialize necessary interface for dataflash logging
-	int8_t logInit(void);
+	int8_t logInit(FastSerial *port);
 	//test the dataflash
 	void logPrintDFVendor(void);
 	//write a block of data to the dataflash
@@ -102,28 +97,26 @@ public:
 	//keep the menu alive by calling this function periodically
 	void logMenuPeriodicCall(void);
 	// Write a log packet
-	void logWriteEntry(logEntry *entry);
+	static void logWriteEntry(logEntry *entry);
 	// Read a log packet
 	logEntry logReadEntry();
 	// Print a log packet over the serial connection
 	void logPrintEntry(logEntry entry);
 	// Dumps a log on given pages over the serial port
-	void logDumpLogNr(int16_t startPage,int16_t endPage);
+	static void logDumpLogNr(int16_t startPage,int16_t endPage);
 	//provide delay function for LOG_DF_DELAY_US * us
-	void logUsDelay(unsigned long us);
-	//end of logger.h
 	void logUsDelay(unsigned long us);
 
 
 private:
 
-	// A Macro to create the Log System Menu
-	LOG_MENU_STATIC(_logSysMenu, "Log", logMenuCommands, logPrintMenu);
 
-	//Instantiation of dataflash object
+	//logSystem Menu Object
+    static logMenu _logSysMenu;
+	//logSystem Dataflash object
 	static DataFlash_APM2 _DataFlash;
 	//FastSerial port to run on
-	static FastSerial   *_Console;
+	static FastSerial *_Console;
 
 
 };

@@ -7,19 +7,19 @@ CPP_SRCS += \
 ../G2C_V2.cpp \
 ../MilliTimer.cpp \
 ../logMenu.cpp \
-../logger.cpp 
+../logSystem.cpp 
 
 OBJS += \
 ./G2C_V2.o \
 ./MilliTimer.o \
 ./logMenu.o \
-./logger.o 
+./logSystem.o 
 
 CPP_DEPS += \
 ./G2C_V2.d \
 ./MilliTimer.d \
 ./logMenu.d \
-./logger.d 
+./logSystem.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

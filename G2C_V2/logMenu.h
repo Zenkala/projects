@@ -146,7 +146,7 @@ private:
     static logMenu name(__menu_name__ ## name, commands, sizeof(commands) / sizeof(commands[0]), preprompt)
 
 #define LOG_MENU(classname,name, prompt, commands, preprompt)                                \
-    const char __menu_name__ ## name[] PROGMEM = prompt;      \
+    static const char __menu_name__ ## name[] PROGMEM = prompt;      \
     logMenu classname::name(__menu_name__ ## name, commands, sizeof(commands) / sizeof(commands[0]), preprompt)
 
 #endif // __AP_COMMON_MENU_H__

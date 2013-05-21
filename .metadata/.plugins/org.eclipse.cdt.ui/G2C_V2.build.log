@@ -1,20 +1,20 @@
-17:35:26 **** Incremental Build of configuration Release for project G2C_V2 ****
+22:47:02 **** Incremental Build of configuration Release for project G2C_V2 ****
 make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega2560 G2C_V2.elf
-AVR Memory Usage
-----------------
-Device: atmega2560
-
-Program:   22214 bytes (8.5% Full)
-(.text + .data + .bootloader)
-
-Data:        484 bytes (5.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
+Building file: ../G2C_V2.cpp
+Invoking: AVR C++ Compiler
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C_V2" -I"/opt/arduinoIDE/libraries/Streaming" -I"/opt/arduinoIDE/libraries/APM_RC" -I"/opt/arduinoIDE/libraries/Arduino_Mega_ISR_Registry" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/AP_InertialSensor" -I"/opt/arduinoIDE/libraries/AP_Compass" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -I"/opt/arduinoIDE/libraries/I2C" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -g2 -gstabs -ffunction-sections -fdata-sections -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"G2C_V2.d" -MT"G2C_V2.d"  -c -o "G2C_V2.o" -x c++ "../G2C_V2.cpp"
+../logSystem.cpp: In member function ‘int8_t logSystem::logInit(FastSerial*)’:
+Finished building: ../G2C_V2.cpp
  
+../logSystem.cpp:213:34: error: ISO C++ forbids taking the address of a bound member function to form a pointer to member function.  Say ‘&logSystem::logUsDelay’
+Building file: ../logSystem.cpp
+Invoking: AVR C++ Compiler
+../logSystem.cpp:213:44: error: no matching function for call to ‘DataFlash_APM2::EraseAll(void (logSystem::*)(long unsigned int))’
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C_V2" -I"/opt/arduinoIDE/libraries/Streaming" -I"/opt/arduinoIDE/libraries/APM_RC" -I"/opt/arduinoIDE/libraries/Arduino_Mega_ISR_Registry" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/AP_InertialSensor" -I"/opt/arduinoIDE/libraries/AP_Compass" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -I"/opt/arduinoIDE/libraries/I2C" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -g2 -gstabs -ffunction-sections -fdata-sections -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"logSystem.d" -MT"logSystem.d"  -c -o "logSystem.o" -x c++ "../logSystem.cpp"
+/opt/arduinoIDE/libraries/DataFlash/DataFlash.h:62:10: note: candidate is: void DataFlash_Class::EraseAll(void (*)(long unsigned int))
+../logSystem.cpp: In static member function ‘static void logSystem::logDumpLogNr(int16_t, int16_t)’:
+../logSystem.cpp:321:30: error: cannot call member function ‘logSystem::logEntry logSystem::logReadEntry()’ without object
+make: *** [logSystem.o] Error 1
 
-17:35:26 Build Finished (took 115ms)
+22:47:03 Build Finished (took 862ms)
 

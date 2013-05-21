@@ -26,7 +26,7 @@ logMenu::logMenu(const prog_char *prompt, const logMenu::command *commands, uint
     _entries(entries),
     _ppfunc(ppfunc)
 {
-	_curLength = 0;
+
 }
 
 void

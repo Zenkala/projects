@@ -83,8 +83,12 @@ boolean enable_switch(){
 //
 FastSerialPort0(Serial);        // FTDI/console
 
+
 // Timers
 MilliTimer Hz50, Hz2;
+
+//logSystem
+logSystem logSys;
 
 void setup(){
 	// Init radio
@@ -110,7 +114,7 @@ void setup(){
 	Serial << "[GC 2.01b]" << endl;
 
 	// Start log system
-	logInit();
+	logSys.logInit(&Serial);
 }
 
 void loop(){
@@ -146,7 +150,7 @@ void loop(){
 	}
 	
 	//keep log meny alive
-	logMenuPeriodicCall();
+	logSys.logMenuPeriodicCall();
 
 	if(Hz50.poll(20)){
 		// This is a 50 Hz loop
