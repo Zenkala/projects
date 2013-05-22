@@ -204,10 +204,13 @@ void loop(){
 		gc_state = GC_GLIDING;
 	}
 	
-	//keep log meny alive
-	logMenuPeriodicCall();
+
 
 	if(Hz50.poll(20)){
+
+		//keep log system alive
+		logMenuPeriodicCall();
+
 		// This is a 50 Hz loop
 		
 		/************************************/
