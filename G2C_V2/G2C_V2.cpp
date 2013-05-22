@@ -126,12 +126,26 @@ void setup(){
     I2c.begin();
     I2c.timeOut(20);
     I2c.setSpeed(true);
-    compass.init();
 
     //set compass orientation compared to bird
-    compass.set_orientation(AP_COMPASS_COMPONENTS_DOWN_PINS_FORWARD); // set compass's orientation on aircraft.
+    compass.set_orientation(AP_COMPASS_APM2_SHIELD); // set compass's orientation on aircraft.
     compass.set_offsets(0,0,0); // set offsets to account for surrounding interference
     compass.set_declination(ToRad(0.0)); // set local difference between magnetic north and true north
+
+    //initialize AHRS system
+    ahrs.init();
+
+    if( compass.init() ) {
+        Serial.printf("System :: AHRS -> Enabling compass\n");
+        ahrs.set_compass(&compass);
+    } else {
+        Serial.printf("System :: AHRS -> No compass detected\n");
+    }
+
+    g_gps = &g_gps_driver;
+#if WITH_GPS
+    g_gps->init();
+#endif
 	
 	// And init the PWM for servo output
 	APM_RC.OutputCh(CH_3, APM_RC.InputCh(CH_3));

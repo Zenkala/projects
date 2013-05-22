@@ -124,6 +124,47 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	return 0;
 }
 
+static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv)
+{
+    static float min[3], max[3], offset[3];
+    float heading;
+
+    _Compass->read();
+
+	if (!_Compass->healthy) {
+		_Console->println("logCompassCmd :: Compass not healthy");
+		return -1;
+	}
+
+	heading = _Compass->calculate_heading(0,0); // roll = 0, pitch = 0 for this example
+	_Compass->null_offsets();
+
+	// capture min
+	if( _Compass->mag_x < min[0] ){	min[0] = _Compass->mag_x; }
+	if( _Compass->mag_y < min[1] ){	min[1] = _Compass->mag_y; }
+	if( _Compass->mag_z < min[2] ){	min[2] = _Compass->mag_z; }
+	// capture max
+	if( _Compass->mag_x > max[0] ){	max[0] = _Compass->mag_x; }
+	if( _Compass->mag_y > max[1] ){	max[1] = _Compass->mag_y; }
+	if( _Compass->mag_z > max[2] ){	max[2] = _Compass->mag_z; }
+	// calculate offsets
+	offset[0] = -(max[0]+min[0])/2;
+	offset[1] = -(max[1]+min[1])/2;
+	offset[2] = -(max[2]+min[2])/2;
+
+	// display all to user
+	_Console->printf("logCompassCmd :: heading: %.2f (%3d,%3d,%3d) ", ToDeg(heading),
+				  _Compass->mag_x,
+				  _Compass->mag_y,
+				  _Compass->mag_z);
+
+	// display offsets
+	_Console->printf(" offsets : (%.2f, %.2f, %.2f)", offset[0], offset[1], offset[2]);
+	_Console->println();
+
+	return 0;
+
+}
 
 static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
 	_Console->print_P(PSTR("logEraseCmd :: erasing flash... "));
@@ -362,46 +403,5 @@ void logDumpLogNr(int16_t startPage,int16_t endPage){
 
 }
 
-static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv)
-{
-    static float min[3], max[3], offset[3];
-    float heading;
-
-    _Compass->read();
-
-	if (!_Compass->healthy) {
-		_Console->println("logCompassCmd :: Compass not healthy");
-		return -1;
-	}
-
-	heading = _Compass->calculate_heading(0,0); // roll = 0, pitch = 0 for this example
-	_Compass->null_offsets();
-
-	// capture min
-	if( _Compass->mag_x < min[0] ){	min[0] = _Compass->mag_x; }
-	if( _Compass->mag_y < min[1] ){	min[1] = _Compass->mag_y; }
-	if( _Compass->mag_z < min[2] ){	min[2] = _Compass->mag_z; }
-	// capture max
-	if( _Compass->mag_x > max[0] ){	max[0] = _Compass->mag_x; }
-	if( _Compass->mag_y > max[1] ){	max[1] = _Compass->mag_y; }
-	if( _Compass->mag_z > max[2] ){	max[2] = _Compass->mag_z; }
-	// calculate offsets
-	offset[0] = -(max[0]+min[0])/2;
-	offset[1] = -(max[1]+min[1])/2;
-	offset[2] = -(max[2]+min[2])/2;
-
-	// display all to user
-	_Console->printf("logCompassCmd :: heading: %.2f (%3d,%3d,%3d) ", ToDeg(heading),
-				  _Compass->mag_x,
-				  _Compass->mag_y,
-				  _Compass->mag_z);
-
-	// display offsets
-	_Console->printf(" offsets : (%.2f, %.2f, %.2f)", offset[0], offset[1], offset[2]);
-	_Console->println();
-
-	return 0;
-
-}
 
 
