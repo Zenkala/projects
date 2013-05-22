@@ -29,10 +29,28 @@
 
 // APM libraries and variables
 #include <Arduino_Mega_ISR_Registry.h>
+#include <AP_PeriodicProcess.h>
 #include <APM_RC.h>
+//IMU libraries
+#include <AP_InertialSensor.h>
+#include <AP_InertialSensor_MPU6000.h>
+#include <SPI.h>
+
+//compass libraries
+#include <AP_Compass_HMC5843.h>
+#include <Compass.h>
+#include <AP_Compass.h>
+#include <AP_Compass_HIL.h>
+#include <I2C.h>
+
 
 Arduino_Mega_ISR_Registry isr_registry;
+AP_TimerProcess scheduler;
 APM_RC_APM2 APM_RC;
+
+//Sensor instantiations
+AP_InertialSensor_MPU6000 imu;
+AP_Compass_HMC5843 compass;
 
 // Radio variables
 uint16_t throttle_in = 0;
@@ -87,13 +105,33 @@ FastSerialPort0(Serial);        // FTDI/console
 // Timers
 MilliTimer Hz50, Hz2;
 
-//logSystem
-logSystem logSys;
-
 void setup(){
 	// Init radio
 	isr_registry.init();
 	APM_RC.Init(&isr_registry);
+
+	// Init IMU SPI bus
+    SPI.begin();
+    SPI.setClockDivider(SPI_CLOCK_DIV16); // 1MHZ SPI rate
+	// Init scheduler
+	scheduler.init(&isr_registry);
+	// Init IMU
+    // we need to stop the barometer from holding the SPI bus
+    pinMode(40, OUTPUT);
+    digitalWrite(40, HIGH);
+    imu.init(AP_InertialSensor::COLD_START,
+			 AP_InertialSensor::RATE_100HZ,
+			 delay, NULL, &scheduler);
+    //init compass
+    I2c.begin();
+    I2c.timeOut(20);
+    I2c.setSpeed(true);
+    compass.init();
+
+    //set compass orientation compared to bird
+    compass.set_orientation(AP_COMPASS_COMPONENTS_DOWN_PINS_FORWARD); // set compass's orientation on aircraft.
+    compass.set_offsets(0,0,0); // set offsets to account for surrounding interference
+    compass.set_declination(ToRad(0.0)); // set local difference between magnetic north and true north
 	
 	// And init the PWM for servo output
 	APM_RC.OutputCh(CH_3, APM_RC.InputCh(CH_3));
@@ -110,11 +148,28 @@ void setup(){
 	pinMode(HALL_PIN,INPUT);
 	
 	// Start serial channel
-	Serial.begin(57600);
-	Serial << "[GC 2.01b]" << endl;
+	Serial.begin(115200);
+	Serial << "[GC 2.20b]" << endl;
+
+	//print compass type (for debugging purposes)
+    Serial.print("Compass auto-detected as: ");
+    switch( compass.product_id ) {
+    case AP_COMPASS_TYPE_HIL:
+        Serial.println("HIL");
+        break;
+    case AP_COMPASS_TYPE_HMC5843:
+        Serial.println("HMC5843");
+        break;
+    case AP_COMPASS_TYPE_HMC5883L:
+        Serial.println("HMC5883L");
+        break;
+    default:
+        Serial.println("unknown");
+        break;
+    }
 
 	// Start log system
-	logSys.logInit(&Serial);
+	logInit(&Serial,&imu,&compass);
 }
 
 void loop(){
@@ -150,7 +205,7 @@ void loop(){
 	}
 	
 	//keep log meny alive
-	logSys.logMenuPeriodicCall();
+	logMenuPeriodicCall();
 
 	if(Hz50.poll(20)){
 		// This is a 50 Hz loop

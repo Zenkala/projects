@@ -42,6 +42,7 @@ FastSerial \
 DataFlash \
 Arduino_Mega_ISR_Registry \
 AP_Semaphore \
+AP_PeriodicProcess \
 AP_Math \
 AP_InertialSensor \
 AP_Compass \

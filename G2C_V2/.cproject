@@ -47,6 +47,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Semaphore}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_PeriodicProcess}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AHRS}&quot;"/>
 								</option>
 								<option id="it.baeyens.avreclipse.compiler.option.def.1485111403" name="Define Syms (-D)" superClass="it.baeyens.avreclipse.compiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__IN_ECLIPSE__=1"/>
@@ -82,6 +84,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Semaphore}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_PeriodicProcess}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AHRS}&quot;"/>
 								</option>
 								<option id="it.baeyens.avreclipse.cppcompiler.option.def.479432623" name="Define Syms (-D)" superClass="it.baeyens.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__IN_ECLIPSE__=1"/>
@@ -122,12 +126,13 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="AP_HAL_PX4|AP_Menu|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="AP_AHRS|AP_PeriodicProcess|AP_HAL_PX4|AP_Menu|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="APM_RC"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Common"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Compass"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_InertialSensor"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Math"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_PeriodicProcess"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Semaphore"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Arduino_Mega_ISR_Registry"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="DataFlash"/>
@@ -262,7 +267,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="AP_Menu|AP_HAL_PX4|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="AP_AHRS|AP_Menu|AP_HAL_PX4|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="APM_RC"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Common"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Compass"/>

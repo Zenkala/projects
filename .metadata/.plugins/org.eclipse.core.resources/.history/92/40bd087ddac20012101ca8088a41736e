@@ -1,0 +1,67 @@
+/*
+ * imuMenu.h
+ *
+ *  Created on: May 22, 2013
+ *      Author: tomv
+ */
+
+#ifndef IMUMENU_H_
+#define IMUMENU_H_
+
+
+#include <inttypes.h>
+
+#define MENU_COMMANDLINE_MAX    32      ///< maximum input line length
+#define MENU_ARGS_MAX                   4       ///< maximum number of arguments
+#define MENU_COMMAND_MAX                14      ///< maximum size of a command name
+
+/// Class defining and handling one menu tree
+class imuMenu {
+public:
+
+    imuMenu();
+
+
+    static void setup_wait_key(void)
+    {
+        // wait for user input
+        while (!Serial.available()) { delay(20); }
+        // clear input buffer
+        while( Serial.available() ) { Serial.read(); }
+    }
+
+    void run_calibration();
+    void display_offsets_and_scaling();
+    void run_level();
+    void run_test();
+
+    /// menu runner
+    void        runOnce(void);
+
+private:
+    /// Implements the default 'help' command.
+    ///
+    void        _help(void);                                                            ///< implements the 'help' command
+
+    /// calls the function for the n'th menu item
+    ///
+    /// @param n			Index for the menu item to call
+    /// @param argc			Number of arguments prepared for the menu item
+    ///
+    int8_t                  _call(uint8_t n, uint8_t argc);
+
+    const char *            _prompt;                                                    ///< prompt to display
+    const command *         _commands;                                                  ///< array of commands
+    const uint8_t           _entries;                                                   ///< size of the menu
+    const preprompt         _ppfunc;                                                    ///< optional pre-prompt action
+
+    static char             _inbuf[MENU_COMMANDLINE_MAX];       ///< input buffer
+    static arg              _argv[MENU_ARGS_MAX + 1];                   ///< arguments
+
+	// port to run on
+	static FastSerial       *_port;
+	static uint8_t           _curLength;
+
+};
+
+#endif /* IMUMENU_H_ */

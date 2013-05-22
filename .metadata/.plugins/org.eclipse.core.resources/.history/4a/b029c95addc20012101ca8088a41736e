@@ -1,0 +1,50 @@
+/*
+ * imuMenu.h
+ *
+ *  Created on: May 22, 2013
+ *      Author: tomv
+ */
+
+#ifndef IMUMENU_H_
+#define IMUMENU_H_
+
+
+#include <inttypes.h>
+
+
+/// Class defining and handling one menu tree
+class imuMenu {
+public:
+
+    imuMenu();
+
+    void imuInit(AP_InertialSensor_MPU6000 *sensor, FastSerial  *port);
+
+    static void setup_wait_key(void)
+    {
+        // wait for user input
+        while (!Serial.available()) { delay(20); }
+        // clear input buffer
+        while( Serial.available() ) { Serial.read(); }
+    }
+
+    void runCalibration();
+    void displayOffsets();
+    void runLevel();
+    void runTest();
+    void printMenu();
+
+
+    /// menu runner
+    void        runOnce(void);
+
+private:
+
+    //sensor to use
+	static AP_InertialSensor_MPU6000  *_IMU;
+	//console to use
+	static FastSerial  *_Console;
+
+};
+
+#endif /* IMUMENU_H_ */

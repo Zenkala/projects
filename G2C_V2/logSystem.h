@@ -9,21 +9,23 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 */
 
 //guard
-#ifndef _LOG_SYSTEM_H
-#define _LOG_SYSTEM_H
+#ifndef _LOGSYSTEM_H
+#define _LOGSYSTEM_H
 //==================================================================================
 // Includes
 //==================================================================================
 
-//fastserial libraries
-#include <FastSerial.h>
-
-//dataflash libraries
-#include <DataFlash.h>
-
 // Common dependencies
 #include <AP_Common.h>
-#include "logMenu.h"
+#include <AP_InertialSensor.h>
+#include <AP_InertialSensor_MPU6000.h>
+//compass libraries
+#include <AP_Compass_HMC5843.h>
+#include <Compass.h>
+#include <AP_Compass.h>
+#include <AP_Compass_HIL.h>
+
+
 
 
 //==================================================================================
@@ -50,80 +52,40 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #define LOG_DF_DELAY_US (1)
 
 //==================================================================================
-// Class Definition
+// Type Definitions
 //==================================================================================
 
-/// Class defining and handling one menu tree
-class logSystem {
-public:
+typedef struct logEntry {
+    uint32_t header;
+    //TODO:remove filler
+    uint8_t filler[64];
+} logEntry;
 
-	//constructor
-	logSystem();
-
-	//==================================================================================
-	// Menu Function Prototypes
-	//==================================================================================
-	//dummy, remainder of re-use of library AP_Menu
-	static bool     logPrintMenu(void){return true;};
-	//writes a number of logs to the dataflash, and reads them back
-	static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv);
-	//erase the dataflash entirely
-	static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv);
-	//dump contents of log Nr X, if X <= 0, dump all
-	static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv);
-	//print an overview of the available logs on the dataflash
-	static int8_t   logLogsCmd(uint8_t argc, const logMenu::arg *argv);
-
-	//==================================================================================
-	// Type Definitions
-	//==================================================================================
-	//Log entry type definition
-	typedef struct logEntry {
-	    uint32_t header;
-	    //TODO : remove filler and choose proper variables
-	    uint8_t filler[64];
-	} logEntry;
-
-	//==================================================================================
-	// Public Function Prototypes
-	//==================================================================================
-
-	//initialize necessary interface for dataflash logging
-	int8_t logInit(FastSerial *port);
-	//test the dataflash
-	void logPrintDFVendor(void);
-	//write a block of data to the dataflash
-	void logWriteBlock(const void *pBuffer, uint16_t size);
-	//keep the menu alive by calling this function periodically
-	void logMenuPeriodicCall(void);
-	// Write a log packet
-	static void logWriteEntry(logEntry *entry);
-	// Read a log packet
-	logEntry logReadEntry();
-	// Print a log packet over the serial connection
-	void logPrintEntry(logEntry entry);
-	// Dumps a log on given pages over the serial port
-	static void logDumpLogNr(int16_t startPage,int16_t endPage);
-	//provide delay function for LOG_DF_DELAY_US * us
-	void logUsDelay(unsigned long us);
-
-
-private:
-
-
-	//logSystem Menu Object
-    static logMenu _logSysMenu;
-	//logSystem Dataflash object
-	static DataFlash_APM2 _DataFlash;
-	//FastSerial port to run on
-	static FastSerial *_Console;
-
-
-};
 
 //==================================================================================
 // Function prototypes
 //==================================================================================
+
+//initialize necessary interface for dataflash logging
+int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu,AP_Compass_HMC5843 *compass);
+//test the dataflash
+void logPrintDFVendor(void);
+//write a block of data to the dataflash
+void logWriteBlock(const void *pBuffer, uint16_t size);
+//keep the menu alive by calling this function periodically
+void logMenuPeriodicCall(void);
+// Write a log packet
+void logWriteEntry(logEntry *entry);
+// Read a log packet
+logEntry logReadEntry();
+// Print a log packet over the serial connection
+void logPrintEntry(logEntry entry);
+// Dumps a log on given pages over the serial port
+void logDumpLogNr(int16_t startPage,int16_t endPage);
+//provide delay function for LOG_DF_DELAY_US * us
+void logUsDelay(unsigned long us);
+//end of logger.h
+void logUsDelay(unsigned long us);
 
 
 

@@ -1,20 +1,42 @@
-22:47:02 **** Incremental Build of configuration Release for project G2C_V2 ****
+16:32:50 **** Incremental Build of configuration Release for project G2C_V2 ****
 make all 
-Building file: ../G2C_V2.cpp
-Invoking: AVR C++ Compiler
-avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C_V2" -I"/opt/arduinoIDE/libraries/Streaming" -I"/opt/arduinoIDE/libraries/APM_RC" -I"/opt/arduinoIDE/libraries/Arduino_Mega_ISR_Registry" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/AP_InertialSensor" -I"/opt/arduinoIDE/libraries/AP_Compass" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -I"/opt/arduinoIDE/libraries/I2C" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -g2 -gstabs -ffunction-sections -fdata-sections -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"G2C_V2.d" -MT"G2C_V2.d"  -c -o "G2C_V2.o" -x c++ "../G2C_V2.cpp"
-../logSystem.cpp: In member function ‘int8_t logSystem::logInit(FastSerial*)’:
-Finished building: ../G2C_V2.cpp
- 
-../logSystem.cpp:213:34: error: ISO C++ forbids taking the address of a bound member function to form a pointer to member function.  Say ‘&logSystem::logUsDelay’
 Building file: ../logSystem.cpp
 Invoking: AVR C++ Compiler
-../logSystem.cpp:213:44: error: no matching function for call to ‘DataFlash_APM2::EraseAll(void (logSystem::*)(long unsigned int))’
-avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C_V2" -I"/opt/arduinoIDE/libraries/Streaming" -I"/opt/arduinoIDE/libraries/APM_RC" -I"/opt/arduinoIDE/libraries/Arduino_Mega_ISR_Registry" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/AP_InertialSensor" -I"/opt/arduinoIDE/libraries/AP_Compass" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -I"/opt/arduinoIDE/libraries/I2C" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -g2 -gstabs -ffunction-sections -fdata-sections -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"logSystem.d" -MT"logSystem.d"  -c -o "logSystem.o" -x c++ "../logSystem.cpp"
-/opt/arduinoIDE/libraries/DataFlash/DataFlash.h:62:10: note: candidate is: void DataFlash_Class::EraseAll(void (*)(long unsigned int))
-../logSystem.cpp: In static member function ‘static void logSystem::logDumpLogNr(int16_t, int16_t)’:
-../logSystem.cpp:321:30: error: cannot call member function ‘logSystem::logEntry logSystem::logReadEntry()’ without object
-make: *** [logSystem.o] Error 1
+avr-g++ -I"/opt/arduinoIDE/hardware/arduino/cores/arduino" -I"/opt/arduinoIDE/hardware/arduino/variants/mega" -I"/home/tomv/Dropbox/projects/GIT/workspace/G2C_V2" -I"/opt/arduinoIDE/libraries/Streaming" -I"/opt/arduinoIDE/libraries/APM_RC" -I"/opt/arduinoIDE/libraries/Arduino_Mega_ISR_Registry" -I"/opt/arduinoIDE/libraries/AP_Common" -I"/opt/arduinoIDE/libraries/FastSerial" -I"/opt/arduinoIDE/libraries/AP_Math" -I"/opt/arduinoIDE/libraries/AP_InertialSensor" -I"/opt/arduinoIDE/libraries/AP_Compass" -I"/opt/arduinoIDE/libraries/DataFlash" -I"/opt/arduinoIDE/libraries/AP_Semaphore" -I"/opt/arduinoIDE/libraries/SPI" -I"/opt/arduinoIDE/libraries/I2C" -I"/opt/arduinoIDE/libraries/AP_PeriodicProcess" -D__IN_ECLIPSE__=1 -DUSB_VID= -DUSB_PID= -DARDUINO=104 -Wall -g2 -gstabs -ffunction-sections -fdata-sections -Os -ffunction-sections -fdata-sections -fno-exceptions -g -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"logSystem.d" -MT"logSystem.d"  -c -o "logSystem.o" -x c++ "../logSystem.cpp"
+Finished building: ../logSystem.cpp
+ 
+Building target: G2C_V2.elf
+Invoking: AVR C++ Linker
+avr-gcc --cref -s -Os -o"G2C_V2.elf"  ./SPI/SPI.o  ./I2C/I2C.o  ./FastSerial/BetterStream.o ./FastSerial/FastSerial.o ./FastSerial/ftoa_engine.o ./FastSerial/ultoa_invert.o ./FastSerial/vprintf.o  ./DataFlash/DataFlash.o ./DataFlash/DataFlash_APM1.o ./DataFlash/DataFlash_APM2.o  ./Arduino_Mega_ISR_Registry/Arduino_Mega_ISR_Registry.o  ./AP_Semaphore/AP_Semaphore.o  ./AP_PeriodicProcess/AP_PeriodicProcessStub.o ./AP_PeriodicProcess/AP_TimerProcess.o  ./AP_Math/AP_Math.o ./AP_Math/location.o ./AP_Math/matrix3.o ./AP_Math/polygon.o ./AP_Math/quaternion.o ./AP_Math/vector3.o  ./AP_InertialSensor/AP_InertialSensor.o ./AP_InertialSensor/AP_InertialSensor_MPU6000.o ./AP_InertialSensor/AP_InertialSensor_Oilpan.o ./AP_InertialSensor/AP_InertialSensor_Stub.o  ./AP_Compass/AP_Compass_HIL.o ./AP_Compass/AP_Compass_HMC5843.o ./AP_Compass/Compass.o  ./AP_Common/AP_Common.o ./AP_Common/AP_Loop.o ./AP_Common/AP_Param.o ./AP_Common/AP_Var_menufuncs.o ./AP_Common/c++.o  ./APM_RC/APM_RC.o ./APM_RC/APM_RC_APM1.o ./APM_RC/APM_RC_APM2.o  ./G2C_V2.o ./MilliTimer.o ./imuMenu.o ./logMenu.o ./logSystem.o   -l"Arduino_Mega_2560_or_Mega_ADK" -lm -Wl,--gc-sections -L"/home/tomv/Dropbox/projects/GIT/workspace/Arduino_Mega_2560_or_Mega_ADK/Release" -mmcu=atmega2560
+Finished building target: G2C_V2.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S G2C_V2.elf  >"G2C_V2.lss"
+Finished building: G2C_V2.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -O ihex G2C_V2.elf  "G2C_V2.hex"
+Finished building: G2C_V2.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex G2C_V2.elf  "G2C_V2.eep"
+Finished building: G2C_V2.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega2560 G2C_V2.elf
+AVR Memory Usage
+----------------
+Device: atmega2560
 
-22:47:03 Build Finished (took 862ms)
+Program:   47118 bytes (18.0% Full)
+(.text + .data + .bootloader)
+
+Data:       1403 bytes (17.1% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+16:32:50 Build Finished (took 626ms)
 

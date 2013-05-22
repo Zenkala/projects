@@ -18,6 +18,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //logger system and menu
 #include "logSystem.h"
 #include "logMenu.h"
+#include "imuMenu.h"
 
 //compass libraries
 #include <AP_Compass_HMC5843.h>
@@ -35,10 +36,25 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <DataFlash.h>
 
 
-//TODO: Finish class definition!!!!
 //==================================================================================
-// Log System Statics
+// Function Prototypes
 //==================================================================================
+// Code to Write and Read packets from DataFlash log memory
+// Code to interact with the user to dump or erase logs
+
+// These are function definitions so the Menu can be constructed before the functions
+// are defined below. Order matters to the compiler.
+static bool     logPrintMenu(void){return true;};
+//writes a number of logs to the dataflash, and reads them back
+static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv);
+//erase the dataflash
+static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv);
+//dump contents of log Nr X, if X <= 0, dump all
+static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv);
+//print an overview of the available logs on the dataflash
+static int8_t   logListCmd(uint8_t argc, const logMenu::arg *argv);
+//provide a few commands to calibrate and test the IMU sensor
+static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv);
 
 //Instantiate serial menu
 // Creates a constant array of structs representing menu options
@@ -46,25 +62,28 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 // User enters the string in the console to call the functions on the right.
 // See class Menu in AP_Common for implementation details
 const struct logMenu::command logMenuCommands[] PROGMEM = {
-	{"erase", logSystem::logEraseCmd},
-	{"print", logSystem::logPrintCmd},
-	{"logs", logSystem::logLogsCmd},
-	{"test", logSystem::logTestCmd},
+    {"erase", logEraseCmd},
+    {"print", logPrintCmd},
+    {"list", logListCmd},
+    {"test", logTestCmd},
+    {"imuCMD", logImuCmd},
 };
 
-// A Macro to create the Log System Menu
-LOG_MENU(logSystem,_logSysMenu, "Log", logMenuCommands, logPrintMenu);
-//Instantiation of dataflash object
-DataFlash_APM2 logSystem::_DataFlash;
-//FastSerial port to run on
-FastSerial *logSystem::_Console;
-
 
 //==================================================================================
-// Constructor
+// Menu and Dataflash Instance
 //==================================================================================
-logSystem::logSystem(){}
 
+// A Macro to create the Menu
+LOG_MENU(logMenu, "Log", logMenuCommands, logPrintMenu);
+
+//Instantiate dataflash object
+DataFlash_APM2 _DataFlash;
+imuMenu _imuMenu;
+//compassMenu _compassMenu;
+AP_Compass_HMC5843 *_Compass;
+AP_InertialSensor_MPU6000 *_IMU;
+FastSerial *_Console;
 
 //===================================================================
 //	Log Menu Function Implementations
@@ -72,7 +91,7 @@ logSystem::logSystem(){}
 
 //attempt to write a few logs to the dataflash, and read them back
 //show progress in terminal
-int8_t logSystem::logTestCmd(uint8_t argc, const logMenu::arg *argv){
+static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 
 	uint8_t i,j;
 	logEntry entry;
@@ -85,7 +104,7 @@ int8_t logSystem::logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	for (j = 0; j < 10; j++){
 		for (i = 0; i < 32; i++){
 			//write one entry
-			logSystem::logWriteEntry(&entry);
+			logWriteEntry(&entry);
 		}
 		//Start New Log
 		_DataFlash.start_new_log();
@@ -96,21 +115,21 @@ int8_t logSystem::logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	_Console->println();
 
 	//print log overview
-	logSystem::logLogsCmd(0,(const logMenu::arg *)NULL);
+	logListCmd(0,(const logMenu::arg *)NULL);
 
 
 	return 0;
 }
 
 
-int8_t logSystem::logEraseCmd(uint8_t argc, const logMenu::arg *argv){
-	_Console->print_P(PSTR("logEraseCmd :: erasing _DataFlash... "));
+static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
+	_Console->print_P(PSTR("logEraseCmd :: erasing flash... "));
 	_DataFlash.EraseAll(&delay);
     _Console->print_P(PSTR("complete \n"));
 	return 0;
 }
 
-int8_t logSystem::logPrintCmd(uint8_t argc, const logMenu::arg *argv){
+static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv){
 
 	uint16_t dump_log;
     int16_t dump_log_start;
@@ -133,9 +152,9 @@ int8_t logSystem::logPrintCmd(uint8_t argc, const logMenu::arg *argv){
     	//get fisrt and last page of log
 		_DataFlash.get_log_boundaries(dump_log, dump_log_start, dump_log_end);
 		//dump log
-		logSystem::logDumpLogNr(dump_log_start,dump_log_end);
+		logDumpLogNr(dump_log_start,dump_log_end);
 		//indicate end
-		_Console->printf_P(PSTR("\nlogPrintCmd :: Done\n"));
+		_Console->printf_P(PSTR("\nlogPrintCmd :: done\n"));
     }
 
     //TODO : build actual return value
@@ -143,7 +162,7 @@ int8_t logSystem::logPrintCmd(uint8_t argc, const logMenu::arg *argv){
 
 }
 
-int8_t logSystem::logLogsCmd(uint8_t argc, const logMenu::arg *argv){
+static int8_t logListCmd(uint8_t argc, const logMenu::arg *argv){
 
 	int16_t log_start;
 	int16_t log_end;
@@ -152,7 +171,7 @@ int8_t logSystem::logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 	int16_t last_log_start = log_start, last_log_end = log_end;
 	uint16_t num_logs = _DataFlash.get_num_logs();
 
-	_Console->printf("logLogsCmd :: printing log list... \n");
+	_Console->printf("logListCmd :: printing log list... \n");
 
 	if (num_logs == 0) {
 		_Console->print_P(PSTR("\nNo logs\n\n"));
@@ -178,6 +197,17 @@ int8_t logSystem::logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 	return 0;
 }
 
+//provide a few commands to calibrate and test the IMU sensor
+static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv){
+
+	char cmd = argv[1].str[0]; //get first character of string argument
+	_Console->printf("logImuCmd :: parsing %c.. \n",cmd);
+
+	_imuMenu.parseInput((int16_t)cmd);
+
+	return 0;
+}
+
 
 
 //===================================================================
@@ -185,21 +215,26 @@ int8_t logSystem::logLogsCmd(uint8_t argc, const logMenu::arg *argv){
 //===================================================================
 
 
-void logSystem::logMenuPeriodicCall(){
-	_logSysMenu.runOnce();
+void logMenuPeriodicCall(){
+	logMenu.runOnce();
 }
 
-void logSystem::logUsDelay(unsigned long us){
+void logUsDelay(unsigned long us){
 	//provide a few us delay for
 	delayMicroseconds(us*LOG_DF_DELAY_US);
 }
 
-int8_t logSystem::logInit(FastSerial *port){
+int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC5843 *compass){
 
 	uint8_t result = LOG_INIT_ERR;
 
-	//store pointer to serial interface port
+	//store serial interface pointer
 	_Console = port;
+	_IMU = imu;
+	_Compass = compass;
+	//initialize imuMenu
+	_imuMenu.imuInit(imu,port);
+
 
 	//initialize dataflash
 	_Console->print_P(PSTR("logInit :: initializing flash... "));
@@ -210,7 +245,7 @@ int8_t logSystem::logInit(FastSerial *port){
     	//if dataflash is unformatted erase all
     	if (_DataFlash.NeedErase()) {
     		_Console->print_P(PSTR("logInit :: erase needed, erasing _DataFlash... "));
-    		_DataFlash.EraseAll(&this->logUsDelay);
+    		_DataFlash.EraseAll(&logUsDelay);
     	    _Console->print_P(PSTR("complete \n"));
     	}
     	//start new log
@@ -237,7 +272,7 @@ int8_t logSystem::logInit(FastSerial *port){
 }
 
 
-void logSystem::logPrintDFVendor(){
+void logPrintDFVendor(){
 
     // get dataFlash manufacturer info
 	_DataFlash.ReadManufacturerID();
@@ -253,7 +288,7 @@ void logSystem::logPrintDFVendor(){
 }
 
 // Write a log packet.
-void logSystem::logWriteEntry(logEntry *entry)
+void logWriteEntry(logEntry *entry)
 {
 	//TODO :  error check / protect?
 	uint8_t i;
@@ -266,7 +301,7 @@ void logSystem::logWriteEntry(logEntry *entry)
 }
 
 // Read a log packet
-logSystem::logEntry logSystem::logReadEntry()
+logEntry logReadEntry()
 {
 
 	//TODO : error check / protect?
@@ -282,7 +317,7 @@ logSystem::logEntry logSystem::logReadEntry()
 }
 
 //print log entry
-void logSystem::logPrintEntry(logEntry entry){
+void logPrintEntry(logEntry entry){
 
 	//TODO :  error check / protect?
 	uint16_t i;
@@ -298,7 +333,7 @@ void logSystem::logPrintEntry(logEntry entry){
 
 }
 
-void logSystem::logDumpLogNr(int16_t startPage,int16_t endPage){
+void logDumpLogNr(int16_t startPage,int16_t endPage){
 
 	uint16_t nrPages = 0;
 	uint16_t nrEntries = 0;

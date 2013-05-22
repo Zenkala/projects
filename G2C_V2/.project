@@ -53,6 +53,11 @@
 			<locationURI>ArduinoLibPath/AP_Math</locationURI>
 		</link>
 		<link>
+			<name>AP_PeriodicProcess</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_PeriodicProcess</locationURI>
+		</link>
+		<link>
 			<name>AP_Semaphore</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/AP_Semaphore</locationURI>

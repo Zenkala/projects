@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;G2C_V2/imuMenu&apos; to &apos;imuMenu.cpp&apos;" description="Rename resource &apos;imuMenu&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="imuMenu" name="imuMenu.cpp" stamp="1369225024940" updateReferences="true"/>
+</session>

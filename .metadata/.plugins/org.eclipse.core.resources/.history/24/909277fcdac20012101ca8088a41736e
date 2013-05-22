@@ -1,0 +1,118 @@
+
+
+#include <FastSerial.h>
+#include <AP_Common.h>
+
+#include <ctype.h>
+#include <string.h>
+#include <avr/pgmspace.h>
+
+#include "imuMenu.h"
+
+
+//sensor to use
+AP_InertialSensor_MPU6000 *_IMU;
+//console to use
+FastSerial  *_Console;
+
+//========================================================
+// Function Implementations
+//========================================================
+
+void run_calibration()
+{
+    // clear off any other characters (like line feeds,etc)
+    while( Serial.available() ) {
+        Serial.read();
+    }
+
+    ins.calibrate_accel(delay, NULL, setup_printf_P, setup_wait_key);
+}
+
+void display_offsets_and_scaling()
+{
+    Vector3f accel_offsets = ins.get_accel_offsets();
+    Vector3f accel_scale = ins.get_accel_scale();
+    Vector3f gyro_offsets = ins.get_gyro_offsets();
+
+    // display results
+    Serial.printf_P(PSTR("\nAccel Offsets X:%10.8f \t Y:%10.8f \t Z:%10.8f\n"),
+                    accel_offsets.x,
+                    accel_offsets.y,
+                    accel_offsets.z);
+    Serial.printf_P(PSTR("Accel Scale X:%10.8f \t Y:%10.8f \t Z:%10.8f\n"),
+                    accel_scale.x,
+                    accel_scale.y,
+                    accel_scale.z);
+    Serial.printf_P(PSTR("Gyro Offsets X:%10.8f \t Y:%10.8f \t Z:%10.8f\n"),
+                    gyro_offsets.x,
+                    gyro_offsets.y,
+                    gyro_offsets.z);
+}
+
+void run_level()
+{
+    // clear off any input in the buffer
+    while( Serial.available() ) {
+        Serial.read();
+    }
+
+    // display message to user
+    Serial.print("Place APM on a level surface and press any key..\n");
+
+    // wait for user input
+    while( !Serial.available() ) {
+        delay(20);
+    }
+    while( Serial.available() ) {
+        Serial.read();
+    }
+
+    // run accel level
+    ins.init_accel(delay, NULL);
+
+    // display results
+    display_offsets_and_scaling();
+}
+
+void run_test()
+{
+    Vector3f accel;
+    Vector3f gyro;
+    float temperature;
+    float length;
+
+    // flush any user input
+    while( Serial.available() ) {
+        Serial.read();
+    }
+
+    // clear out any existing samples from ins
+    ins.update();
+
+    // loop as long as user does not press a key
+    while( !Serial.available() ) {
+
+        // wait until we have 8 samples
+        while( ins.num_samples_available() < 8 * SAMPLE_UNIT ) {
+            delay(1);
+        }
+
+        // read samples from ins
+        ins.update();
+        accel = ins.get_accel();
+        gyro = ins.get_gyro();
+        temperature = ins.temperature();
+
+        length = sqrt(accel.x*accel.x + accel.y*accel.y + accel.z*accel.z);
+
+        // display results
+        Serial.printf_P(PSTR("Accel X:%4.2f \t Y:%4.2f \t Z:%4.2f \t len:%4.2f \t Gyro X:%4.2f \t Y:%4.2f \t Z:%4.2f \t Temp:%4.2f\n"),
+            accel.x, accel.y, accel.z, length, gyro.x, gyro.y, gyro.z, temperature);
+    }
+
+    // clear user input
+    while( Serial.available() ) {
+        Serial.read();
+    }
+}

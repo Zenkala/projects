@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete 2 resources" deleteContents="false" description="Delete 2 resources" element1="/G2C_V2/compassMenu.cpp" element2="/G2C_V2/compassMenu.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="2" stamp="1369231465661"/>&#x0A;<refactoring comment="Delete resource &apos;G2C_V2/AP_AHRS&apos;" deleteContents="false" description="Delete resource &apos;G2C_V2/AP_AHRS&apos;" element1="/G2C_V2/AP_AHRS" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1369232822339"/>
+</session>

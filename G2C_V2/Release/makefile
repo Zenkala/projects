@@ -14,6 +14,7 @@ RM := rm -rf
 -include DataFlash/subdir.mk
 -include Arduino_Mega_ISR_Registry/subdir.mk
 -include AP_Semaphore/subdir.mk
+-include AP_PeriodicProcess/subdir.mk
 -include AP_Math/subdir.mk
 -include AP_InertialSensor/subdir.mk
 -include AP_Compass/subdir.mk
