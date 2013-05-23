@@ -24,7 +24,9 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <Compass.h>
 #include <AP_Compass.h>
 #include <AP_Compass_HIL.h>
-
+//AHRS & GPS libraries
+#include <AP_GPS.h>
+#include <AP_AHRS.h>
 
 
 
@@ -57,8 +59,26 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 
 typedef struct logEntry {
     uint32_t header;
-    //TODO:remove filler
-    uint8_t filler[64];
+    unsigned long time; //running time in useconds
+    //AHRS values
+    float Roll;
+    float Pitch;
+    float Yaw;
+    float driftX;
+    float driftY;
+    float driftZ;
+    //Compass raw Values
+    int16_t magX;
+    int16_t magY;
+    int16_t magZ;
+    float heading;
+    //IMU raw values
+    float accX;
+    float accY;
+    float accZ;
+    float gyroX;
+    float gyroY;
+    float gyroZ;
 } logEntry;
 
 
@@ -67,13 +87,20 @@ typedef struct logEntry {
 //==================================================================================
 
 //initialize necessary interface for dataflash logging
-int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu,AP_Compass_HMC5843 *compass);
+int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC5843 *compass, AP_AHRS_DCM *ahrs, GPS *gps);
 //test the dataflash
 void logPrintDFVendor(void);
 //write a block of data to the dataflash
 void logWriteBlock(const void *pBuffer, uint16_t size);
-//keep the menu alive by calling this function periodically
-void logMenuPeriodicCall(void);
+//performs the critical logSystem tasks:
+// -keeps the menu alive
+// -updates compass readings
+// -stores a log of current state
+// call at max 75hz
+void logSlowPeriodic();
+//performs fast critical logSystem tasks
+// -update AHRS system
+void logFastPeriodic();
 // Write a log packet
 void logWriteEntry(logEntry *entry);
 // Read a log packet

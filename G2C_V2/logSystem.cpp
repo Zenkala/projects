@@ -15,6 +15,8 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //fastserial libraries
 #include <FastSerial.h>
 
+#include <Arduino.h>
+
 //logger system and menu
 #include "logSystem.h"
 #include "logMenu.h"
@@ -25,6 +27,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <Compass.h>
 #include <AP_Compass.h>
 #include <AP_Compass_HIL.h>
+#include <I2C.h>
 
 //IMU libraries
 #include <AP_InertialSensor_Oilpan.h>
@@ -35,6 +38,15 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //dataflash libraries
 #include <DataFlash.h>
 
+//AHRS libraries
+#include <AP_GPS.h>
+#include <AP_AHRS.h>
+#include <AP_Math.h>
+#include <AP_Airspeed.h>
+#include <AP_AnalogSource.h>
+#include <AP_Baro.h>
+#include <Filter.h>
+#include "parameters.h"
 
 //==================================================================================
 // Function Prototypes
@@ -57,6 +69,8 @@ static int8_t   logListCmd(uint8_t argc, const logMenu::arg *argv);
 static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv);
 //display a compass reading over the serial connection
 static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv);
+//provide a test command for the AHRS system
+static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv);
 
 //Instantiate serial menu
 // Creates a constant array of structs representing menu options
@@ -69,7 +83,8 @@ const struct logMenu::command logMenuCommands[] PROGMEM = {
     {"list", logListCmd},
     {"test", logTestCmd},
     {"imuCMD", logImuCmd},
-    {"cpsRead", logCompassCmd},
+    {"testCmps", logCompassCmd},
+    {"testAhrs", logAhrsCmd},
 };
 
 
@@ -83,10 +98,14 @@ LOG_MENU(logMenu, "Log", logMenuCommands, logPrintMenu);
 //Instantiate dataflash object
 DataFlash_APM2 _DataFlash;
 imuMenu _imuMenu;
-//compassMenu _compassMenu;
+//Sensor/interface and AHRS pointers
 AP_Compass_HMC5843 *_Compass;
 AP_InertialSensor_MPU6000 *_IMU;
 FastSerial *_Console;
+AP_AHRS_DCM  *_Ahrs;
+GPS *_GPS;
+float _heading = 0.0;
+static logEntry _entry;
 
 //===================================================================
 //	Log Menu Function Implementations
@@ -98,10 +117,36 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 
 	uint8_t i,j;
 	logEntry entry;
+
+	//=======================
+	//build test packet
+	//=======================
 	entry.header = LOG_PACKET_HEADER;
+    entry.time = 1;
+	entry.Roll   = 2.0;
+	entry.Pitch  = 3.0;
+	entry.Yaw    = 4.0;
+	entry.driftX = 5.0;
+	entry.driftY = 6.0;
+	entry.driftZ = 7.0;
+	entry.magX = 8;
+	entry.magY = 9;
+	entry.magZ = 10;
+	entry.heading = 11.0;
+    entry.accX  = 12.0;
+    entry.accY  = 13.0;
+    entry.accZ  = 14.0;
+    entry.gyroX = 15.0;
+    entry.gyroY = 16.0;
+    entry.gyroZ = 17.0;
 
 	_Console->printf_P(PSTR("logTestCmd :: size of one packet = %d \n"),sizeof(logEntry));
-	_Console->print_P(PSTR("logTestCmd :: writing logs."));
+	_Console->printf_P(PSTR("logTestCmd :: packet contents :: \n"));
+
+	//perform test print of packet
+	logPrintEntry(entry);
+
+	_Console->print_P(PSTR("\nlogTestCmd :: writing logs."));
 	//generate random logs and write them to the dataflash
 
 	for (j = 0; j < 10; j++){
@@ -164,6 +209,38 @@ static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv)
 
 	return 0;
 
+}
+
+static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv){
+
+	while (!_Console->available()){
+
+		//print _Ahrs state
+		Vector3f drift  = _Ahrs->get_gyro_drift();
+		_Console->printf_P(PSTR("logAhrsCmd :: r:%4.1f  p:%4.1f y:%4.1f drift=(%5.1f %5.1f %5.1f) hdg=%.1f \n"),
+						ToDeg(_Ahrs->roll),
+						ToDeg(_Ahrs->pitch),
+						ToDeg(_Ahrs->yaw),
+						ToDeg(drift.x),
+						ToDeg(drift.y),
+						ToDeg(drift.z),
+						_Compass->use_for_yaw() ? ToDeg(_heading) : 0.0);
+
+		//get new readings
+		_Compass->accumulate();
+	    _Compass->read();
+	    _heading = _Compass->calculate_heading(_Ahrs->get_dcm_matrix());
+	#if WITH_GPS
+	    _GPS->update();
+	#endif
+		_Ahrs->update();
+
+		//delay TODO: non-blocking delay! (scheduler?)
+		delay(200);
+
+	}
+
+	return 0;
 }
 
 static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
@@ -259,9 +336,51 @@ static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv){
 //===================================================================
 
 
-void logMenuPeriodicCall(){
+void logSlowPeriodic(){
+
 	_Compass->accumulate();
+    _Compass->read();
+    _heading = _Compass->calculate_heading(_Ahrs->get_dcm_matrix());
+#if WITH_GPS
+    _GPS->update();
+#endif
+    //===================
+    //gather data
+    //===================
+    _entry.header = LOG_PACKET_HEADER;
+    _entry.time = micros(); //running time in useconds
+	//AHRS values
+	Vector3f drift  = _Ahrs->get_gyro_drift();
+	_entry.Roll   = ToDeg(_Ahrs->roll);
+	_entry.Pitch  = ToDeg(_Ahrs->pitch);
+	_entry.Yaw    = ToDeg(_Ahrs->yaw);
+	_entry.driftX = ToDeg(drift.x);
+	_entry.driftY = ToDeg(drift.y);
+	_entry.driftZ = ToDeg(drift.z);
+	//Compass raw Values
+	_entry.magX = _Compass->mag_x;
+	_entry.magY = _Compass->mag_y;
+	_entry.magZ = _Compass->mag_z;
+	_entry.heading = ToDeg(_Compass->calculate_heading(_entry.Roll,_entry.Pitch));
+	//IMU raw values
+    Vector3f accel = _IMU->get_accel();
+    Vector3f gyro = _IMU->get_gyro();
+    _entry.accX  = accel.x;
+    _entry.accY  = accel.y;
+    _entry.accZ  = accel.z;
+    _entry.gyroX = gyro.x;
+    _entry.gyroY = gyro.y;
+    _entry.gyroZ = gyro.z;
+
+    //write log
+    logWriteEntry(&_entry);
+
+	//store log here
 	logMenu.runOnce();
+}
+
+void logFastPeriodic(){
+	_Ahrs->update();
 }
 
 void logUsDelay(unsigned long us){
@@ -269,14 +388,16 @@ void logUsDelay(unsigned long us){
 	delayMicroseconds(us*LOG_DF_DELAY_US);
 }
 
-int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC5843 *compass){
+int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC5843 *compass, AP_AHRS_DCM *ahrs, GPS *gps){
 
 	uint8_t result = LOG_INIT_ERR;
 
-	//store serial interface pointer
+	//store sensor and interface pointers
 	_Console = port;
 	_IMU = imu;
 	_Compass = compass;
+	_Ahrs = ahrs;
+	_GPS = gps;
 	//initialize imuMenu
 	_imuMenu.imuInit(imu,port);
 
@@ -368,12 +489,40 @@ void logPrintEntry(logEntry entry){
 	uint16_t i;
 	byte *bytePtr = (byte *)&entry;
 
+	//print header
 	for(i=0; i<4; i++){
 		_Console->printf("%c",(char)bytePtr[i]);
 	}
-	for(i=0; i<sizeof(logEntry)-4; i++){
-		_Console->print(".");
-	}
+	_Console->printf("%c",';');
+	//print time
+	_Console->printf("%lu;",entry.time);
+	//print AHRS data
+	_Console->printf("%4.4f;%4.4f;%4.4f;",
+			entry.Roll,
+			entry.Pitch,
+			entry.Yaw);
+	//print AHRS drift
+	_Console->printf("%4.4f;%4.4f;%4.4f;",
+			entry.driftX,
+			entry.driftY,
+			entry.driftZ);
+	//print raw Compass Data
+	_Console->printf("%d;%d;%d;%4.4f;",
+			entry.magX,
+			entry.magY,
+			entry.magZ,
+			entry.heading);
+	//print raw acceleration data (IMU)
+	_Console->printf("%4.4f;%4.4f;%4.4f;",
+		    entry.accX,
+		    entry.accY,
+		    entry.accZ);
+	//print raw gyroscope data (IMU)
+	_Console->printf("%4.4f;%4.4f;%4.4f;",
+		    entry.gyroX,
+		    entry.gyroY,
+		    entry.gyroZ);
+
 	_Console->println();
 
 }
@@ -396,6 +545,9 @@ void logDumpLogNr(int16_t startPage,int16_t endPage){
 	_Console->printf_P(PSTR("logDumpLogNr :: log has %d pages and %d entries\n"),nrPages,nrEntries);
 	//initiate reading
 	_DataFlash.StartRead(startPage);
+
+	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;MagX;MagY;MagZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;\n"));
+
 	//read all the packets
 	for(i=0;i<nrEntries;i++){
 		logPrintEntry(logReadEntry());

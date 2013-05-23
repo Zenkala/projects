@@ -24,5 +24,9 @@
 #define SURGE_THROTTLE 140	// 0-125
 #define SURGE_TIME 1800 //time in ms
 
+//set to one if GPS is to be used for AHRS
+#define WITH_GPS 0
+
+
 #endif
 // -*- tab-width: 4; Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil -*-

@@ -10,7 +10,8 @@
 
 
 #include <inttypes.h>
-
+#include <FastSerial.h>
+#include <Arduino.h>
 
 /// Class defining and handling one menu tree
 class imuMenu {
@@ -20,21 +21,8 @@ public:
 
     void imuInit(AP_InertialSensor_MPU6000 *sensor, FastSerial  *port);
 
-    static void setup_printf_P(const prog_char_t *fmt, ...)
-    {
-        va_list arg_list;
-        va_start(arg_list, fmt);
-        imuMenu::_Console->vprintf_P(fmt, arg_list);
-        va_end(arg_list);
-    }
-
-    static void setup_wait_key(void)
-    {
-        // wait for user input
-        while (!Serial.available()) { delay(20); }
-        // clear input buffer
-        while( Serial.available() ) { Serial.read(); }
-    }
+    static void setup_printf_P(const prog_char_t *fmt, ...);
+    static void setup_wait_key(void);
 
     void runCalibration();
     void displayOffsets();
@@ -46,13 +34,13 @@ public:
 
     /// menu runner
     void        runOnce(void);
+    //console to use
+    static FastSerial  *_Console;
 
 private:
 
     //sensor to use
 	static AP_InertialSensor_MPU6000  *_IMU;
-	//console to use
-	static FastSerial  *_Console;
 
 };
 

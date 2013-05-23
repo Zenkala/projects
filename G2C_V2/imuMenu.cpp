@@ -1,6 +1,8 @@
 
 
+
 #include <FastSerial.h>
+#include <Arduino.h>
 #include <AP_InertialSensor.h>
 #include <AP_Math.h>
 #include <AP_Common.h>
@@ -48,38 +50,63 @@ void imuMenu::parseInput(int16_t user_input){
 	switch(user_input){
 
 		case 'c': //perform callibration
-			this->runCalibration();
-			this->displayOffsets();
+			runCalibration();
+			displayOffsets();
 		break;
 
 		case 'd': //print offsets
-			this->displayOffsets();
+			displayOffsets();
 		break;
 
 		case 'l': //perform leveling operation
-			this->runLevel();
-			this->displayOffsets();
+			runLevel();
+			displayOffsets();
 		break;
 
 		case 't': //perform test
-			this->runTest();
+			runTest();
 		break;
 
 		default: //print menu
-			this->printMenu();
+			printMenu();
 			break;
 	}
 
+	//clear input buffer
+	_Console->flush();
+	_Console->clearWriteError();
+
+	_Console->println("\nparseInput :: press any key to continue");
+	//clear user input buffer
+    while(!_Console->available() ) {
+    	delay(20);
+    }
 	//end
 }
 
+void imuMenu::setup_printf_P(const prog_char_t *fmt, ...)
+{
+    va_list arg_list;
+    va_start(arg_list, fmt);
+    _Console->vprintf_P(fmt, arg_list);
+    va_end(arg_list);
+}
+
+void imuMenu::setup_wait_key(void)
+{
+    // wait for user input
+    while (!_Console->available()) { delay(20); }
+    // clear input buffer
+    _Console->flush();
+}
 
 void imuMenu::runCalibration()
 {
     // clear off any other characters (like line feeds,etc)
-    while( _Console->available() ) {
-        _Console->read();
-    }
+	_Console->flush();
+//    while( _Console->available() ) {
+//        _Console->read();
+//    }
 
     _IMU->calibrate_accel(delay, NULL, imuMenu::setup_printf_P, imuMenu::setup_wait_key);
 }
@@ -108,9 +135,11 @@ void imuMenu::displayOffsets()
 void imuMenu::runLevel()
 {
     // clear off any input in the buffer
-    while( _Console->available() ) {
-        _Console->read();
-    }
+    _Console->flush();
+
+//	while( _Console->available() ) {
+//        _Console->read();
+//    }
 
     // display message to user
     _Console->print("Place APM on a level surface and press any key..\n");
@@ -119,9 +148,11 @@ void imuMenu::runLevel()
     while( !_Console->available() ) {
         delay(20);
     }
-    while( _Console->available() ) {
-        _Console->read();
-    }
+
+    _Console->flush();
+//    while( _Console->available() ) {
+//        _Console->read();
+//    }
 
     // run accel level
     _IMU->init_accel(delay, NULL);
@@ -138,9 +169,10 @@ void imuMenu::runTest()
     float length;
 
     // flush any user input
-    while( _Console->available() ) {
-        _Console->read();
-    }
+    _Console->flush();
+//    while( _Console->available() ) {
+//        _Console->read();
+//    }
 
     // clear out any existing samples from ins
     _IMU->update();
@@ -166,8 +198,10 @@ void imuMenu::runTest()
             accel.x, accel.y, accel.z, length, gyro.x, gyro.y, gyro.z, temperature);
     }
 
+
     // clear user input
-    while( _Console->available() ) {
-        _Console->read();
-    }
+    _Console->flush();
+//    while( _Console->available() ) {
+//        _Console->read();
+//    }
 }

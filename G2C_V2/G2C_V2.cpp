@@ -14,19 +14,19 @@
 // Mode/en sw	7
 // Glide sw		5
 
+//======================================================
+// Includes
+//======================================================
 #include <avr/io.h>
-
 //fastserial libraries
 #include <FastSerial.h>
-
+#include <Arduino.h>
 // Logger libraries
 #include <logSystem.h>
-
 // Custom libraries
 #include <Streaming.h>
 #include "MilliTimer.h"
 #include "parameters.h"
-
 // APM libraries and variables
 #include <Arduino_Mega_ISR_Registry.h>
 #include <AP_PeriodicProcess.h>
@@ -35,22 +35,56 @@
 #include <AP_InertialSensor.h>
 #include <AP_InertialSensor_MPU6000.h>
 #include <SPI.h>
-
 //compass libraries
 #include <AP_Compass_HMC5843.h>
 #include <Compass.h>
 #include <AP_Compass.h>
 #include <AP_Compass_HIL.h>
 #include <I2C.h>
+//AHRS libraries
+#include <AP_GPS.h>
+#include <AP_AHRS.h>
+#include <AP_Math.h>
+#include <AP_Airspeed.h>
+#include <AP_AnalogSource.h>
+#include <AP_Baro.h>
+#include <Filter.h>
 
+//======================================================
+// Definitions / Type Definitions
+//======================================================
 
+//AHRS definitions, leds provide feedback on accelerometer
+//initialization
+# define A_LED_PIN        27
+# define C_LED_PIN        25
+# define LED_ON           LOW
+# define LED_OFF          HIGH
+# define MAG_ORIENTATION  AP_COMPASS_APM2_SHIELD
+
+//======================================================
+// Global Variables / Objects
+//======================================================
+
+//serial ports
+FastSerialPort0(Serial);        //LogSystem Console
+FastSerialPort1(Serial1);		//GPS Serial connection
+
+// Timers
+MilliTimer Hz50, Hz2;
+
+//general AP objects
 Arduino_Mega_ISR_Registry isr_registry;
 AP_TimerProcess scheduler;
 APM_RC_APM2 APM_RC;
-
 //Sensor instantiations
 AP_InertialSensor_MPU6000 imu;
 AP_Compass_HMC5843 compass;
+//AHRS instantiations
+static GPS *g_gps;
+AP_GPS_Auto g_gps_driver(&Serial1, &g_gps);
+// choose which AHRS system to use
+AP_AHRS_DCM  ahrs(&imu, g_gps);
 
 // Radio variables
 uint16_t throttle_in = 0;
@@ -78,6 +112,10 @@ unsigned int HallSearchStartCount = 0;	//To count Hall passes on engaging
 unsigned long stoppingTime = 0;	//Time started with stopping.. (GC_STOPPING entry time)
 unsigned long surgeStart = 0;	//To keep track of the power surge duration
 
+//======================================================
+// Function Implementations
+//======================================================
+
 void set_throttle(uint16_t out){
   APM_RC.OutputCh(CH_3,constrain(1000+8*out,1000,2250));
 }
@@ -91,62 +129,85 @@ boolean enable_switch(){
 }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// Serial ports
-////////////////////////////////////////////////////////////////////////////////
-//
-// Note that FastSerial port buffers are allocated at ::begin time,
-// so there is not much of a penalty to defining ports that we don't
-// use.
-//
-FastSerialPort0(Serial);        // FTDI/console
+static void flash_leds(bool on)
+{
+   digitalWrite(A_LED_PIN, on ? LED_OFF : LED_ON);
+   digitalWrite(C_LED_PIN, on ? LED_ON : LED_OFF);
+}
+
+//initializes sensors and AHRS. In seperate function to have
+//some distinction between the logSystem and the original
+//remote-control software.
+void setupLogSystem(void){
+
+	// Init IMU SPI bus
+	SPI.begin();
+	SPI.setClockDivider(SPI_CLOCK_DIV16); // 1MHZ SPI rate
+	// Init scheduler
+	scheduler.init(&isr_registry);
+	// Init IMU
+	// we need to stop the barometer from holding the SPI bus
+	pinMode(40, OUTPUT);
+	digitalWrite(40, HIGH);
+	imu.init(AP_InertialSensor::COLD_START,
+			 AP_InertialSensor::RATE_100HZ,
+			 delay, NULL, &scheduler);
+	imu.init_accel(delay, flash_leds);
+	//init compass
+	I2c.begin();
+	I2c.timeOut(20);
+	I2c.setSpeed(true);
+
+	//set compass orientation compared to bird
+	compass.set_orientation(AP_COMPASS_APM2_SHIELD); // set compass's orientation on aircraft.
+	compass.set_offsets(0,0,0); // set offsets to account for surrounding interference
+	compass.set_declination(ToRad(0.0)); // set local difference between magnetic north and true north
+
+	//initialize AHRS system
+	ahrs.init();
+
+	if( compass.init() ) {
+		Serial.printf("\nSystem :: AHRS -> Enabling compass\n");
+		ahrs.set_compass(&compass);
+	} else {
+		Serial.printf("\nSystem :: AHRS -> No compass detected\n");
+	}
+
+	g_gps = &g_gps_driver;
+	#if WITH_GPS
+	    g_gps->init();
+	#endif
 
 
-// Timers
-MilliTimer Hz50, Hz2;
+	//print compass type (for debugging purposes)
+	Serial.print("System :: Compass auto-detected as: ");
+	switch( compass.product_id ) {
+		case AP_COMPASS_TYPE_HIL:
+			Serial.println("HIL");
+			break;
+		case AP_COMPASS_TYPE_HMC5843:
+			Serial.println("HMC5843");
+			break;
+		case AP_COMPASS_TYPE_HMC5883L:
+			Serial.println("HMC5883L");
+			break;
+		default:
+			Serial.println("unknown");
+	}
+
+	//Start log system
+	//pointers are needed for the log system to control the
+	//sensors and aquire sensor data.
+	logInit(&Serial,&imu,&compass,&ahrs,g_gps);
+
+}
+
 
 void setup(){
 	// Init radio
 	isr_registry.init();
 	APM_RC.Init(&isr_registry);
 
-	// Init IMU SPI bus
-    SPI.begin();
-    SPI.setClockDivider(SPI_CLOCK_DIV16); // 1MHZ SPI rate
-	// Init scheduler
-	scheduler.init(&isr_registry);
-	// Init IMU
-    // we need to stop the barometer from holding the SPI bus
-    pinMode(40, OUTPUT);
-    digitalWrite(40, HIGH);
-    imu.init(AP_InertialSensor::COLD_START,
-			 AP_InertialSensor::RATE_100HZ,
-			 delay, NULL, &scheduler);
-    //init compass
-    I2c.begin();
-    I2c.timeOut(20);
-    I2c.setSpeed(true);
-
-    //set compass orientation compared to bird
-    compass.set_orientation(AP_COMPASS_APM2_SHIELD); // set compass's orientation on aircraft.
-    compass.set_offsets(0,0,0); // set offsets to account for surrounding interference
-    compass.set_declination(ToRad(0.0)); // set local difference between magnetic north and true north
-
-    //initialize AHRS system
-    ahrs.init();
-
-    if( compass.init() ) {
-        Serial.printf("System :: AHRS -> Enabling compass\n");
-        ahrs.set_compass(&compass);
-    } else {
-        Serial.printf("System :: AHRS -> No compass detected\n");
-    }
-
-    g_gps = &g_gps_driver;
-#if WITH_GPS
-    g_gps->init();
-#endif
-	
 	// And init the PWM for servo output
 	APM_RC.OutputCh(CH_3, APM_RC.InputCh(CH_3));
 	APM_RC.OutputCh(CH_1,APM_RC.InputCh(CH_1));	// right wing 	1 -> 1
@@ -165,25 +226,9 @@ void setup(){
 	Serial.begin(115200);
 	Serial << "[GC 2.20b]" << endl;
 
-	//print compass type (for debugging purposes)
-    Serial.print("Compass auto-detected as: ");
-    switch( compass.product_id ) {
-    case AP_COMPASS_TYPE_HIL:
-        Serial.println("HIL");
-        break;
-    case AP_COMPASS_TYPE_HMC5843:
-        Serial.println("HMC5843");
-        break;
-    case AP_COMPASS_TYPE_HMC5883L:
-        Serial.println("HMC5883L");
-        break;
-    default:
-        Serial.println("unknown");
-        break;
-    }
+	//run sensor and log-system initialization
+	setupLogSystem();
 
-	// Start log system
-	logInit(&Serial,&imu,&compass);
 }
 
 void loop(){
@@ -218,12 +263,13 @@ void loop(){
 		gc_state = GC_GLIDING;
 	}
 	
-
+	//perform fast critical logSystem tasks
+	logFastPeriodic();
 
 	if(Hz50.poll(20)){
 
-		//keep log system alive
-		logMenuPeriodicCall();
+		//perform slow critical logSystem tasks
+		logSlowPeriodic();
 
 		// This is a 50 Hz loop
 		
