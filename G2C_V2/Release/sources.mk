@@ -38,6 +38,7 @@ SUBDIRS := \
 . \
 SPI \
 I2C \
+Filter \
 FastSerial \
 DataFlash \
 Arduino_Mega_ISR_Registry \
@@ -45,7 +46,12 @@ AP_Semaphore \
 AP_PeriodicProcess \
 AP_Math \
 AP_InertialSensor \
+AP_GPS \
 AP_Compass \
 AP_Common \
+AP_Baro \
+AP_AnalogSource \
+AP_Airspeed \
+AP_AHRS \
 APM_RC \
 

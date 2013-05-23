@@ -48,7 +48,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_PeriodicProcess}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/Filter}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AHRS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AnalogSource}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Baro}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Airspeed}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_GPS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Buffer}&quot;"/>
 								</option>
 								<option id="it.baeyens.avreclipse.compiler.option.def.1485111403" name="Define Syms (-D)" superClass="it.baeyens.avreclipse.compiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__IN_ECLIPSE__=1"/>
@@ -85,7 +91,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_PeriodicProcess}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/Filter}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AHRS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_AnalogSource}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Baro}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Airspeed}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_GPS}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/G2C_V2/AP_Buffer}&quot;"/>
 								</option>
 								<option id="it.baeyens.avreclipse.cppcompiler.option.def.479432623" name="Define Syms (-D)" superClass="it.baeyens.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__IN_ECLIPSE__=1"/>
@@ -126,10 +138,16 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="AP_AHRS|AP_PeriodicProcess|AP_HAL_PX4|AP_Menu|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="AP_Buffer|AP_GPS|AP_Airspeed|AP_Baro|AP_AnalogSource|Filter|AP_AHRS|AP_PeriodicProcess|AP_HAL_PX4|AP_Menu|I2C|SPI|AP_Semaphore|DataFlash|AP_Compass|AP_InertialSensor|AP_Math|FastSerial|AP_Common|Arduino_Mega_ISR_Registry|APM_RC|Streaming" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="APM_RC"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_AHRS"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Airspeed"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_AnalogSource"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Baro"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Buffer"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Common"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Compass"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_GPS"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_InertialSensor"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_Math"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="AP_PeriodicProcess"/>
@@ -137,6 +155,7 @@
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Arduino_Mega_ISR_Registry"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="DataFlash"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="FastSerial"/>
+						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Filter"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="I2C"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="SPI"/>
 						<entry excluding="?xamples/*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Streaming"/>

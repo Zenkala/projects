@@ -41,7 +41,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #define EN_GPS_LOG		(1)
 
 //log packet header ("head" in hex)
-#define LOG_PACKET_HEADER (0x64616568)
+#define LOG_PACKET_HEADER (0x6468)
 
 //return value definitions
 #define LOG_INIT_OK (0)
@@ -58,27 +58,31 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //==================================================================================
 
 typedef struct logEntry {
-    uint32_t header;
+	int16_t header;
     unsigned long time; //running time in useconds
     //AHRS values
-    float Roll;
-    float Pitch;
-    float Yaw;
-    float driftX;
-    float driftY;
-    float driftZ;
+    int16_t Roll;     	//in 0.01 deg
+    int16_t Pitch;		//in 0.01 deg
+    int16_t Yaw; 		//in 0.01 deg
+    int16_t driftX;		//in 0.001 deg
+    int16_t driftY;		//in 0.001 deg
+    int16_t driftZ;		//in 0.001 deg
     //Compass raw Values
-    int16_t magX;
-    int16_t magY;
-    int16_t magZ;
-    float heading;
+    //int16_t magX;
+    //int16_t magY;
+    //int16_t magZ;
+    int16_t heading;    //in 0.01 deg
     //IMU raw values
-    float accX;
-    float accY;
-    float accZ;
-    float gyroX;
-    float gyroY;
-    float gyroZ;
+    int16_t accX;       //in 0.01 m/s2
+    int16_t accY;		//in 0.01 m/s2
+    int16_t accZ;		//in 0.01 m/s2
+    int16_t gyroX;		//in 0.01 deg/s
+    int16_t gyroY;		//in 0.01 deg/s
+    int16_t gyroZ;		//in 0.01 deg/s
+    int16_t rightWingPWM;
+    int16_t leftWingPWM;
+    int16_t tailPWM;
+    int16_t curThrottle;
 } logEntry;
 
 
@@ -97,7 +101,7 @@ void logWriteBlock(const void *pBuffer, uint16_t size);
 // -updates compass readings
 // -stores a log of current state
 // call at max 75hz
-void logSlowPeriodic();
+void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle);
 //performs fast critical logSystem tasks
 // -update AHRS system
 void logFastPeriodic();

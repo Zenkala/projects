@@ -112,11 +112,17 @@ unsigned int HallSearchStartCount = 0;	//To count Hall passes on engaging
 unsigned long stoppingTime = 0;	//Time started with stopping.. (GC_STOPPING entry time)
 unsigned long surgeStart = 0;	//To keep track of the power surge duration
 
+bool runLastTime = false;
+uint16_t rightWingPWM = 0;
+uint16_t leftWingPWM = 0;
+uint16_t tailPWM = 0;
+uint16_t curThrottle =0;
 //======================================================
 // Function Implementations
 //======================================================
 
 void set_throttle(uint16_t out){
+  curThrottle = out;
   APM_RC.OutputCh(CH_3,constrain(1000+8*out,1000,2250));
 }
 
@@ -268,8 +274,15 @@ void loop(){
 
 	if(Hz50.poll(20)){
 
-		//perform slow critical logSystem tasks
-		logSlowPeriodic();
+		if(!runLastTime){
+			//perform slow critical logSystem tasks
+			//Serial.printf("System :: logging at time : %lu\n", micros());
+			logSlowPeriodic(rightWingPWM,leftWingPWM,tailPWM,curThrottle);
+			runLastTime = true;
+		} else {
+			//Serial.printf("System :: skipped log\n");
+			runLastTime = false;
+		}
 
 		// This is a 50 Hz loop
 		
@@ -279,6 +292,12 @@ void loop(){
 		
 		throttle_in = constrain(APM_RC.InputCh(CH_3)/8-125,0,125);
 		
+
+		//get input signals
+		rightWingPWM = APM_RC.InputCh(CH_1);
+		leftWingPWM = APM_RC.InputCh(CH_6);
+		tailPWM = APM_RC.InputCh(CH_2);
+		//set output PWM
 		// Pass through CH 1,2,6---but cross over
 		APM_RC.OutputCh(CH_1,APM_RC.InputCh(CH_1));	// right wing 	1 -> 1
 		APM_RC.OutputCh(CH_2,APM_RC.InputCh(CH_6));	// left wing 	6 -> 2

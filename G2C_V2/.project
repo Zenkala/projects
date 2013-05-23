@@ -33,6 +33,31 @@
 			<locationURI>ArduinoLibPath/APM_RC</locationURI>
 		</link>
 		<link>
+			<name>AP_AHRS</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_AHRS</locationURI>
+		</link>
+		<link>
+			<name>AP_Airspeed</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_Airspeed</locationURI>
+		</link>
+		<link>
+			<name>AP_AnalogSource</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_AnalogSource</locationURI>
+		</link>
+		<link>
+			<name>AP_Baro</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_Baro</locationURI>
+		</link>
+		<link>
+			<name>AP_Buffer</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_Buffer</locationURI>
+		</link>
+		<link>
 			<name>AP_Common</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/AP_Common</locationURI>
@@ -41,6 +66,11 @@
 			<name>AP_Compass</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/AP_Compass</locationURI>
+		</link>
+		<link>
+			<name>AP_GPS</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/AP_GPS</locationURI>
 		</link>
 		<link>
 			<name>AP_InertialSensor</name>
@@ -76,6 +106,11 @@
 			<name>FastSerial</name>
 			<type>2</type>
 			<locationURI>ArduinoLibPath/FastSerial</locationURI>
+		</link>
+		<link>
+			<name>Filter</name>
+			<type>2</type>
+			<locationURI>ArduinoLibPath/Filter</locationURI>
 		</link>
 		<link>
 			<name>I2C</name>

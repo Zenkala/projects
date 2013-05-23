@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include SPI/subdir.mk
 -include I2C/subdir.mk
+-include Filter/subdir.mk
 -include FastSerial/subdir.mk
 -include DataFlash/subdir.mk
 -include Arduino_Mega_ISR_Registry/subdir.mk
@@ -17,8 +18,13 @@ RM := rm -rf
 -include AP_PeriodicProcess/subdir.mk
 -include AP_Math/subdir.mk
 -include AP_InertialSensor/subdir.mk
+-include AP_GPS/subdir.mk
 -include AP_Compass/subdir.mk
 -include AP_Common/subdir.mk
+-include AP_Baro/subdir.mk
+-include AP_AnalogSource/subdir.mk
+-include AP_Airspeed/subdir.mk
+-include AP_AHRS/subdir.mk
 -include APM_RC/subdir.mk
 -include subdir.mk
 -include objects.mk

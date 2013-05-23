@@ -48,6 +48,12 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <Filter.h>
 #include "parameters.h"
 
+//====================================================================
+// Definitions
+//====================================================================
+#define toInt16(x) ((x)>=0?(int16_t)((x)+0.5):(int16_t)((x)-0.5))
+
+
 //==================================================================================
 // Function Prototypes
 //==================================================================================
@@ -123,22 +129,26 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	//=======================
 	entry.header = LOG_PACKET_HEADER;
     entry.time = 1;
-	entry.Roll   = 2.0;
-	entry.Pitch  = 3.0;
-	entry.Yaw    = 4.0;
-	entry.driftX = 5.0;
-	entry.driftY = 6.0;
-	entry.driftZ = 7.0;
-	entry.magX = 8;
-	entry.magY = 9;
-	entry.magZ = 10;
-	entry.heading = 11.0;
-    entry.accX  = 12.0;
-    entry.accY  = 13.0;
-    entry.accZ  = 14.0;
-    entry.gyroX = 15.0;
-    entry.gyroY = 16.0;
-    entry.gyroZ = 17.0;
+	entry.Roll   = 2;
+	entry.Pitch  = 3;
+	entry.Yaw    = 4;
+	entry.driftX = 5;
+	entry.driftY = 6;
+	entry.driftZ = 7;
+	//entry.magX = 8;
+	//entry.magY = 9;
+	//entry.magZ = 10;
+	entry.heading = 11;
+    entry.accX  = 12;
+    entry.accY  = 13;
+    entry.accZ  = 14;
+    entry.gyroX = 15;
+    entry.gyroY = 16;
+    entry.gyroZ = 17;
+    entry.rightWingPWM = 18;
+    entry.leftWingPWM = 19;
+    entry.tailPWM = 20;
+    entry.curThrottle = 21;
 
 	_Console->printf_P(PSTR("logTestCmd :: size of one packet = %d \n"),sizeof(logEntry));
 	_Console->printf_P(PSTR("logTestCmd :: packet contents :: \n"));
@@ -336,7 +346,7 @@ static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv){
 //===================================================================
 
 
-void logSlowPeriodic(){
+void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle){
 
 	_Compass->accumulate();
     _Compass->read();
@@ -351,26 +361,30 @@ void logSlowPeriodic(){
     _entry.time = micros(); //running time in useconds
 	//AHRS values
 	Vector3f drift  = _Ahrs->get_gyro_drift();
-	_entry.Roll   = ToDeg(_Ahrs->roll);
-	_entry.Pitch  = ToDeg(_Ahrs->pitch);
-	_entry.Yaw    = ToDeg(_Ahrs->yaw);
-	_entry.driftX = ToDeg(drift.x);
-	_entry.driftY = ToDeg(drift.y);
-	_entry.driftZ = ToDeg(drift.z);
+	_entry.Roll   = toInt16(100*ToDeg(_Ahrs->roll));
+	_entry.Pitch  = toInt16(100*ToDeg(_Ahrs->pitch));
+	_entry.Yaw    = toInt16(100*ToDeg(_Ahrs->yaw));
+	_entry.driftX = toInt16(1000*ToDeg(drift.x));
+	_entry.driftY = toInt16(1000*ToDeg(drift.y));
+	_entry.driftZ = toInt16(1000*ToDeg(drift.z));
 	//Compass raw Values
-	_entry.magX = _Compass->mag_x;
-	_entry.magY = _Compass->mag_y;
-	_entry.magZ = _Compass->mag_z;
-	_entry.heading = ToDeg(_Compass->calculate_heading(_entry.Roll,_entry.Pitch));
+	//_entry.magX = _Compass->mag_x;
+	//_entry.magY = _Compass->mag_y;
+	//_entry.magZ = _Compass->mag_z;
+	_entry.heading = toInt16(100*ToDeg(_Compass->calculate_heading(_entry.Roll,_entry.Pitch)));
 	//IMU raw values
     Vector3f accel = _IMU->get_accel();
     Vector3f gyro = _IMU->get_gyro();
-    _entry.accX  = accel.x;
-    _entry.accY  = accel.y;
-    _entry.accZ  = accel.z;
-    _entry.gyroX = gyro.x;
-    _entry.gyroY = gyro.y;
-    _entry.gyroZ = gyro.z;
+    _entry.accX  = toInt16(100*accel.x);
+    _entry.accY  = toInt16(100*accel.y);
+    _entry.accZ  = toInt16(100*accel.z);
+    _entry.gyroX = toInt16(100*ToDeg(gyro.x));
+    _entry.gyroY = toInt16(100*ToDeg(gyro.y));
+    _entry.gyroZ = toInt16(100*ToDeg(gyro.z));
+    _entry.rightWingPWM = rightWingPWM;
+    _entry.leftWingPWM = leftWingPWM;
+    _entry.tailPWM = tailPWM;
+    _entry.curThrottle = curThrottle;
 
     //write log
     logWriteEntry(&_entry);
@@ -490,38 +504,40 @@ void logPrintEntry(logEntry entry){
 	byte *bytePtr = (byte *)&entry;
 
 	//print header
-	for(i=0; i<4; i++){
+	for(i=0; i<sizeof(entry.header); i++){
 		_Console->printf("%c",(char)bytePtr[i]);
 	}
 	_Console->printf("%c",';');
 	//print time
 	_Console->printf("%lu;",entry.time);
 	//print AHRS data
-	_Console->printf("%4.4f;%4.4f;%4.4f;",
+	_Console->printf("%d;%d;%d;",
 			entry.Roll,
 			entry.Pitch,
 			entry.Yaw);
 	//print AHRS drift
-	_Console->printf("%4.4f;%4.4f;%4.4f;",
+	_Console->printf("%d;%d;%d;",
 			entry.driftX,
 			entry.driftY,
 			entry.driftZ);
 	//print raw Compass Data
-	_Console->printf("%d;%d;%d;%4.4f;",
-			entry.magX,
-			entry.magY,
-			entry.magZ,
-			entry.heading);
+	_Console->printf("%d;",entry.heading);
 	//print raw acceleration data (IMU)
-	_Console->printf("%4.4f;%4.4f;%4.4f;",
+	_Console->printf("%d;%d;%d;",
 		    entry.accX,
 		    entry.accY,
 		    entry.accZ);
 	//print raw gyroscope data (IMU)
-	_Console->printf("%4.4f;%4.4f;%4.4f;",
+	_Console->printf("%d;%d;%d;",
 		    entry.gyroX,
 		    entry.gyroY,
 		    entry.gyroZ);
+	//print steering values
+	_Console->printf("%d;%d;%d;%d",
+		    entry.rightWingPWM,
+			entry.leftWingPWM,
+			entry.tailPWM,
+			entry.curThrottle);
 
 	_Console->println();
 
@@ -546,8 +562,7 @@ void logDumpLogNr(int16_t startPage,int16_t endPage){
 	//initiate reading
 	_DataFlash.StartRead(startPage);
 
-	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;MagX;MagY;MagZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;\n"));
-
+	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;\n"));
 	//read all the packets
 	for(i=0;i<nrEntries;i++){
 		logPrintEntry(logReadEntry());
