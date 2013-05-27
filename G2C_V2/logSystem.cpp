@@ -52,7 +52,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 // Definitions
 //====================================================================
 #define toInt16(x) ((x)>=0?(int16_t)((x)+0.5):(int16_t)((x)-0.5))
-
+#define toIntDeg(x,y) (toInt16(y*ToDeg(x)))
 
 //==================================================================================
 // Function Prototypes
@@ -89,8 +89,8 @@ const struct logMenu::command logMenuCommands[] PROGMEM = {
     {"list", logListCmd},
     {"test", logTestCmd},
     {"imuCMD", logImuCmd},
-    {"testCmps", logCompassCmd},
-    {"testAhrs", logAhrsCmd},
+    {"compass", logCompassCmd},
+    {"ahrs", logAhrsCmd},
 };
 
 
@@ -112,6 +112,7 @@ AP_AHRS_DCM  *_Ahrs;
 GPS *_GPS;
 float _heading = 0.0;
 static logEntry _entry;
+int16_t _curLogNumber = NO_CUR_LOG;
 
 //===================================================================
 //	Log Menu Function Implementations
@@ -129,9 +130,9 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	//=======================
 	entry.header = LOG_PACKET_HEADER;
     entry.time = 1;
-	entry.Roll   = 2;
-	entry.Pitch  = 3;
-	entry.Yaw    = 4;
+	entry.roll   = 2;
+	entry.pitch  = 3;
+	entry.yaw    = 4;
 	entry.driftX = 5;
 	entry.driftY = 6;
 	entry.driftZ = 7;
@@ -160,12 +161,16 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	//generate random logs and write them to the dataflash
 
 	for (j = 0; j < 10; j++){
+
+		//Start New Log, and store log number
+		_DataFlash.start_new_log();
+		_curLogNumber = _DataFlash.find_last_log();
+		entry.logNr = _curLogNumber;
+		//write 32 log entries
 		for (i = 0; i < 32; i++){
 			//write one entry
 			logWriteEntry(&entry);
 		}
-		//Start New Log
-		_DataFlash.start_new_log();
 		//indicate log written
 		_Console->print_P(PSTR("."));
 	}
@@ -214,7 +219,7 @@ static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv)
 				  _Compass->mag_z);
 
 	// display offsets
-	_Console->printf(" offsets : (%.2f, %.2f, %.2f)", offset[0], offset[1], offset[2]);
+	_Console->printf(" offsets : (%.2f, %.2f, %.2f)", (double)offset[0], (double)offset[1], (double)offset[2]);
 	_Console->println();
 
 	return 0;
@@ -239,10 +244,6 @@ static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv){
 		//get new readings
 		_Compass->accumulate();
 	    _Compass->read();
-	    _heading = _Compass->calculate_heading(_Ahrs->get_dcm_matrix());
-	#if WITH_GPS
-	    _GPS->update();
-	#endif
 		_Ahrs->update();
 
 		//delay TODO: non-blocking delay! (scheduler?)
@@ -254,9 +255,18 @@ static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv){
 }
 
 static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
+
+	//disable logging
+	_curLogNumber = NO_CUR_LOG;
+	//erase flash
 	_Console->print_P(PSTR("logEraseCmd :: erasing flash... "));
-	_DataFlash.EraseAll(&delay);
+	_DataFlash.EraseAll(&logUsDelay);
     _Console->print_P(PSTR("complete \n"));
+	//start new log, and store log number
+	_DataFlash.start_new_log();
+	_curLogNumber = _DataFlash.find_last_log();
+	_Console->print_P(PSTR("logEraseCmd :: New log started \n"));
+
 	return 0;
 }
 
@@ -272,7 +282,7 @@ static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv){
     last_log_num = _DataFlash.find_last_log();
 
     if (dump_log <= 0) {
-        _Console->print_P(PSTR("logPrintCmd :: dumping all\n"));
+        _Console->print_P(PSTR("logPrintCmd :: dumping all (not yet implemented)\n"));
         //TODO: implement dump all function
         //Log_Read(0, 1, 0);
     } else if ((argc != 2) || (dump_log <= (last_log_num - _DataFlash.get_num_logs())) || (dump_log > last_log_num)) {
@@ -283,7 +293,7 @@ static int8_t   logPrintCmd(uint8_t argc, const logMenu::arg *argv){
     	//get fisrt and last page of log
 		_DataFlash.get_log_boundaries(dump_log, dump_log_start, dump_log_end);
 		//dump log
-		logDumpLogNr(dump_log_start,dump_log_end);
+		logDumpLogNr(dump_log_start,dump_log_end,dump_log);
 		//indicate end
 		_Console->printf_P(PSTR("\nlogPrintCmd :: done\n"));
     }
@@ -345,60 +355,61 @@ static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv){
 //	Public LOG system function implementations
 //===================================================================
 
-
+//call periodically to keep serial console alive. Every call will produce a
+//log on the dataflash
 void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle){
 
 	_Compass->accumulate();
     _Compass->read();
-    _heading = _Compass->calculate_heading(_Ahrs->get_dcm_matrix());
-#if WITH_GPS
-    _GPS->update();
-#endif
-    //===================
-    //gather data
-    //===================
-    _entry.header = LOG_PACKET_HEADER;
-    _entry.time = micros(); //running time in useconds
-	//AHRS values
-	Vector3f drift  = _Ahrs->get_gyro_drift();
-	_entry.Roll   = toInt16(100*ToDeg(_Ahrs->roll));
-	_entry.Pitch  = toInt16(100*ToDeg(_Ahrs->pitch));
-	_entry.Yaw    = toInt16(100*ToDeg(_Ahrs->yaw));
-	_entry.driftX = toInt16(1000*ToDeg(drift.x));
-	_entry.driftY = toInt16(1000*ToDeg(drift.y));
-	_entry.driftZ = toInt16(1000*ToDeg(drift.z));
-	//Compass raw Values
-	//_entry.magX = _Compass->mag_x;
-	//_entry.magY = _Compass->mag_y;
-	//_entry.magZ = _Compass->mag_z;
-	_entry.heading = toInt16(100*ToDeg(_Compass->calculate_heading(_entry.Roll,_entry.Pitch)));
-	//IMU raw values
-    Vector3f accel = _IMU->get_accel();
-    Vector3f gyro = _IMU->get_gyro();
-    _entry.accX  = toInt16(100*accel.x);
-    _entry.accY  = toInt16(100*accel.y);
-    _entry.accZ  = toInt16(100*accel.z);
-    _entry.gyroX = toInt16(100*ToDeg(gyro.x));
-    _entry.gyroY = toInt16(100*ToDeg(gyro.y));
-    _entry.gyroZ = toInt16(100*ToDeg(gyro.z));
-    _entry.rightWingPWM = rightWingPWM;
-    _entry.leftWingPWM = leftWingPWM;
-    _entry.tailPWM = tailPWM;
-    _entry.curThrottle = curThrottle;
 
-    //write log
-    logWriteEntry(&_entry);
+    if(_curLogNumber != NO_CUR_LOG){
+		//===================
+		//gather data
+		//===================
+		_entry.header = LOG_PACKET_HEADER;
+		_entry.logNr = _curLogNumber;
+		_entry.time = micros(); //running time in useconds
+		//AHRS values
+		Vector3f drift  = _Ahrs->get_gyro_drift();
+		_entry.roll   = toIntDeg(_Ahrs->roll,100);
+		_entry.pitch  = toIntDeg(_Ahrs->pitch,100);
+		_entry.yaw    = toIntDeg(_Ahrs->yaw,100);
+		_entry.driftX = toIntDeg(drift.x,1000);
+		_entry.driftY = toIntDeg(drift.y,1000);
+		_entry.driftZ = toIntDeg(drift.z,1000);
+		//Compass Heading Value
+		_entry.heading = toInt16(100*ToDeg(_Compass->calculate_heading(_Ahrs->get_dcm_matrix())));
+		//IMU raw values
+		Vector3f accel = _IMU->get_accel();
+		Vector3f gyro = _IMU->get_gyro();
+		_entry.accX  = toInt16(100*accel.x);
+		_entry.accY  = toInt16(100*accel.y);
+		_entry.accZ  = toInt16(100*accel.z);
+		_entry.gyroX = toIntDeg(gyro.x,100);
+		_entry.gyroY = toIntDeg(gyro.y,100);
+		_entry.gyroZ = toIntDeg(gyro.z,100);
+		//servo / throttle outputs
+		_entry.rightWingPWM = rightWingPWM;
+		_entry.leftWingPWM = leftWingPWM;
+		_entry.tailPWM = tailPWM;
+		_entry.curThrottle = curThrottle;
 
-	//store log here
+		//write log
+		logWriteEntry(&_entry);
+    }//end active log check
+
+	//keep menu alive
 	logMenu.runOnce();
 }
 
+//keep kalman filter up to date
 void logFastPeriodic(){
 	_Ahrs->update();
 }
 
 void logUsDelay(unsigned long us){
 	//provide a few us delay for
+	_Console->print(".");
 	delayMicroseconds(us*LOG_DF_DELAY_US);
 }
 
@@ -428,13 +439,11 @@ int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC58
     		_DataFlash.EraseAll(&logUsDelay);
     	    _Console->print_P(PSTR("complete \n"));
     	}
-    	//start new log
+    	//start new log, and store log number
     	_DataFlash.start_new_log();
+		_curLogNumber = _DataFlash.find_last_log();
     	_Console->print_P(PSTR("logInit :: New log started \n"));
     }
-
-    //Print Dataflash Vendor
-    logPrintDFVendor();
 
 	//initialize serial interface
 	_Console->print_P(PSTR("logInit :: initializing terminal... "));
@@ -451,21 +460,6 @@ int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC58
     return result;
 }
 
-
-void logPrintDFVendor(){
-
-    // get dataFlash manufacturer info
-	_DataFlash.ReadManufacturerID();
-	//wait for read to finish
-    delay(10);
-    //print result
-    _Console->print_P(PSTR("logPrintDFVendor -> Manufacturer:"));
-    _Console->print(int(_DataFlash.df_manufacturer));
-    _Console->print_P(PSTR(","));
-    _Console->print(_DataFlash.df_device);
-    _Console->println();
-
-}
 
 // Write a log packet.
 void logWriteEntry(logEntry *entry)
@@ -493,28 +487,24 @@ logEntry logReadEntry()
 		bytePtr[i] = _DataFlash.ReadByte();
 	}
 
+	//TODO : Check for valid header and log number
+
     return entry;
 }
 
 //print log entry
 void logPrintEntry(logEntry entry){
 
-	//TODO :  error check / protect?
-	uint16_t i;
-	byte *bytePtr = (byte *)&entry;
-
-	//print header
-	for(i=0; i<sizeof(entry.header); i++){
-		_Console->printf("%c",(char)bytePtr[i]);
-	}
-	_Console->printf("%c",';');
-	//print time
-	_Console->printf("%lu;",entry.time);
+	//print header, logNr and time
+	_Console->printf("%u;%u;%lu;",
+			entry.header,
+			entry.logNr,
+			entry.time);
 	//print AHRS data
 	_Console->printf("%d;%d;%d;",
-			entry.Roll,
-			entry.Pitch,
-			entry.Yaw);
+			entry.roll,
+			entry.pitch,
+			entry.yaw);
 	//print AHRS drift
 	_Console->printf("%d;%d;%d;",
 			entry.driftX,
@@ -533,7 +523,7 @@ void logPrintEntry(logEntry entry){
 		    entry.gyroY,
 		    entry.gyroZ);
 	//print steering values
-	_Console->printf("%d;%d;%d;%d",
+	_Console->printf("%d;%d;%d;%d;",
 		    entry.rightWingPWM,
 			entry.leftWingPWM,
 			entry.tailPWM,
@@ -543,11 +533,12 @@ void logPrintEntry(logEntry entry){
 
 }
 
-void logDumpLogNr(int16_t startPage,int16_t endPage){
+void logDumpLogNr(int16_t startPage,int16_t endPage, int16_t logNr){
 
 	uint16_t nrPages = 0;
 	uint16_t nrEntries = 0;
 	uint16_t i=0;
+	logEntry entry;
 
 	//determine number of log pages
 	if(endPage < startPage){ //if log is wrapped around end of memory
@@ -562,10 +553,16 @@ void logDumpLogNr(int16_t startPage,int16_t endPage){
 	//initiate reading
 	_DataFlash.StartRead(startPage);
 
-	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;\n"));
+	_Console->printf_P(PSTR("logHead;logNr;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;"));
+	_Console->println();
 	//read all the packets
 	for(i=0;i<nrEntries;i++){
-		logPrintEntry(logReadEntry());
+		//get log entry
+		entry = logReadEntry();
+		//check wheter entry is valid and belongs to current log
+		if(entry.header == LOG_PACKET_HEADER && (entry.logNr == (uint16_t)logNr || logNr <= 0)){
+			logPrintEntry(entry);
+		}
 	}
 
 }

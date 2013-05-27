@@ -46,6 +46,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //return value definitions
 #define LOG_INIT_OK (0)
 #define LOG_INIT_ERR (1)
+#define NO_CUR_LOG (-1)
 
 //enable log system
 #define LOGGING_ENABLED (1)
@@ -53,17 +54,19 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 //dataflash handling delay when erasing
 #define LOG_DF_DELAY_US (1)
 
+
 //==================================================================================
 // Type Definitions
 //==================================================================================
 
 typedef struct logEntry {
-	int16_t header;
+	uint16_t header;
+	uint16_t logNr;
     unsigned long time; //running time in useconds
     //AHRS values
-    int16_t Roll;     	//in 0.01 deg
-    int16_t Pitch;		//in 0.01 deg
-    int16_t Yaw; 		//in 0.01 deg
+    int16_t roll;     	//in 0.01 deg
+    int16_t pitch;		//in 0.01 deg
+    int16_t yaw; 		//in 0.01 deg
     int16_t driftX;		//in 0.001 deg
     int16_t driftY;		//in 0.001 deg
     int16_t driftZ;		//in 0.001 deg
@@ -112,7 +115,7 @@ logEntry logReadEntry();
 // Print a log packet over the serial connection
 void logPrintEntry(logEntry entry);
 // Dumps a log on given pages over the serial port
-void logDumpLogNr(int16_t startPage,int16_t endPage);
+void logDumpLogNr(int16_t startPage,int16_t endPage, int16_t logNr);
 //provide delay function for LOG_DF_DELAY_US * us
 void logUsDelay(unsigned long us);
 //end of logger.h
