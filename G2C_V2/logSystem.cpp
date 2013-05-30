@@ -646,33 +646,33 @@ logEntry logReadEntry()
 void logPrintEntry(logEntry entry){
 
 	//print header, logNr and time
-	_Console->printf("%u;%lu;",
+	_Console->printf("%u,%lu,",
 			entry.header,
 			entry.time);
 	//print AHRS data
-	_Console->printf("%d;%d;%d;",
+	_Console->printf("%d,%d,%d,",
 			entry.roll,
 			entry.pitch,
 			entry.yaw);
 	//print AHRS drift
-	_Console->printf("%d;%d;%d;",
+	_Console->printf("%d,%d,%d,",
 			entry.driftX,
 			entry.driftY,
 			entry.driftZ);
 	//print raw Compass Data
-	_Console->printf("%d;",entry.heading);
+	_Console->printf("%d,",entry.heading);
 	//print raw acceleration data (IMU)
-	_Console->printf("%d;%d;%d;",
+	_Console->printf("%d,%d,%d,",
 		    entry.accX,
 		    entry.accY,
 		    entry.accZ);
 	//print raw gyroscope data (IMU)
-	_Console->printf("%d;%d;%d;",
+	_Console->printf("%d,%d,%d,",
 		    entry.gyroX,
 		    entry.gyroY,
 		    entry.gyroZ);
 	//print steering values
-	_Console->printf("%d;%d;%d;%d;",
+	_Console->printf("%d,%d,%d,%d",
 		    entry.rightWingPWM,
 			entry.leftWingPWM,
 			entry.tailPWM,
@@ -702,7 +702,7 @@ void logDumpLogNr(int16_t startPage,int16_t endPage, int16_t logNr){
 	//initiate reading
 	_DataFlash.StartRead(startPage);
 
-	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;"));
+	_Console->printf_P(PSTR("logHead,Time,Roll,Pitch,Yaw,DriftX,DriftY,DriftZ,Heading,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,rwPWM,lwPWM,tailPWM,Throttle"));
 	_Console->println();
 	//read all the packets
 	for(i=0;i<nrEntries;i++){
