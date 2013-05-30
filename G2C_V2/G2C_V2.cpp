@@ -237,6 +237,10 @@ void setup(){
 }
 
 void loop(){
+
+	//time hall-behaviour
+	logWriteStartTime(HALL_TIMER);
+
 	// Read the Hall sensor
 	if(!hall_state && abs((int)analogRead(HALL_PIN)-512)>HALL_THRESHOLD_HIGH){
 		hall_state = true;
@@ -268,10 +272,10 @@ void loop(){
 		gc_state = GC_GLIDING;
 	}
 	
+	logWriteStopTime(HALL_TIMER);
+
 	//perform fast critical logSystem tasks
-	logWriteStartTime(AHRS_TIMER);
 	logFastPeriodic();
-	logWriteStopTime(AHRS_TIMER);
 
 	if(Hz50.poll(20)){
 

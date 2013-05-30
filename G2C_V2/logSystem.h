@@ -56,7 +56,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #define LOG_DF_DELAY_US (1)
 
 //time profiling definitions
-#define LOG_NR_TIMESTAMPS (6)
+#define LOG_NR_TIMESTAMPS (7)
 #define LOG_MAX_TIMESTAMPS (10000)
 #define LOG_SKIP_INITIAL_CNT (10)
 
@@ -66,6 +66,7 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #define AHRS_TIMER (3)
 #define LOOP_TIMER (4)
 #define LOOP2_TIMER (5)
+#define HALL_TIMER (6)
 
 //==================================================================================
 // Type Definitions

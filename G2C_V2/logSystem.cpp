@@ -81,6 +81,8 @@ static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv);
 static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv);
 //prints a report of important timing characteristics
 static int8_t   logProfileCmd(uint8_t argc, const logMenu::arg *argv);
+//disable logging, restart automatically re-enables
+static int8_t   logDisableCmd(uint8_t argc, const logMenu::arg *argv);
 
 //Instantiate serial menu
 // Creates a constant array of structs representing menu options
@@ -96,6 +98,7 @@ const struct logMenu::command logMenuCommands[] PROGMEM = {
     {"compass", logCompassCmd},
     {"ahrs", logAhrsCmd},
     {"profile", logProfileCmd},
+    {"disable", logDisableCmd},
 };
 
 
@@ -233,6 +236,11 @@ static int8_t   logProfileCmd(uint8_t argc, const logMenu::arg *argv){
 										_maxTimes[LOOP2_TIMER],
 										_avgTimes[LOOP2_TIMER],
 										_timeCnt[LOOP2_TIMER]);
+	_Console->printf("HALL    | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[HALL_TIMER],
+										_maxTimes[HALL_TIMER],
+										_avgTimes[HALL_TIMER],
+										_timeCnt[HALL_TIMER]);
 	_Console->printf("--------------------------------------------- \n");
 
 	return 0;
@@ -317,6 +325,14 @@ static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
 	_Console->print_P(PSTR("logEraseCmd :: erasing flash... "));
 	_DataFlash.EraseAll(&logUsDelay);
     _Console->print_P(PSTR("done \n"));
+
+	return 0;
+}
+
+static int8_t   logDisableCmd(uint8_t argc, const logMenu::arg *argv){
+
+	_enableLog = LOGGING_DISABLED;
+	_Console->print_P(PSTR("logDisableCmd :: disabled logging / restart to re-enable \n"));
 
 	return 0;
 }
@@ -499,26 +515,33 @@ void logUpdateTimestamp(uint8_t stampNr){
 	unsigned long cnt = (_timeCnt[stampNr]-LOG_SKIP_INITIAL_CNT);
 
 	//disable if too many times have been written
-	if(_timeCnt[stampNr] < LOG_MAX_TIMESTAMPS && _timeCnt[stampNr] >= LOG_SKIP_INITIAL_CNT){
+	if(_timeCnt[stampNr] < LOG_MAX_TIMESTAMPS){
 
-		//calculate new time
-		if(_startTimes[stampNr] < _stopTimes[stampNr]){ //normal case
-			time = _stopTimes[stampNr] - _startTimes[stampNr];
-		} else {
-			time = (ULONG_MAX-_startTimes[stampNr]) + _stopTimes[stampNr];
+		//if initial values are skipped, store timing profile data
+		if(_timeCnt[stampNr] >= LOG_SKIP_INITIAL_CNT){
+
+			//calculate new time
+			if(_startTimes[stampNr] < _stopTimes[stampNr]){ //normal case
+				time = _stopTimes[stampNr] - _startTimes[stampNr];
+			} else {
+				time = (ULONG_MAX-_startTimes[stampNr]) + _stopTimes[stampNr];
+			}
+
+			//store new average time
+			_avgTimes[stampNr] = ((cnt * _avgTimes[stampNr]) + time) / (cnt + 1);
+			//store new minimum time
+			_minTimes[stampNr] = (time < _minTimes[stampNr]) ? time : _minTimes[stampNr];
+			//store new maximum time
+			_maxTimes[stampNr] = (time > _maxTimes[stampNr]) ? time : _maxTimes[stampNr];
+
 		}
 
-		//store new average time
-		_avgTimes[stampNr] = ((cnt * _avgTimes[stampNr]) + time) / (cnt + 1);
-		//store new minimum time
-		_minTimes[stampNr] = (time < _minTimes[stampNr]) ? time : _minTimes[stampNr];
-		//store new maximum time
-		_maxTimes[stampNr] = (time > _maxTimes[stampNr]) ? time : _maxTimes[stampNr];
-
-	//initialize average to a realistic value
+		//update counter
+		_timeCnt[stampNr]++;
 	}
 
-	_timeCnt[stampNr]++;
+
+
 
 }
 
