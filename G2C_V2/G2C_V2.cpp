@@ -112,7 +112,6 @@ unsigned int HallSearchStartCount = 0;	//To count Hall passes on engaging
 unsigned long stoppingTime = 0;	//Time started with stopping.. (GC_STOPPING entry time)
 unsigned long surgeStart = 0;	//To keep track of the power surge duration
 
-bool runLastTime = false;
 uint16_t rightWingPWM = 0;
 uint16_t leftWingPWM = 0;
 uint16_t tailPWM = 0;
@@ -270,19 +269,19 @@ void loop(){
 	}
 	
 	//perform fast critical logSystem tasks
+	logWriteStartTime(AHRS_TIMER);
 	logFastPeriodic();
+	logWriteStopTime(AHRS_TIMER);
 
 	if(Hz50.poll(20)){
 
-		if(!runLastTime){
-			//perform slow critical logSystem tasks
-			//Serial.printf("System :: logging at time : %lu\n", micros());
-			logSlowPeriodic(rightWingPWM,leftWingPWM,tailPWM,curThrottle);
-			runLastTime = true;
-		} else {
-			//Serial.printf("System :: skipped log\n");
-			runLastTime = false;
-		}
+		//measure loop duration
+		logWriteStartTime(LOOP2_TIMER);
+		/************************************/
+		/*	Log System Update				*/
+		/************************************/
+		logSlowPeriodic(rightWingPWM,leftWingPWM,tailPWM,curThrottle);
+
 
 		// This is a 50 Hz loop
 		
@@ -383,7 +382,8 @@ void loop(){
 			break;
 		}
 
-
+		//measure loop duration
+		logWriteStopTime(LOOP2_TIMER);
 	} // 50Hz poll (fast loop)
 	
 	

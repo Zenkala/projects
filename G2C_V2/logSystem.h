@@ -50,10 +50,22 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 
 //enable log system
 #define LOGGING_ENABLED (1)
+#define LOGGING_DISABLED (-1)
 
 //dataflash handling delay when erasing
 #define LOG_DF_DELAY_US (1)
 
+//time profiling definitions
+#define LOG_NR_TIMESTAMPS (6)
+#define LOG_MAX_TIMESTAMPS (10000)
+#define LOG_SKIP_INITIAL_CNT (10)
+
+#define LOG_TIMER (0)
+#define COMPASS_TIMER (1)
+#define MENU_TIMER (2)
+#define AHRS_TIMER (3)
+#define LOOP_TIMER (4)
+#define LOOP2_TIMER (5)
 
 //==================================================================================
 // Type Definitions
@@ -104,10 +116,11 @@ void logWriteBlock(const void *pBuffer, uint16_t size);
 // -updates compass readings
 // -stores a log of current state
 // call at max 75hz
-void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle);
+void logWriteLog(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle);
 //performs fast critical logSystem tasks
 // -update AHRS system
 void logFastPeriodic();
+void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle);
 // Write a log packet
 void logWriteEntry(logEntry *entry);
 // Read a log packet
@@ -118,9 +131,11 @@ void logPrintEntry(logEntry entry);
 void logDumpLogNr(int16_t startPage,int16_t endPage, int16_t logNr);
 //provide delay function for LOG_DF_DELAY_US * us
 void logUsDelay(unsigned long us);
-//end of logger.h
-void logUsDelay(unsigned long us);
+//store a new timestamp for time-profiling (time in us)
+void logUpdateTimestamp(uint8_t stampNr);
+void logWriteStartTime(uint8_t stampNr);
+void logWriteStopTime(uint8_t stampNr);
 
 
-
+//end of logSystem.h
 #endif

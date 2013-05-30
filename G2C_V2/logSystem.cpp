@@ -16,11 +16,13 @@ via a serial interface, and makes use of the standard ArduPilot libraries.
 #include <FastSerial.h>
 
 #include <Arduino.h>
+#include <limits.h>
 
 //logger system and menu
 #include "logSystem.h"
 #include "logMenu.h"
 #include "imuMenu.h"
+
 
 //compass libraries
 #include <AP_Compass_HMC5843.h>
@@ -77,6 +79,8 @@ static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv);
 static int8_t   logCompassCmd(uint8_t argc, const logMenu::arg *argv);
 //provide a test command for the AHRS system
 static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv);
+//prints a report of important timing characteristics
+static int8_t   logProfileCmd(uint8_t argc, const logMenu::arg *argv);
 
 //Instantiate serial menu
 // Creates a constant array of structs representing menu options
@@ -91,6 +95,7 @@ const struct logMenu::command logMenuCommands[] PROGMEM = {
     {"imuCMD", logImuCmd},
     {"compass", logCompassCmd},
     {"ahrs", logAhrsCmd},
+    {"profile", logProfileCmd},
 };
 
 
@@ -112,7 +117,16 @@ AP_AHRS_DCM  *_Ahrs;
 GPS *_GPS;
 float _heading = 0.0;
 static logEntry _entry;
-int16_t _curLogNumber = NO_CUR_LOG;
+int16_t _enableLog = LOGGING_DISABLED;
+bool _runLastTime = false;
+
+//profiling system
+unsigned long _startTimes[LOG_NR_TIMESTAMPS];
+unsigned long _stopTimes[LOG_NR_TIMESTAMPS];
+unsigned long _avgTimes[LOG_NR_TIMESTAMPS];
+unsigned long _minTimes[LOG_NR_TIMESTAMPS];
+unsigned long _maxTimes[LOG_NR_TIMESTAMPS];
+unsigned long _timeCnt[LOG_NR_TIMESTAMPS];
 
 //===================================================================
 //	Log Menu Function Implementations
@@ -164,8 +178,6 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 
 		//Start New Log, and store log number
 		_DataFlash.start_new_log();
-		_curLogNumber = _DataFlash.find_last_log();
-		entry.logNr = _curLogNumber;
 		//write 32 log entries
 		for (i = 0; i < 32; i++){
 			//write one entry
@@ -180,6 +192,48 @@ static int8_t   logTestCmd(uint8_t argc, const logMenu::arg *argv){
 	//print log overview
 	logListCmd(0,(const logMenu::arg *)NULL);
 
+
+	return 0;
+}
+
+//prints a report of important timing characteristics
+static int8_t   logProfileCmd(uint8_t argc, const logMenu::arg *argv){
+
+	//print timing profile of system
+	_Console->printf("--------------------------------------------- \n");
+	_Console->printf("Timer   | min... | max... | avg... | cnt... | \n");
+	_Console->printf("--------------------------------------------- \n");
+	_Console->printf("AHRS    | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[AHRS_TIMER],
+										_maxTimes[AHRS_TIMER],
+										_avgTimes[AHRS_TIMER],
+										_timeCnt[AHRS_TIMER]);
+	_Console->printf("LOGGING | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[LOG_TIMER],
+										_maxTimes[LOG_TIMER],
+										_avgTimes[LOG_TIMER],
+										_timeCnt[LOG_TIMER]);
+	_Console->printf("COMPASS | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[COMPASS_TIMER],
+										_maxTimes[COMPASS_TIMER],
+										_avgTimes[COMPASS_TIMER],
+										_timeCnt[COMPASS_TIMER]);
+	_Console->printf("MENU    | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[MENU_TIMER],
+										_maxTimes[MENU_TIMER],
+										_avgTimes[MENU_TIMER],
+										_timeCnt[MENU_TIMER]);
+	_Console->printf("LP-FREQ | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[LOOP_TIMER],
+										_maxTimes[LOOP_TIMER],
+										_avgTimes[LOOP_TIMER],
+										_timeCnt[LOOP_TIMER]);
+	_Console->printf("LP-TIME | %6lu | %6lu | %6lu | %6lu | \n",
+										_minTimes[LOOP2_TIMER],
+										_maxTimes[LOOP2_TIMER],
+										_avgTimes[LOOP2_TIMER],
+										_timeCnt[LOOP2_TIMER]);
+	_Console->printf("--------------------------------------------- \n");
 
 	return 0;
 }
@@ -257,15 +311,12 @@ static int8_t   logAhrsCmd(uint8_t argc, const logMenu::arg *argv){
 static int8_t   logEraseCmd(uint8_t argc, const logMenu::arg *argv){
 
 	//disable logging
-	_curLogNumber = NO_CUR_LOG;
+	_enableLog = LOGGING_DISABLED;
+	_Console->print_P(PSTR("logEraseCmd :: disabled logging / restart to re-enable \n"));
 	//erase flash
 	_Console->print_P(PSTR("logEraseCmd :: erasing flash... "));
 	_DataFlash.EraseAll(&logUsDelay);
-    _Console->print_P(PSTR("complete \n"));
-	//start new log, and store log number
-	_DataFlash.start_new_log();
-	_curLogNumber = _DataFlash.find_last_log();
-	_Console->print_P(PSTR("logEraseCmd :: New log started \n"));
+    _Console->print_P(PSTR("done \n"));
 
 	return 0;
 }
@@ -357,17 +408,13 @@ static int8_t   logImuCmd(uint8_t argc, const logMenu::arg *argv){
 
 //call periodically to keep serial console alive. Every call will produce a
 //log on the dataflash
-void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle){
+void logWriteLog(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle){
 
-	_Compass->accumulate();
-    _Compass->read();
-
-    if(_curLogNumber != NO_CUR_LOG){
-		//===================
+    if(_enableLog == LOGGING_ENABLED){
+    	//===================
 		//gather data
 		//===================
 		_entry.header = LOG_PACKET_HEADER;
-		_entry.logNr = _curLogNumber;
 		_entry.time = micros(); //running time in useconds
 		//AHRS values
 		Vector3f drift  = _Ahrs->get_gyro_drift();
@@ -398,24 +445,93 @@ void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,in
 		logWriteEntry(&_entry);
     }//end active log check
 
-	//keep menu alive
-	logMenu.runOnce();
 }
 
 //keep kalman filter up to date
 void logFastPeriodic(){
+	logWriteStartTime(AHRS_TIMER);
 	_Ahrs->update();
+	logWriteStopTime(AHRS_TIMER);
+}
+
+//keep kalman filter up to date
+void logSlowPeriodic(int16_t rightWingPWM,int16_t leftWingPWM,int16_t tailPWM,int16_t curThrottle){
+
+	//update loop frequency timer
+	logWriteStopTime(LOOP_TIMER);
+	logWriteStartTime(LOOP_TIMER);
+	//update compass
+	logWriteStartTime(COMPASS_TIMER);
+	_Compass->accumulate();
+	_Compass->read();
+	logWriteStopTime(COMPASS_TIMER);
+	//store log and keep menu alive
+	if(!_runLastTime){
+		//write log
+		logWriteStartTime(LOG_TIMER);
+		logWriteLog(rightWingPWM,leftWingPWM,tailPWM,curThrottle);
+		logWriteStopTime(LOG_TIMER);
+		//keep menu alive
+		logWriteStartTime(MENU_TIMER);
+		logMenu.runOnce();
+		logWriteStopTime(MENU_TIMER);
+		_runLastTime = true;
+	} else {
+		//Serial.printf("System :: skipped log\n");
+		_runLastTime = false;
+	}
+
+}
+
+void logWriteStartTime(uint8_t stampNr){
+	_startTimes[stampNr] = micros();
+}
+
+void logWriteStopTime(uint8_t stampNr){
+	_stopTimes[stampNr] = micros();
+	logUpdateTimestamp(stampNr);
+}
+
+//calculate new time-profiling data
+void logUpdateTimestamp(uint8_t stampNr){
+
+	unsigned long time = _avgTimes[stampNr];
+	unsigned long cnt = (_timeCnt[stampNr]-LOG_SKIP_INITIAL_CNT);
+
+	//disable if too many times have been written
+	if(_timeCnt[stampNr] < LOG_MAX_TIMESTAMPS && _timeCnt[stampNr] >= LOG_SKIP_INITIAL_CNT){
+
+		//calculate new time
+		if(_startTimes[stampNr] < _stopTimes[stampNr]){ //normal case
+			time = _stopTimes[stampNr] - _startTimes[stampNr];
+		} else {
+			time = (ULONG_MAX-_startTimes[stampNr]) + _stopTimes[stampNr];
+		}
+
+		//store new average time
+		_avgTimes[stampNr] = ((cnt * _avgTimes[stampNr]) + time) / (cnt + 1);
+		//store new minimum time
+		_minTimes[stampNr] = (time < _minTimes[stampNr]) ? time : _minTimes[stampNr];
+		//store new maximum time
+		_maxTimes[stampNr] = (time > _maxTimes[stampNr]) ? time : _maxTimes[stampNr];
+
+	//initialize average to a realistic value
+	}
+
+	_timeCnt[stampNr]++;
+
 }
 
 void logUsDelay(unsigned long us){
 	//provide a few us delay for
-	_Console->print(".");
+	//_Console->print(".");
 	delayMicroseconds(us*LOG_DF_DELAY_US);
 }
 
 int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC5843 *compass, AP_AHRS_DCM *ahrs, GPS *gps){
 
 	uint8_t result = LOG_INIT_ERR;
+	uint8_t i = 0;
 
 	//store sensor and interface pointers
 	_Console = port;
@@ -441,8 +557,18 @@ int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC58
     	}
     	//start new log, and store log number
     	_DataFlash.start_new_log();
-		_curLogNumber = _DataFlash.find_last_log();
-    	_Console->print_P(PSTR("logInit :: New log started \n"));
+    	_enableLog = LOGGING_ENABLED;
+		_Console->print_P(PSTR("logInit :: New log started \n"));
+    }
+
+    //initialize time-profiling variables (clear)
+    for(i=0;i<LOG_NR_TIMESTAMPS; i++){
+    	_startTimes[i] = 0;
+    	_stopTimes[i] = 0;
+    	_avgTimes[i] = 0;
+    	_minTimes[i] = ULONG_MAX;
+    	_maxTimes[i] = 0;
+    	_timeCnt[i] = 0;
     }
 
 	//initialize serial interface
@@ -459,6 +585,9 @@ int8_t logInit(FastSerial *port,AP_InertialSensor_MPU6000 *imu, AP_Compass_HMC58
     result = LOG_INIT_OK;
     return result;
 }
+
+
+
 
 
 // Write a log packet.
@@ -487,18 +616,15 @@ logEntry logReadEntry()
 		bytePtr[i] = _DataFlash.ReadByte();
 	}
 
-	//TODO : Check for valid header and log number
-
-    return entry;
+	return entry;
 }
 
 //print log entry
 void logPrintEntry(logEntry entry){
 
 	//print header, logNr and time
-	_Console->printf("%u;%u;%lu;",
+	_Console->printf("%u;%lu;",
 			entry.header,
-			entry.logNr,
 			entry.time);
 	//print AHRS data
 	_Console->printf("%d;%d;%d;",
@@ -553,14 +679,14 @@ void logDumpLogNr(int16_t startPage,int16_t endPage, int16_t logNr){
 	//initiate reading
 	_DataFlash.StartRead(startPage);
 
-	_Console->printf_P(PSTR("logHead;logNr;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;"));
+	_Console->printf_P(PSTR("logHead;Time;Roll;Pitch;Yaw;DriftX;DriftY;DriftZ;Heading;AccX;AccY;AccZ;GyroX;GyroY;GyroZ;rwPWM;lwPWM;tailPWM;Throttle;"));
 	_Console->println();
 	//read all the packets
 	for(i=0;i<nrEntries;i++){
 		//get log entry
 		entry = logReadEntry();
 		//check wheter entry is valid and belongs to current log
-		if(entry.header == LOG_PACKET_HEADER && (entry.logNr == (uint16_t)logNr || logNr <= 0)){
+		if(entry.header == LOG_PACKET_HEADER){
 			logPrintEntry(entry);
 		}
 	}
