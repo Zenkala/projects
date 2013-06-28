@@ -32,19 +32,25 @@ static void* stdout_putp;
 static void uli2a(unsigned long int num, unsigned int base, int uc,char * bf)
     {
     int n=0;
+    //start with ones
     unsigned int d=1;
+    //process number
     while (num/d >= base)
-        d*=base;         
-    while (d!=0) {
-        int dgt = num / d;
-        num%=d;
-        d/=base;
-        if (n || dgt>0|| d==0) {
-            *bf++ = dgt+(dgt<10 ? '0' : (uc ? 'A' : 'a')-10);
-            ++n;
-            }
-        }
-    *bf=0;
+        //multiply with base
+    	d*=base;
+
+		while (d!=0) {
+			int dgt = num / d;
+			num%=d;
+			d/=base;
+
+			if (n || dgt>0|| d==0) {
+				*bf++ = dgt+(dgt<10 ? '0' : (uc ? 'A' : 'a')-10);
+				++n;
+			}
+		}
+
+		*bf=0;
     }
 
 static void li2a (long num, char * bf)
@@ -226,6 +232,7 @@ void tfp_format(void* putp,putcf putf,char *fmt, va_list va)
                     break;
                 case '%' :
                     putf(putp,ch);
+                    break;
                 default:
                     break;
                 }

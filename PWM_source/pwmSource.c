@@ -14,9 +14,10 @@ This project ..
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <string.h>
 #include <stdlib.h>
 #include "stdio.h"
-#include "lcd/alphaLCD.h"
+#include "lcd/lcd.h"
 #include "printf/printf.h"
 
 
@@ -41,6 +42,10 @@ unsigned char setting=128; //led setting
 //==================================================================================
 
 void userInit(void); //all user port and peripheral initialisations here
+
+void lcd_printc(void *p, char ch) {
+	lcd_putc(ch); //write character to lcd
+}
 
 //==================================================================================
 // Main
@@ -78,32 +83,20 @@ return 0;
 void userInit(void){ //all user port and peripheral initialisations here
 
 
-	//PORT initialisation
-	PORTB=0; //initial conditions 0, no pull-ups
-	DDRB=(1<<PB1)|(1<<PB0); //set OC0B and OC0A to outputs
+	//enable pwm timer
 	
-	//Timer initialisation
-	//set timer to fast-PWM mode, with OC0B and OC0A inverted
-	TCCR0A=(1<<WGM00)|(1<<WGM01)|(1<<COM0A1)|(1<<COM0B0)|(1<<COM0B1);
-	//set clock source to 8 prescaling
-	TCCR0B=(1<<CS01);
-	//set initial duty cycle to 50%
-	OCR0A=128;
-	OCR0B=128;
-	//disable interrupts
-	TIMSK0=0;
 
-	
-	//ADC initialisation
-	//VCC as analog reference, left adjusted, ADC2 (PB4)
-	ADMUX=(1<<MUX1)|(1<<ADLAR);
-	//Devide ADC clock with 128, enable ADC interrupt, free running mode
-	ADCSRA=(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0)|(1<<ADEN)|(1<<ADIE)|(1<<ADATE);
-	//Disable digital input buffer function ADC2
-	DIDR0=(1<<ADC2D);
-	//Start conversion
-	ADCSRA|=(1<<ADSC);
+	//initialize LCD
 
+
+	//initialize printf
+	init_printf(NULL, lcd_printc );
+
+
+	//enable interrupts for rotary encoder and button
+
+
+	//enable global interrupts
 	sei();
 
 
@@ -111,15 +104,40 @@ void userInit(void){ //all user port and peripheral initialisations here
 
 
 
-ISR(ADC_vect) { // ADC conversion compete interrupt
-	
-	//read ADC 8 bit value
-	setting=ADCH;
 
-	//update PWM
-	OCR0A=setting;
-	OCR0B=setting;
+void lcd_outs (char *string, unsigned char strlen){
 
+	unsigned char i=0;
+	char *strptr = string; /*local copy*/
+
+	/* clear display and home cursor */
+	lcd_clrscr();
+	lcd_gotoxy(0,0);
+
+	/*do not display string > 16 characters*/
+	if(strlen>16){
+		lcd_puts("error");
+	} else {
+
+		for(i=0; i<strlen; i++){
+
+			//move to new line (second part of display) after
+			//first 8 characters have been written
+			if(i==8){
+				lcd_gotoxy(0,1);
+			}
+
+			lcd_putc(*strptr);
+			strptr++;
+
+		}
+
+	}
 }
+
+
+void setPWM
+
+
 
 
