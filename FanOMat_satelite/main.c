@@ -12,10 +12,18 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include <stdint.h>
+#include "I2C_slave.h"
 
 //==================================================
 // Definitions
 //==================================================
+
+//debug definitions
+#define I2C_DEBUG (1) //if 1, I2C is used for debugging purposes instead of normal operation
+
+//I2C definitions
+#define DEFAULT_ADDRESS (0xAD) //default slave address
+#define NO_SLEEP (0x00)
 
 //input pin definitions
 
@@ -80,6 +88,9 @@
 #define VOLTAGE_MODE (0x01)
 #define PWM_FAN_MODE (0x02)
 
+//system definitions
+#define SYS_TIMER_TOP (250) //timer runs @ clk/64
+
 //==================================================
 // Global Variables
 //==================================================
@@ -96,8 +107,63 @@ unsigned char _inAddrReset = 0x00;
 void init(void);
 //initialize pwm channels
 void initPwm(void);
+//initialize system timer @ (8mHz/64)/SYS_TIMER_TOP
+void initSysTimer(void);
 //set pwm channel to desired state
 void setPwm(unsigned char channel, unsigned char duty_cycle,unsigned char fan_mode);
+
+//I2C data received callback handler
+static void twiCallback(	uint8_t buffer_size,
+							volatile uint8_t input_buffer_length,
+							volatile const uint8_t *input_buffer,
+							volatile uint8_t *output_buffer_length,
+							volatile uint8_t *output_buffer);
+
+
+//==================================================
+// interrupt service routines
+//==================================================
+
+//// timer1 compare match A (system timer)
+//ISR(TIM1_COMPA_vect) {
+//    // XOR PORTA with 0x02 to toggle the LSB
+//    unsigned char input;
+//
+//    //sample inputs
+//
+//    //get current bit state of tacho input ch1
+//	input = TACHO_CH1_PIN & (1 << TACHO_CH1_BIT);
+//	//shift bit into input buffer
+//	_inTacho1 = (_inTacho1 << 1) | (input >> TACHO_CH1_BIT);
+//
+//	//get current bit state of tacho input ch1
+//	input = TACHO_CH2_PIN & (1 << TACHO_CH2_BIT);
+//	//shift bit into input buffer
+//	_inTacho2 = (_inTacho2 << 1) | (input >> TACHO_CH2_BIT);
+//
+//
+//    //update software timers
+//
+//    //clear interrupt flag?
+//}
+//
+////pin change interrupt handler (TACHO measurement)
+//ISR(PCINT0_vect) {
+//    //get timer value (ovf count + cur_val)
+//
+//	//find interrupt source
+//
+//	//check flank (rising/falling?)
+//
+//
+//
+//	//calculate time diff (if > 1ms, assume correct)
+//
+//	//average last 8 measurements
+//
+//
+//	//clear interrupt flag?
+//}
 
 //==================================================
 // Main Loop
@@ -155,6 +221,9 @@ void init(void){
 	//keep global interrupts disabled
 	cli();
 
+	//initialize I2C
+	usi_twi_slave(DEFAULT_ADDRESS, NO_SLEEP,twiCallback,0x00);
+
 }
 
 //initialize pwm counter to count up to 0xFF = 32kHz period
@@ -174,6 +243,34 @@ void initPwm(void){
 	OCR0B = 128;
 	//enable timer (clock / 1)
 	TCCR0B |= (1 << CS00);
+
+}
+
+//initialize I2C channel
+void initI2C(void){
+
+
+
+
+
+}
+
+//initialize timer1 to generate an interrupt at approximately
+//500Hz. This interrupt is used for sampling of the inputs, and
+//giving the system a notion of time.
+void initSysTimer(void){
+
+	//disable timer clock source
+	TCCR1B = 0x00;
+	//disconnect output pins, and set to clear-on-compare mode
+	TCCR1A = 0x00;
+	TCCR1B |= (1<<WGM12);
+	//set timer compare match frequency to 500Hz
+	OCR1A = SYS_TIMER_TOP;
+	//enable timer 1 compare match interrupt
+    TIMSK1 = (1<OCIE1A);
+    //enable timer clock @ clk/64
+    TCCR1B |= (1<<CS10) | (1<<CS11);
 
 }
 
@@ -208,3 +305,31 @@ void setPwm(unsigned char channel, unsigned char duty_cycle, unsigned char fan_m
 
 
 }
+
+/*
+I2C data-received callback function::
+buffer_size = the size of the internal input and output buffers,
+	currently this is 16 bytes, but it may enlarged by recompiling
+	the library. Do not write more bytes than the buffer_size or
+	mayhem will be the result!
+input_buffer_length = the amount of bytes received from the master
+input_buffer = the bytes received from the master
+output_buffer_length = the amount of bytes you want to send back to
+	the master
+output_buffer = the bytes you want to send back to the master
+*/
+static void twiCallback(	uint8_t buffer_size,
+							volatile uint8_t input_buffer_length,
+							volatile const uint8_t *input_buffer,
+							volatile uint8_t *output_buffer_length,
+							volatile uint8_t *output_buffer)
+{
+
+	//TODO: replace with something useful
+
+	*output_buffer_length = 1; //send one byte back to the master
+	*output_buffer = 0xAB; //random crap
+
+}
+
+
